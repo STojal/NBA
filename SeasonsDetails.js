@@ -8,8 +8,9 @@ var vm = function () {
     self.passingMessage = ko.observable('');
     //--- Data Record
     self.Id = ko.observable('');
+    self.Teams = ko.observable('');
     self.Season = ko.observable('');
-
+    self.Players = ko.observable("")
   
 
     //--- Page Events
@@ -20,7 +21,9 @@ var vm = function () {
             console.log(data);
             hideLoading();
             self.Id(data.Id);
-            self.Season(dara.Season)
+            self.Season(data.Season)
+            self.Teams(data.Teams)
+            self.Players(data.Players)
 
         });
     };
