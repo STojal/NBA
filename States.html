@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA Teamns List</title>
+    <title>ITW 2023/24 - NBA Players List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -56,15 +56,15 @@
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Teams: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                     <li class="page-item float-end"><a class="page-link" title="First Page"
-                            data-bind="attr: { href: './Teams.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                            data-bind="attr: { href: './Players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
                     <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                            data-bind="attr: { href: './Teams.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                            data-bind="attr: { href: './Players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
@@ -73,15 +73,15 @@
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
                     <li class="page-item"><a class="page-link"
-                            data-bind="attr: { href: './Teams.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                            data-bind="attr: { href: './Players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
                     </li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                     <li class="page-item"><a class="page-link" title="Next Page"
-                            data-bind="attr: { href: './Teams.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                            data-bind="attr: { href: './Players.html?page=' + nextPage(), rel:'next' }">→</a></li>
                     <li class="page-item"><a class="page-link" title="Last Page"
-                            data-bind="attr: { href: './Teams.html?page=' + totalPages() }">⇥</a></li>
+                            data-bind="attr: { href: './Players.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -89,66 +89,61 @@
         <!-- /ko -->
 
 
-        <div data-bind="foreach: records" class="row">
-            <div class="card" style="width: 15rem;">
-                <!-- Aqui, substitua "..." pelo caminho correto para a imagem desejada -->
-                <!--ko if: Logo === null -->
-                <img src="images/equipas.png" alt="Placeholder" class="card-img-top">
+            <div data-bind="foreach: Records" class="row" id="Players">
+                <div class="card" style="width: 15rem;">
+                    
+                <!--ko if: Flag === null -->
+                <img src="images/logo players.png" alt data-bind="text: Name"                class="card-img-top">
                 <!--/ko-->
-                <!--ko ifnot: Logo === null -->
-                <img data-bind="attr: { src: Logo, alt: 'Name' }" class="card-img-top">
+                <!--ko ifnot: Flag === null -->
+                <img data-bind="attr: { src: Flag, alt: 'Name' }" class="card-img-top">
                 <!--/ko-->
-                <div class="card-body">
-                    <h5 class="card-title" data-bind="text: Name"></h5>
-                    <p class="card-text">
-
-                        <strong>Acronym:</strong><span data-bind="text: Acronym"></span> <br>
-                    </p>
-      
-                    <a href="./TeamsDetails.html" class="btn btn-primary"
-                        data-bind="attr: { href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">Show Details</a>
-                    <button class="btn btn-default btn-xs"><i class="fa-regular fa-heart"
-                            data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
+                    <div class="card-body">
+                      <h5 class="card-title" data-bind="text: Name"></h5>
+                      <p class="card-text">
+                      
+                      <a href="./StatesDetails.html" class="btn btn-primary" data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>
+                      <button class="btn btn-default btn-xs" style="background-color: red;border-radius: 30px;"><i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
+                    </div>
+                  </div>
                 </div>
-            </div>
-        </div>
 
     </div>
     <div class="container">
-        <div class="row small">
-            <p class=" col-4 mr-auto pt-2">
-                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Teams: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
-            </p>
-            <div class="col-8 my-0 pt-3">
-                <ul class="pagination float-end">
-                    <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
-                    <li class="page-item float-end"><a class="page-link" title="First Page"
-                            data-bind="attr: { href: './Teams.html?page=' + '1',  rel:'prev'}">⇤</a></li>
-                    <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                            data-bind="attr: { href: './Teams.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
-                    <!-- /ko -->
-                    <!-- ko foreach: pageArray()-->
-                    <!-- ko if:$data == $parent.currentPage() -->
-                    <li class="active page-item"><a class="page-link"
-                            data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
-                    <!-- /ko -->
-                    <!-- ko if:$data != $parent.currentPage() -->
-                    <li class="page-item"><a class="page-link"
-                            data-bind="attr: { href: './Teams.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
-                    </li>
-                    <!-- /ko -->
-                    <!-- /ko -->
-                    <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
-                    <li class="page-item"><a class="page-link" title="Next Page"
-                            data-bind="attr: { href: './Teams.html?page=' + nextPage(), rel:'next' }">→</a></li>
-                    <li class="page-item"><a class="page-link" title="Last Page"
-                            data-bind="attr: { href: './Teams.html?page=' + totalPages() }">⇥</a></li>
-                    <!-- /ko -->
-                </ul>
-            </div>
+    <div class="row small">
+        <p class=" col-4 mr-auto pt-2">
+            <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
+            <span data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+        </p>
+        <div class="col-8 my-0 pt-3">
+            <ul class="pagination float-end">
+                <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
+                <li class="page-item float-end"><a class="page-link" title="First Page"
+                        data-bind="attr: { href: './Players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                <li class="page-item float-end"><a class="page-link" title="Previous Page"
+                        data-bind="attr: { href: './Players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                <!-- /ko -->
+                <!-- ko foreach: pageArray()-->
+                <!-- ko if:$data == $parent.currentPage() -->
+                <li class="active page-item"><a class="page-link"
+                        data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
+                <!-- /ko -->
+                <!-- ko if:$data != $parent.currentPage() -->
+                <li class="page-item"><a class="page-link"
+                        data-bind="attr: { href: './Players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                </li>
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
+                <li class="page-item"><a class="page-link" title="Next Page"
+                        data-bind="attr: { href: './Players.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                <li class="page-item"><a class="page-link" title="Last Page"
+                        data-bind="attr: { href: './Players.html?page=' + totalPages() }">⇥</a></li>
+                <!-- /ko -->
+            </ul>
         </div>
     </div>
+</div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -186,7 +181,7 @@
         integrity="sha512-YbLeROkNBfkWaL5RmVsg7G1JQp0by0pCmJgBpOfAQOPTKIchg79fVzahpg5YPUMS1+77WCcpd84OTOK0gdf8BA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
-    <script src="Teams.js"></script>
+    <script src="States.js"></script>
 </body>
 
 </html>
