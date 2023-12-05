@@ -22,7 +22,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="../images/NBA_logoH.png"
+            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
                     height="24" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -91,9 +91,9 @@
 
             <div data-bind="foreach: records" class="row" id="Players">
                 <div class="card" style="width: 15rem;">
-                    <!-- Aqui, substitua "..." pelo caminho correto para a imagem desejada -->
+                    
                 <!--ko if: Photo === null -->
-                <img src="images/logo players.png" alt="Placeholder" class="card-img-top">
+                <img src="images/logo players.png" alt data-bind="text: Name"                class="card-img-top">
                 <!--/ko-->
                 <!--ko ifnot: Photo === null -->
                 <img data-bind="attr: { src: Photo, alt: 'Name' }" class="card-img-top">
@@ -101,14 +101,14 @@
                     <div class="card-body">
                       <h5 class="card-title" data-bind="text: Name"></h5>
                       <p class="card-text">
-                        <!-- Use os dados adequados para construir o conteúdo do cartão -->
+                        
                         <strong>Country:</strong> <a href="./countryDetails.html?id=" class="nav-link" data-bind="text: CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }" title="Show Country Details"></a><br>
                         <strong>Position:</strong> <a href="./positionDetails.html?id=" class="nav-link" data-bind="text: PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }" title="Show Position Details"></a><br>
                         <strong>Height:</strong> <span data-bind="text: Height"></span>
                       </p>
-                      <!-- Altere conforme necessário o link e o texto do botão -->
+                      
                       <a href="./PlayersDetails.html" class="btn btn-primary" data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>
-                      <button class="btn btn-default btn-xs"><i class="fa fa-heart-o" data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
+                      <button class="btn btn-default btn-xs" style="background-color: red;border-radius: 30px;"><i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
                     </div>
                   </div>
                 </div>
@@ -155,7 +155,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../images/NBA_logoH.png" height="30" /> Loading data...
+                        <img src="images/logo site.png" height="30" /> Loading data...
                     </h5>
                 </div>
                 <div class="modal-body text-center">

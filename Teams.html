@@ -22,7 +22,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="../images/NBA_logoH.png"
+            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
                     height="24" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -101,13 +101,13 @@
                 <div class="card-body">
                     <h5 class="card-title" data-bind="text: Name"></h5>
                     <p class="card-text">
-                        <!-- Use os dados adequados para construir o conteúdo do cartão -->
+
                         <strong>Acronym:</strong><span data-bind="text: Acronym"></span> <br>
                     </p>
-                    <!-- Altere conforme necessário o link e o texto do botão -->
-                    <a href="./PlayersDetails.html" class="btn btn-primary"
-                        data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>
-                    <button class="btn btn-default btn-xs"><i class="fa fa-heart-o"
+      
+                    <a href="./TeamsDetails.html" class="btn btn-primary"
+                        data-bind="attr: { href:'./TeamsDetails.html?id=' + Id+ '?acronym=' + Acronym }">Show Details</a>
+                    <button class="btn btn-default btn-xs"><i class="fa-regular fa-heart"
                             data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
                 </div>
             </div>
@@ -118,15 +118,15 @@
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Teams: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                     <li class="page-item float-end"><a class="page-link" title="First Page"
-                            data-bind="attr: { href: './Players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                            data-bind="attr: { href: './Teams.html?page=' + '1',  rel:'prev'}">⇤</a></li>
                     <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                            data-bind="attr: { href: './Players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                            data-bind="attr: { href: './Teams.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
@@ -135,15 +135,15 @@
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
                     <li class="page-item"><a class="page-link"
-                            data-bind="attr: { href: './Players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                            data-bind="attr: { href: './Teams.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
                     </li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
                     <li class="page-item"><a class="page-link" title="Next Page"
-                            data-bind="attr: { href: './Players.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                            data-bind="attr: { href: './Teams.html?page=' + nextPage(), rel:'next' }">→</a></li>
                     <li class="page-item"><a class="page-link" title="Last Page"
-                            data-bind="attr: { href: './Players.html?page=' + totalPages() }">⇥</a></li>
+                            data-bind="attr: { href: './Teams.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -155,7 +155,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../images/NBA_logoH.png" height="30" /> Loading data...
+                        <img src="images/logo site.png" height="30" /> Loading data...
                     </h5>
                 </div>
                 <div class="modal-body text-center">

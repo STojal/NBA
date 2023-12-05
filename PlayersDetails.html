@@ -23,7 +23,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="../images/NBA_logoH.png"
+            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
                     height="24" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -95,9 +95,12 @@
         <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
             <div class="col-2">Photo</div>
             <div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Photo, alt:'Name'}"><br />
-                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none"
-                    data-bind="attr: { href: Photo }, text: Photo" target="_blank"></a>]
+                <!--ko ifnot: Photo === null -->
+                <a class="link-dark text-decoration-none" data-bind="attr: { href: Photo, alt:Name, title:Name }"
+                    target="_blank">
+
+                    <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
+                </a><!--/ko-->
             </div>
         </div>
         <a href="Players.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
@@ -109,7 +112,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="../images/NBA_logoH.png" height="30" /> Loading data...
+                        <img src="images/logo site.png" height="30" /> Loading data...
                     </h5>
                 </div>
                 <div class="modal-body text-center">
