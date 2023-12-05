@@ -51,3 +51,22 @@ li.page-item a {
     height: 50px; 
     object-fit: cover;  
 }
+.link-hover:hover {
+    color: #007bff; /* Change to the desired hover color */
+    text-decoration: underline;
+}
+.header-underline {
+    border-bottom: 2px solid #007bff; /* Change to the desired underline color */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.info-row {
+    margin-bottom: 15px;
+}
+
+.card-section {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;}

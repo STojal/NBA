@@ -51,60 +51,77 @@
     <!-- Work Area-->
     <div class="container">
         <div class="py-2 border-bottom mb-3">
-            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+            <h2 data-bind="text:Name() "></h2>
         </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Player Id</div>
-            <div class="col-10" data-bind="text: Id"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Name</div>
-            <div class="col-10" data-bind="text: Name"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Country</div>
-            <div class="col-10"><a class="nav-link"
-                    data-bind="text:CountryName, attr: { href:'./CountryDetails.html?id=' + CountryId }"
-                    title="Show Country Details"></a></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Position</div>
-            <div class="col-10" data-bind="text: PositionName"></div>
-        </div>
-
-        <div class="row border-bottom g-2">
-            <div class="col-2">height</div>
-            <div class="col-10" data-bind="text: Height"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Weight</div>
-            <div class="col-10" data-bind="text: Weight"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">School</div>
-            <div class="col-10" data-bind="text: School"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">DraftYear</div>
-            <div class="col-10" data-bind="text: DraftYear"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Biography</div>
-            <div class="col-10" data-bind="text: Biography"></div>
-        </div>
-        <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
-            <div class="col-2">Photo</div>
-            <div class="small col-10">
-                <!--ko ifnot: Photo === null -->
-                <a class="link-dark text-decoration-none" data-bind="attr: { href: Photo, alt:Name, title:Name }"
-                    target="_blank">
-
-                    <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
-                </a><!--/ko-->
+    
+        <div class="row border-bottom g-2 info-row">
+            <div class="col-10">
+                <div class="card-section">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-section">
+                                <div class="row">
+                                    <div class="col-4">Player Id</div>
+                                    <div class="col-8" data-bind="text: Id"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Name</div>
+                                    <div class="col-8" data-bind="text: Name"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Country</div>
+                                    <div class="col-8">
+                                        <a class="nav-link link-hover" data-bind="text: CountryName, attr: { href:'./CountryDetails.html?id=' + CountryId }" title="Show Country Details"></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Position</div>
+                                    <div class="col-8" data-bind="text: PositionName"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Height</div>
+                                    <div class="col-8" data-bind="text: Height"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Weight</div>
+                                    <div class="col-8" data-bind="text: Weight"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">School</div>
+                                    <div class="col-8" data-bind="text: School"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Draft Year</div>
+                                    <div class="col-8" data-bind="text: DraftYear"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">Biography</div>
+                                    <div class="col-8" data-bind="text: Biography"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row border-bottom g-2 info-row" data-bind="visible: Photo() != '' && Photo() != null">
+                    <div class="col-12 header-underline">Photo</div>
+                    <div class="small col-12">
+                        <a class="link-dark text-decoration-none link-hover" data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
+                            <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-        <a href="Players.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
+    
+        <div class="mt-3">
+            <a href="Players.html" class="btn btn-secondary btn-sm"><i class="fa fa-list"></i> Back to List</a>
+        </div>
     </div>
+    
+
+
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
