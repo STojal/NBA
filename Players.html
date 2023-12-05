@@ -101,10 +101,15 @@
                     <div class="card-body">
                       <h5 class="card-title" data-bind="text: Name"></h5>
                       <p class="card-text">
-                        
+                        <!--ko if: CountryName  != null -->
                         <strong>Country:</strong> <a href="./countryDetails.html?id=" class="nav-link" data-bind="text: CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }" title="Show Country Details"></a><br>
+                        <!--/ko-->
+                        <!--ko if: PositionName  != null -->
                         <strong>Position:</strong> <a href="./positionDetails.html?id=" class="nav-link" data-bind="text: PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }" title="Show Position Details"></a><br>
+                        <!--/ko-->
+                        <!--ko if: Height  != null -->
                         <strong>Height:</strong> <span data-bind="text: Height"></span>
+                        <!--/ko-->
                       </p>
                       
                       <a href="./PlayersDetails.html" class="btn btn-primary" data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>

@@ -63,7 +63,7 @@
             <div class="col-2">Conference Name</div>
             <div class="col-10"><a class="nav-link"
                     data-bind="text:ConferenceName, attr: { href:'./ConferenceDetails.html?id=' + ConferenceId }"
-                    title="Show Country Details"></a></div>
+                    title="Show Conference Details"></a></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Division Name</div>
@@ -75,25 +75,21 @@
             <div class="col-2">State</div>
             <div class="col-10"><a class="nav-link"
                 data-bind="text:StateName, attr: { href:'./StateDetails.html?id=' + StateId }"
-                title="Show Division Details"></a></div>
+                title="Show State Details"></a></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">City</div>
             <div class="col-10" data-bind="text: City"></div>
         </div>
-        <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
+        <div class="row border-bottom g-2" data-bind="visible: Logo() != '' && Logo() != null">
             <div class="col-2">Logo</div>
             <div class="small col-10">
-                <!--ko if: Logo === null -->
-                <img src="images/equipas.png" alt="Placeholder" class="card-img-top">
-                <!--/ko-->
                 <!--ko ifnot: Logo === null -->
                 <a class="link-dark text-decoration-none" data-bind="attr: { href: Logo, alt:Name, title:Name }"
                     target="_blank">
 
                     <img class="img-thumbnail" data-bind="attr:{src: Logo}" />
-                </a>
-                <!--/ko-->
+                </a><!--/ko-->
             </div>
         </div>
         <div class="row border-bottom g-2">
@@ -101,13 +97,27 @@
             <div class="col-10" data-bind="text: History"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Seasons</div>
-            <div class="col-10" data-bind="text: Seasons"></div>
+            Seasons:
+            <div data-bind="foreach: Seasons">
+                
+                <a data-bind="attr: { href: './Seasons.html?id=' + Id }">
+                    <span data-bind="text: Season"></span>
+                </a>
+                    ;
+            </div>  
         </div>
+       
         <div class="row border-bottom g-2">
-            <div class="col-2">Players</div>
-            <div class="col-10" data-bind="text: Players"></div>
+            Players:
+            <div data-bind="foreach: Players">
+                
+                <a data-bind="attr: { href: './PlayersDetails.html?id=' + Id }">
+                    <span data-bind="text: Name"></span>
+                </a>
+                    ;
+            </div>  
         </div>
+       
         
         <a href="Teams.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
     </div>

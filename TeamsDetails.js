@@ -1,12 +1,14 @@
 // ViewModel KnockOut
 var vm = function () {
     var href_da_pagina = window.location.href; 
-    
-    href_da_pagina = href_da_pagina.split("?")
-    
+    href_da_pagina = href_da_pagina.split("&")
     var acronym_parametro = href_da_pagina[1].split("=")
-    
     var acronym_valor = acronym_parametro[1]
+
+    var id_todo = href_da_pagina[0].split("?")
+        id = id_todo[1].split("=")
+        Id_parametre = id[1]
+
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
@@ -29,12 +31,13 @@ var vm = function () {
     self.History = ko.observable('');
     self.Seasons = ko.observable('');
     self.Players = ko.observable('');
+    
 
     //--- Page Events
     self.activate = function (id) {
 
         console.log('CALL: getTeam...');
-        var composedUri = self.baseUri() +Id +'?Acronym=' + acronym_valor;
+        var composedUri = self.baseUri() +Id_parametre +'?Acronym=' + acronym_valor;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
@@ -53,7 +56,7 @@ var vm = function () {
             self.History(data.History);
             self.Seasons(data.Seasons);
             self.Players(data.Players);
-
+            
         });
     };
 

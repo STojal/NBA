@@ -92,16 +92,14 @@
             <div class="col-2">Photo</div>
             
             <div class="small col-10">
-                <!--ko if: Logo === null -->
-                <img src="images/estadio_padrão.png" alt="Placeholder" class="card-img-top">
-                <!--/ko-->
-                <!--ko ifnot: Logo === null -->
+            
+                
                 <a class="link-dark text-decoration-none" data-bind="attr: { href: Photo, alt:Name, title:Name }"
                     target="_blank">
 
                     <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
                 </a>
-                <!--/ko-->
+                
             </div>
         </div>
         <!-- /ko -->
