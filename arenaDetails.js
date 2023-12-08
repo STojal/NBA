@@ -14,6 +14,8 @@ var vm = function () {
     self.StateName = ko.observable('');
     self.TeamId = ko.observable('');
     self.TeamName = ko.observable('');
+    self.Lat = ko.observable('')
+    self.Lon = ko.observable('')
     self.TeamAcronym = ko.observable('');
     self.Location = ko.observable('');
     self.Capacity = ko.observable('');
@@ -38,6 +40,8 @@ var vm = function () {
             self.Capacity(data.Capacity);
             self.Opened(data.Opened);
             self.Photo(data.Photo);
+            self.Lon(data.Lon);
+            self.Lat(data.Lat);
         });
     };
 

@@ -50,13 +50,15 @@ var vm = function () {
             console.log(data);
             hideLoading();
             self.records(data.Records);
+            var recoords_data =self.records();
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            //self.SetFavourites();
+            criarmapa(recoords_data)
+            self.SetFavourites();
         });
     };
 
@@ -129,3 +131,55 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
+
+
+
+
+
+// Não funciona pq a lista de todas as arenas não tem a lat nem a lon
+function criarmapa(recoords_data){
+    console.log(recoords_data)
+
+
+    console.log("window.innerHeight=", window.innerHeight);
+    $("#mapid").css("height", window.innerHeight - 200);
+    $(window).resize(function () {
+      $("#mapid").css("width ", window.innerHeight - 200);
+    });
+
+    var mymap = L.map('mapid').setView([37.8, -96], 4);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9qYWwiLCJhIjoiY2xwdHcwMXlvMGthdTJqcXNvZmg1cTFhNyJ9.MaPOXjhqeGOO4blUtx3dGg', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1
+    }).addTo(mymap);
+
+    for (arena of recoords_data){
+        console.log(arena.Lat)
+        if (arena.Lat !== null){
+      L.marker([arena.Lat, arena.Lon], { opacity: 0.80 })
+        .bindTooltip(arena.Name).openTooltip()
+        .addTo(mymap);}
+    };
+};
+$(document).ready(function() {
+    
+    $('#arenasbutton').hover(function() {
+        $('#drop').slideDown(500);
+        //console.log($('#arenasbutton:hover').length)
+        //console.log($('#drop:hover').length)
+        if ($('#arenasbutton:hover').length === 0 && $('#drop:hover').length===0 ){
+            $('#drop').slideUp(500);
+        }
+    });
+    $('#drop').hover(function() {
+        if ($('#arenasbutton:hover').length === 0 && $('#drop:hover').length===0 ){
+            $('#drop').slideUp(500);
+        }
+    });
+});

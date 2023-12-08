@@ -3,15 +3,18 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/States');
-    self.displayName = 'State List';
+    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Arenas');
+    self.displayName = 'NBA Arenas List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
-    self.Records = ko.observableArray([]);
+    self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
-    self.Photo = ko.observable('');
     self.totalRecords = ko.observable(50);
+    self.Id =ko.observable('');
+    self.Name =ko.observable('');
+    self.Flag =ko.observable('');
+
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
     self.previousPage = ko.computed(function () {
@@ -45,20 +48,22 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getPlayers...');
+        console.log('CALL: getArenas...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.Records(data.Records);
+            self.records(data.Records);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            self.Photo(data.Photo);
-            //self.SetFavourites();
+            self.Name(data.Name);
+            self.Id(data.Id);
+            self.Flag(data.Flag);
+
         });
     };
 
@@ -131,8 +136,3 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
-
-
-
-
-

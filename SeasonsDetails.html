@@ -23,25 +23,24 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png" height="24" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="arenas.html"><i
-                                class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html"><i
-                                class="fa fa-user-o text-primary"></i> Players</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
-                                class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
-                                class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html"><i
-                                class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic"
-                                title="The party continues..."></i> &middot;&middot;&middot;</a></li>
+                    
+                    <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-caret-down"></i> Arenas</a>
+                        <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
+                        <li><a class="nav-link " aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                        <li><a class="dropdown-item" href="#"> Map</a></li>
+                      </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="Players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
             </div>
         </div>
