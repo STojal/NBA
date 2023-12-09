@@ -88,13 +88,13 @@
 
 
         <div data-bind="foreach: records" class="row">
-            <div class="card" style="width: 15rem;">
+            <div class="card" style="width: 15rem;margin-right:5px;margin-bottom: 5px;" >
                 <!-- Aqui, substitua "..." pelo caminho correto para a imagem desejada -->
                 <!--ko if: Logo === null -->
-                <img src="images/equipas.png" alt="Placeholder" class="card-img-top">
+                <img src="images/equipas.png" alt="Placeholder" class="card-img-top" style="height: 200px; width: 220px;">
                 <!--/ko-->
                 <!--ko ifnot: Logo === null -->
-                <img data-bind="attr: { src: Logo, alt: 'Name' }" class="card-img-top">
+                <img data-bind="attr: { src: Logo, alt: 'Name' }" class="card-img-top"style="height: 200px; width: 220px;">
                 <!--/ko-->
                 <div class="card-body">
                     <h5 class="card-title" data-bind="text: Name"></h5>

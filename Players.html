@@ -23,24 +23,34 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png" height="24" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
-                    <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-caret-down"></i> Arenas</a>
+
+                    <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                class="fa-solid fa-caret-down"></i> Arenas</a>
                         <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
-                        <li><a class="nav-link " aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
-                        <li><a class="dropdown-item" href="#"> Map</a></li>
-                      </ul>
+                            <li><a class="nav-link " aria-current="page" href="arenas.html"><i
+                                        class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                            <li><a class="dropdown-item" href="#"> Map</a></li>
+                        </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="Players.html"><i
+                                class="fa fa-user-o text-primary"></i> Players</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
+                                class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
+                                class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html"><i
+                                class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic"
+                                title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
             </div>
         </div>
@@ -87,71 +97,90 @@
         <!-- /ko -->
 
 
-            <div data-bind="foreach: records" class="row" id="Players">
-                <div class="card" style="width: 15rem;">
-                    
-                <!--ko if: Photo === null -->
-                <img src="images/logo players.png" alt data-bind="text: Name"                class="card-img-top">
-                <!--/ko-->
-                <!--ko ifnot: Photo === null -->
-                <img data-bind="attr: { src: Photo, alt: 'Name' }" class="card-img-top">
-                <!--/ko-->
-                    <div class="card-body">
-                      <h5 class="card-title" data-bind="text: Name"></h5>
-                      <p class="card-text">
-                        <!--ko if: CountryName  != null -->
-                        <strong>Country:</strong> <a href="./countryDetails.html?id=" class="nav-link" data-bind="text: CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }" title="Show Country Details"></a><br>
-                        <!--/ko-->
-                        <!--ko if: PositionName  != null -->
-                        <strong>Position:</strong> <a href="./positionDetails.html?id=" class="nav-link" data-bind="text: PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }" title="Show Position Details"></a><br>
-                        <!--/ko-->
-                        <!--ko if: Height  != null -->
-                        <strong>Height:</strong> <span data-bind="text: Height"></span>
-                        <!--/ko-->
-                      </p>
-                      
-                      <a href="./PlayersDetails.html" class="btn btn-primary" data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>
-                      <button class="btn btn-default btn-xs" style="background-color: red;border-radius: 30px;"><i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
+
+
+
+        <div data-bind="foreach: records" class="row" id="Players">
+            <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;">
+                <div class="row g-0">
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title" data-bind="text: Name"></h5>
+                            <p class="card-text" data-bind="text: CountryName">
+                                <a href="./countryDetails.html?id=" class="nav-link"
+                                    data-bind="text: CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }"
+                                    title="Show Country Details"></a>
+                            </p>
+                            <p class="card-text">
+                                <small class="text-body-secondary" data-bind="text: PositionName">
+                                    <a href="./positionDetails.html?id=" class="nav-link"
+                                        data-bind="text: PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }"
+                                        title="Show Position Details"></a>
+                                </small>
+                            </p>
+                            <div class="fixed">
+                                <a href="./PlayersDetails.html" class="btn btn-primary"
+                                    data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>
+                                <button class="btn btn-default btn-xs"
+                                    style="background-color: red; border-radius: 30px;">
+                                    <i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }"
+                                        title="Add to favorites"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="col-md-5" style="margin: none;">
+                        <!-- ko if: Photo === null -->
+                        <img src="images/logo players.png" alt data-bind="text: Name" class="card-img-top"
+                            style="width: 168px; height: 185px;border-radius:5px ">
+                        <!-- /ko -->
+                        <!-- ko ifnot: Photo === null -->
+                        <img data-bind="attr: { src: Photo, alt: 'Name' }" class="card-img-top"
+                            style="width: 168px; height: 185px;border-radius:5px ">
+                        <!-- /ko -->
+                    </div>
                 </div>
+
+            </div>
+        </div>
+
 
     </div>
     <div class="container">
-    <div class="row small">
-        <p class=" col-4 mr-auto pt-2">
-            <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-            <span data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
-        </p>
-        <div class="col-8 my-0 pt-3">
-            <ul class="pagination float-end">
-                <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
-                <li class="page-item float-end"><a class="page-link" title="First Page"
-                        data-bind="attr: { href: './Players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
-                <li class="page-item float-end"><a class="page-link" title="Previous Page"
-                        data-bind="attr: { href: './Players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
-                <!-- /ko -->
-                <!-- ko foreach: pageArray()-->
-                <!-- ko if:$data == $parent.currentPage() -->
-                <li class="active page-item"><a class="page-link"
-                        data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
-                <!-- /ko -->
-                <!-- ko if:$data != $parent.currentPage() -->
-                <li class="page-item"><a class="page-link"
-                        data-bind="attr: { href: './Players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
-                </li>
-                <!-- /ko -->
-                <!-- /ko -->
-                <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
-                <li class="page-item"><a class="page-link" title="Next Page"
-                        data-bind="attr: { href: './Players.html?page=' + nextPage(), rel:'next' }">→</a></li>
-                <li class="page-item"><a class="page-link" title="Last Page"
-                        data-bind="attr: { href: './Players.html?page=' + totalPages() }">⇥</a></li>
-                <!-- /ko -->
-            </ul>
+        <div class="row small">
+            <p class=" col-4 mr-auto pt-2">
+                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
+                <span data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+            </p>
+            <div class="col-8 my-0 pt-3">
+                <ul class="pagination float-end">
+                    <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
+                    <li class="page-item float-end"><a class="page-link" title="First Page"
+                            data-bind="attr: { href: './Players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page"
+                            data-bind="attr: { href: './Players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <!-- /ko -->
+                    <!-- ko foreach: pageArray()-->
+                    <!-- ko if:$data == $parent.currentPage() -->
+                    <li class="active page-item"><a class="page-link"
+                            data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if:$data != $parent.currentPage() -->
+                    <li class="page-item"><a class="page-link"
+                            data-bind="attr: { href: './Players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a>
+                    </li>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
+                    <li class="page-item"><a class="page-link" title="Next Page"
+                            data-bind="attr: { href: './Players.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page"
+                            data-bind="attr: { href: './Players.html?page=' + totalPages() }">⇥</a></li>
+                    <!-- /ko -->
+                </ul>
+            </div>
         </div>
     </div>
-</div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -74,3 +74,35 @@ li.page-item a {
 #arenasbutton:hover{
     cursor: pointer;
 }
+.lista_de_players{
+    column-count: 7;
+    margin: 2px;
+    -webkit-column-count: 7;  
+    -moz-column-count: 7; 
+    list-style-type: none;
+    
+
+}
+.list_frame{
+    padding: 5px;
+    border: solid 1px rgb(10, 10, 10);
+    margin-bottom: 5px;
+}
+.span_lista_de_players{
+
+    display: inline-block;  
+    text-align: center;     
+    width: 100%;
+}
+.lista_de_seasons{
+    column-count: 6;
+    margin: 2px;
+
+    list-style-type: none;
+}
+#back_to_list{
+    position: sticky;
+    top: 60px;;
+    float: right;
+
+}
