@@ -3,8 +3,8 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/States');
-    self.displayName = 'NBA Arenas List';
+    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Positions');
+    self.displayName = 'NBA Positions List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -44,7 +44,7 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getArenas...');
+        console.log('CALL: getPositions...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
@@ -57,6 +57,7 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
+            criarmapa(recoords_data)
             self.SetFavourites();
         });
     };
@@ -135,7 +136,6 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-
 $(document).ready(function() {
     
     $('#arenasbutton').hover(function() {
@@ -152,8 +152,3 @@ $(document).ready(function() {
         }
     });
 });
-
-
-
-
-    
