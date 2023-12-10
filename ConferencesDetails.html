@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA State Details</title>
+    <title>ITW 2023/24 - NBA SeasonsTypes Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -30,16 +30,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
-                    <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-caret-down"></i> Arenas</a>
+                    <li class="nav-item dropdown "><a class="nav-link active" aria-current="page" id="arenasbutton" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-caret-down"></i> Arenas</a>
                         <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
-                        <li><a class="nav-link " aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                        <li><a class="nav-link active" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                         <li><a class="dropdown-item" href="#"> Map</a></li>
                       </ul>
                     </li>
 
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="States.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
@@ -66,48 +66,27 @@
             </div>
         </div>
     </nav>
-    <div id="back_to_list">
-        <a href="States.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
-    </div>
     <!-- Work Area-->
+
+
 
     <div class="container">
         <div class="py-2 border-bottom mb-3">
-            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+            <h2 data-bind="text:Name() "></h2>
         </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Name</div>
-            <div class="col-10" data-bind="text: Name"></div>
-        </div>
-        <div class="row border-bottom g-2" data-bind="visible: Flag() != '' && Flag() != null">
-            <div class="col-2">Flag</div>
+
+        <div class="row border-bottom g-2" data-bind="visible: Logo() != '' && Logo() != null">
+            <div class="col-2">Logo</div>
             <div class="small col-10">
-                <!--ko ifnot: Flag === null -->
-                <a class="link-dark text-decoration-none" data-bind="attr: { href: Flag, alt:Name, title:Name }"
+                <a class="link-dark text-decoration-none" data-bind="attr: { href: Logo, alt:Name, title:Name }"
                     target="_blank">
 
-                    <img class="img-thumbnail" data-bind="attr:{src: Flag}" />
-                </a><!--/ko-->
+                    <img class="img-thumbnail" data-bind="attr:{src: Logo}" />               </a>
             </div>
         </div>
 
-        <div class="row border-bottom g-2" data-bind="visible: Arenas() != '' && Arenas() != null">
-            <div class="list_frame">
-                <span class="span_lista_de_players">Arenas:</span>
-                <ul class="lista_de_seasons" data-bind="foreach: Arenas">
-                    <li>
-                        <a data-bind="attr: { href:'./ArenasDetails.html?id=' + Id }">
-                            <span data-bind="text: Season"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-
-
-        <div class="row border-bottom g-2" data-bind="visible: Teams() != '' && Teams() != null">
-            <div class="list_frame">
+        <div class="list_frame">
+            <div class="row border-bottom g-2">
                 <span class="span_lista_de_players">Teams:</span>
                 <ul class="lista_de_seasons" data-bind="foreach: Teams">
                     <li>
@@ -121,7 +100,8 @@
 
 
 
-    </div>
+
+        <a href="./Conferences.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -145,8 +125,7 @@
             <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
                     href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
             <div class="navbar-nav">
-                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
-                        Aveiro</a>
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a>
                 </div>
             </div>
         </div>
@@ -160,7 +139,7 @@
         integrity="sha512-YbLeROkNBfkWaL5RmVsg7G1JQp0by0pCmJgBpOfAQOPTKIchg79fVzahpg5YPUMS1+77WCcpd84OTOK0gdf8BA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
-    <script src="StatesDetails.js"></script>
+    <script src="ConferencesDetails.js"></script>
     <script src="forAllPages.js"></script>
 </body>
 
