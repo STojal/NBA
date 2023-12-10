@@ -167,19 +167,3 @@ function criarmapa(recoords_data){
         .addTo(mymap);}
     };
 };
-$(document).ready(function() {
-    
-    $('#arenasbutton').hover(function() {
-        $('#drop').slideDown(500);
-        //console.log($('#arenasbutton:hover').length)
-        //console.log($('#drop:hover').length)
-        if ($('#arenasbutton:hover').length === 0 && $('#drop:hover').length===0 ){
-            $('#drop').slideUp(500);
-        }
-    });
-    $('#drop').hover(function() {
-        if ($('#arenasbutton:hover').length === 0 && $('#drop:hover').length===0 ){
-            $('#drop').slideUp(500);
-        }
-    });
-});

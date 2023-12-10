@@ -106,3 +106,67 @@ li.page-item a {
     float: right;
 
 }
+
+
+
+#switch_mode {
+    width:80px;
+    height:30px;
+    position: relative;
+    background: #ebebeb;
+    border-radius: 200px;
+    box-shadow: inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255,255,255,0.4);
+    cursor: pointer;
+  }
+  #switch_mode:after {
+    content: "";
+    width:30px;
+    height: 30px;
+    position: absolute;
+
+    background: linear-gradient(180deg,#ffcc89,#d8860b);
+    border-radius: 180px;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+  }
+  #darkmode-toggle {
+
+    visibility: hidden;
+  }
+
+  #darkmode-toggle:checked + #switch_mode {
+    background: #242424;
+  }
+  #darkmode-toggle:checked +  #switch_mode:after {
+    left: 80px;
+    transform: translateX(-100%);
+    background: linear-gradient(180deg,#777,#3a3a3a);
+  }
+  #switch_mode,  #switch_mode:after {
+    transition: 1s
+  }
+  #switch_mode:active:after{ 
+    width: 80px; 
+  }
+  #switch_mode i {
+    position: absolute;
+    width: 120px;
+    top:9px;
+
+    z-index: 100;
+  }
+  #switch_mode i.fa-sun {
+    left:5px;
+    color:#fff;
+    transition: 0.3s;
+  }
+  #switch_mode i.fa-moon {
+    left:60px;
+    color:#7e7e7e;
+    transition: 0.3s;
+  }
+  #darkmode-toggle:checked + #switch_mode i.fa-sun {
+    color:#7e7e7e;
+  }
+  #darkmode-toggle:checked + #switch_mode i.fa-moon {
+    color:#fff;
+  }
