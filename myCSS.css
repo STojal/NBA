@@ -1,6 +1,8 @@
 ﻿body {
   font-family: 'Open Sans', sans-serif;
   margin: 56px 0 56px 0;
+  margin-bottom:0px ;
+  min-height: 100vh;
 }
 
 /* button default
@@ -249,4 +251,5 @@ li.page-item a {
 .background{
   width: 100%;
   height: 100%;
+  margin: none;
 }
