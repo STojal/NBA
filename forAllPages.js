@@ -21,6 +21,7 @@ darkmodeToggle.addEventListener('change', function () {
     $("tr:even").css("background-color", "rgb(40, 40, 40)");
     $("tr:odd").css("background-color", "gray");
     $('#drop').css("background-color", "rgb(40, 40, 40)")
+    $('#switch_mode').css("background-color", "#242424");
 
 
   } else {
@@ -35,6 +36,7 @@ darkmodeToggle.addEventListener('change', function () {
     $('.page-link').css("background-color", "white");
     $('.page-link:first').css("background-color", "blue");
     $('#drop').css("background-color", "white")
+    $('#switch_mode').css("background-color", "white");
 
 
 
