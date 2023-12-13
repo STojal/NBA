@@ -61,6 +61,7 @@ var vm = function () {
             criarmapa(recoords_data)
             self.SetFavourites(data.Records);
             SetFavourites()
+            setList(recoords_data)
         });
     };
     function SetFavourites() {
@@ -107,6 +108,7 @@ var vm = function () {
     }
 
     function getUrlParameter(sParam) {
+
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -114,7 +116,6 @@ var vm = function () {
         console.log("sPageURL=", sPageURL);
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
-
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
             }
@@ -136,10 +137,12 @@ var vm = function () {
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
+
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
+    
 })
 
 
@@ -209,5 +212,43 @@ function Remove_arena() {
     console.log(arenas)
     arenas = localStorage.setItem("Arenas", JSON.stringify(arenas))
     alert("Arena removida dos favoritos")
+
+}
+
+function setList(results){
+    console.log(results)
+    for (const arena of results){
+        // creating a li element for each result item
+        const resultItem = document.createElement('li')
+
+        // adding a class to each item of the results
+        resultItem.classList.add('result-item')
+
+        // grabbing the name of the current point of the loop and adding the name as the list item's text
+        const text = document.createTextNode(arena.name)
+
+        // appending the text to the result item
+        resultItem.appendChild(text)
+    
+    }
+
+    var searchInput = document.querySelector('#search')
+    searchInput.addEventListener("input", (e) => {
+        let value = e.target.value
+    
+        if (value && value.trim().length > 5){
+            value = value.toLowerCase()
+            console.log(value)
+            //returning only the results of setList if the value of the search is included in the person's name
+            setList(results.filter(arena => {
+                console.log((arena.Name).toLowerCase())
+                console.log(arena.Name.toLowerCase().includes(value))
+                return arena.Name.includes(value)}));
+        
+    };});
+
+
+
+
 
 }
