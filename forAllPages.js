@@ -22,6 +22,8 @@ darkmodeToggle.addEventListener('change', function () {
     $("tr:odd").css("background-color", "gray");
     $('#drop').css("background-color", "rgb(40, 40, 40)")
     $('#switch_mode').css("background-color", "#242424");
+    $('.dropdown-menu').css('background-color','rgb(40, 40, 40)')
+    $('.dropdown-menu a').css('color','#1d4e83')
 
 
   } else {
@@ -37,7 +39,10 @@ darkmodeToggle.addEventListener('change', function () {
     $('.page-link:first').css("background-color", "blue");
     $('#drop').css("background-color", "white")
     $('#switch_mode').css("background-color", "white");
-
+    $('.dropdown-menu').css('background-color','white')
+    $('.dropdown-menu a').css('color','black')
+    $('#drop').css('color','black')
+    
 
 
 
@@ -66,6 +71,10 @@ $(document).ready(function () {
     $('.card').css('background-color', "gray")
     $('.page-link').css("background-color", "rgb(40, 40, 40)");
     $('#drop').css("background-color", "rgb(40, 40, 40)")
+    $('.dropdown-menu').css('background-color','rgb(40, 40, 40)')
+    $('.dropdown-menu a').css('color','#1d4e83')
+
+
 
 
   }

@@ -37,7 +37,7 @@
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
                                     class="fa-solid fa-caret-down"></i> Arenas</a>
                             <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
-                                <li><a class="nav-link " aria-current="page" href="arenas.html"><i
+                                <li><a class="dropdown-item " aria-current="page" href="arenas.html"><i
                                             class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                                 <li><a class="dropdown-item" href="#"> Map</a></li>
                             </ul>
@@ -49,10 +49,19 @@
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
                                     class="fa fa-map-marker text-success"></i> States</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html"><i
-                                    class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i
-                                    class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Auxiliary Tables</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
+                                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
+                                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
+                                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
+                                <li><a class="dropdown-item" href="States.html">States</a></li>
+                                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
+
+                            </ul>
+                        </li>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
@@ -74,7 +83,7 @@
                                 <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i
                                         class="fa fa-search small"></i></button>
                                 <a href="/NBA/Players" class="btn btn-default btn-sm" title="Limpar o filtro"><i
-                                        class="fa fa-times"></i></a><i class="fa fa-times"></i></a>
+                                        class="fa fa-times"></i></a></a>
                             </div>
                         </div>
                     </form>

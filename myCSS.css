@@ -207,8 +207,8 @@ li.page-item a {
 }
 
 #darkmode-toggle:checked+#switch_mode:after {
-  left: 80px;
-  transform: translateX(-100%);
+  left: 20px;
+  transform: translateX(100%);
   background: linear-gradient(180deg, #777, #3a3a3a);
 }
 

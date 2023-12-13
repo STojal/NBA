@@ -51,10 +51,18 @@
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
                                     class="fa fa-map-marker text-success"></i> States</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="Seasons.html"><i
-                                    class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i
-                                    class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">Auxiliary Tables</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
+                                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
+                                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
+                                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
+                                <li><a class="dropdown-item" href="States.html">States</a></li>
+                                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
+
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
@@ -148,16 +156,17 @@
                                             data-bind="text: Location"></span></p>
                                     <a href="#" class="btn btn-outline-primary me-2"
                                         data-bind="attr: { href:'./arenaDetails.html?id=' + Id }">Show Details</a>
-                                    <button class="btn btn-outline-danger" title="Add to favorites" data-bind="attr: { 'id': 'favourite_' + Id } "
-                                    title="Remove to favorites" onclick="Remove_arena()">
-                                        <i class="fa-solid fa-trash" ></i> </button>
+                                    <button class="btn btn-outline-danger" title="Add to favorites"
+                                        data-bind="attr: { 'id': 'favourite_' + Id } " title="Remove to favorites"
+                                        onclick="Remove_arena()">
+                                        <i class="fa-solid fa-trash"></i> </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- /ko -->
                     <!-- /ko-->
-                    
+
                     <div> All arenas</div>
                     <!-- ko foreach: records -->
                     <div class="col-md-4 mb-4">
@@ -177,11 +186,12 @@
                                     data-bind="attr: { href:'./arenaDetails.html?id=' + Id }">Show Details
                                 </a>
                                 <button class="btn btn-default btn-xs"
-                                style="background-color: red; border-radius: 30px;"  data-bind="attr: { 'id': 'favourite_' + Id } " onclick="add_arena()">
-                                <i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }"
-                                    title="Add to favorites" ></i>
-                            </button>
-   
+                                    style="background-color: red; border-radius: 30px;"
+                                    data-bind="attr: { 'id': 'favourite_' + Id } " onclick="add_arena()">
+                                    <i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }"
+                                        title="Add to favorites"></i>
+                                </button>
+
                             </div>
                         </div>
                     </div>
