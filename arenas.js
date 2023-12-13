@@ -13,6 +13,7 @@ var vm = function () {
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    self.SetFavourites = ko.observable('')
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -50,7 +51,7 @@ var vm = function () {
             console.log(data);
             hideLoading();
             self.records(data.Records);
-            var recoords_data =self.records();
+            var recoords_data = self.records();
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -58,9 +59,18 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             criarmapa(recoords_data)
-            self.SetFavourites();
+            self.SetFavourites(data.Records);
+            SetFavourites()
         });
     };
+    function SetFavourites() {
+        var lista_arenas = JSON.parse(localStorage.getItem("Arenas")) || [];
+        self.SetFavourites(self.records().filter(function (arena) {
+
+            return lista_arenas.includes((arena.Id).toString());
+
+        }))
+    }
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -138,32 +148,66 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 // Não funciona pq a lista de todas as arenas não tem a lat nem a lon
-function criarmapa(recoords_data){
+function criarmapa(recoords_data) {
     console.log(recoords_data)
 
 
     console.log("window.innerHeight=", window.innerHeight);
     $("#mapid").css("height", window.innerHeight - 200);
     $(window).resize(function () {
-      $("#mapid").css("width ", window.innerHeight - 200);
+        $("#mapid").css("width ", window.innerHeight - 200);
     });
 
     var mymap = L.map('mapid').setView([37.8, -96], 4);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9qYWwiLCJhIjoiY2xwdHcwMXlvMGthdTJqcXNvZmg1cTFhNyJ9.MaPOXjhqeGOO4blUtx3dGg', {
-      maxZoom: 18,
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-        'Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+            'Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
     }).addTo(mymap);
 
-    for (arena of recoords_data){
+    for (arena of recoords_data) {
         console.log(arena.Lat)
-        if (arena.Lat !== null){
-      L.marker([arena.Lat, arena.Lon], { opacity: 0.80 })
-        .bindTooltip(arena.Name).openTooltip()
-        .addTo(mymap);}
+        if (arena.Lat !== null) {
+            L.marker([arena.Lat, arena.Lon], { opacity: 0.80 })
+                .bindTooltip(arena.Name).openTooltip()
+                .addTo(mymap);
+        }
     };
 };
+
+function add_arena() {
+    var arenas = JSON.parse(localStorage.getItem("Arenas")) || [];
+    var name = event.target.id
+    var id = name.split("_")
+
+    console.log(Array.isArray(arenas));
+    id = id[1]
+    if (!arenas.includes(id)) {
+
+        arenas.push(id);
+        console.log(arenas)
+        arenas = localStorage.setItem("Arenas", JSON.stringify(arenas))
+
+        alert("Arena adicionado aos favoritos")
+    }
+    else {
+        alert("Arena já nos favoritos")
+    }
+
+};
+function Remove_arena() {
+    var arenas = JSON.parse(localStorage.getItem("Arenas")) || [];
+
+    var name = event.target.id
+    var id = name.split("_")
+    id = id[1]
+    arenas.pop(id);
+    console.log(arenas)
+    arenas = localStorage.setItem("Arenas", JSON.stringify(arenas))
+    alert("Arena removida dos favoritos")
+
+}

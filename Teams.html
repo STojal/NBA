@@ -122,7 +122,46 @@
             </div>
             <!-- /ko -->
 
+            <!--ko if: SetFavourites().length >0-->
+            <div>Teams Favourites</div>
+            <div data-bind="foreach: SetFavourites" class="row">
+                <div class="card" style="width: 15rem;margin-right:5px;margin-bottom: 5px;">
+                    <!-- Aqui, substitua "..." pelo caminho correto para a imagem desejada -->
+                    <!--ko if: Logo === null -->
+                    <img src="images/equipas.png" alt="Placeholder" class="card-img-top"
+                        style="height: 200px; width: 220px;">
+                    <!--/ko-->
+                    <!--ko ifnot: Logo === null -->
+                    <img data-bind="attr: { src: Logo, alt: 'Name' }" class="card-img-top"
+                        style="height: 200px; width: 220px;">
+                    <!--/ko-->
+                    <div class="card-body">
+                        <h5 class="card-title" data-bind="text: Name"></h5>
+                        <p class="card-text">
 
+                            <strong>Acronym:</strong><span data-bind="text: Acronym"></span> <br>
+                        </p>
+
+                        <a href="./TeamsDetails.html" class="btn btn-primary"
+                            data-bind="attr: { href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">Show
+                            Details</a>
+                        <button class="btn btn-default btn-xs"><i class="fa-solid fa-trash"
+                                data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites" onclick="RemoveTeam()"></i></button>
+                    </div>
+                </div>
+            </div>
+            <!--/ko-->
+
+
+
+
+
+
+
+
+
+
+            <div>All teams</div>
             <div data-bind="foreach: records" class="row">
                 <div class="card" style="width: 15rem;margin-right:5px;margin-bottom: 5px;">
                     <!-- Aqui, substitua "..." pelo caminho correto para a imagem desejada -->
@@ -145,7 +184,7 @@
                             data-bind="attr: { href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">Show
                             Details</a>
                         <button class="btn btn-default btn-xs"><i class="fa-regular fa-heart"
-                                data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
+                                data-bind="attr: { 'id': 'favourite_' + Id }" title="Add to favorites" onclick="addTeam()"></i></button>
                     </div>
                 </div>
             </div>

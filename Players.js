@@ -12,6 +12,7 @@ var vm = function () {
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.Photo = ko.observable('');
+    self.SetFavourites =ko.observable('')
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -60,9 +61,24 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             self.Photo(data.Photo);
-            //self.SetFavourites();
+            self.SetFavourites(data.Records)
+            SetFavourites()
+            console.log(self.SetFavourites())
+
+
         });
     };
+
+        function SetFavourites () {
+        var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+        self.SetFavourites(self.records().filter(function (player) {
+            console.log(jogadores)
+            console.log(player.Id)
+            console.log(jogadores.includes((player.Id).toString()))
+            return jogadores.includes((player.Id).toString());
+
+        }))
+    }
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -129,9 +145,9 @@ $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
 
-    
-        });
- 
+
+});
+
 
 
 
@@ -170,3 +186,15 @@ function add_player() {
     }
 
 };
+function Remove_player(){
+    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+
+    var name = event.target.id
+    var id = name.split("_")
+    id = id[1]
+    jogadores.pop(id);
+    console.log(jogadores)
+    jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
+    alert("Jogador removido dos favoritos")
+
+}

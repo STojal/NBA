@@ -11,7 +11,7 @@ var vm = function () {
     self.Acronym =ko.observableArray("");
     self.Name =ko.observableArray("");
     self.Logo = ko.observable("");
-
+    self.SetFavourites =ko.observable("")
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
@@ -65,9 +65,21 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
 
-            //self.SetFavourites();
+            self.SetFavourites(data.Records);
+            SetFavourites()
         });
     };
+
+
+
+    function SetFavourites() {
+        var lista_team = JSON.parse(localStorage.getItem("Team")) || [];
+        self.SetFavourites(self.records().filter(function (team) {
+
+            return lista_team.includes((team.Id).toString());
+
+        }))
+    }
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -143,3 +155,35 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
+function addTeam() {
+    var lista_team = JSON.parse(localStorage.getItem("Team")) || [];
+    var name = event.target.id
+    var id = name.split("_")
+
+    console.log(Array.isArray(lista_team));
+    id = id[1]
+    if (!lista_team.includes(id)) {
+
+        lista_team.push(id);
+        console.log(lista_team)
+        lista_team = localStorage.setItem("Team", JSON.stringify(lista_team))
+
+        alert("Equipa adicionada aos favoritos")
+    }
+    else {
+        alert("Equipa já nos favoritos")
+    }
+
+};
+function RemoveTeam(){
+    var lista_team = JSON.parse(localStorage.getItem("Team")) || [];
+
+    var name = event.target.id
+    var id = name.split("_")
+    id = id[1]
+    lista_team.pop(id);
+    console.log(lista_team)
+    lista_team = localStorage.setItem("Team", JSON.stringify(lista_team))
+    alert("Equipa removido dos favoritos")
+
+}
