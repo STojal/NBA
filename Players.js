@@ -12,7 +12,7 @@ var vm = function () {
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.Photo = ko.observable('');
-    self.SetFavourites =ko.observable('')
+    self.SetFavourites = ko.observable('')
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -62,23 +62,13 @@ var vm = function () {
             self.totalRecords(data.TotalRecords);
             self.Photo(data.Photo);
             self.SetFavourites(data.Records)
-            SetFavourites()
             console.log(self.SetFavourites())
 
 
         });
     };
 
-        function SetFavourites () {
-        var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
-        self.SetFavourites(self.records().filter(function (player) {
-            console.log(jogadores)
-            console.log(player.Id)
-            console.log(jogadores.includes((player.Id).toString()))
-            return jogadores.includes((player.Id).toString());
 
-        }))
-    }
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -142,9 +132,52 @@ var vm = function () {
 };
 
 $(document).ready(function () {
+    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+    $('#fav_div').show()
+
+    // console.log("fafaf" + jogadores.length)
+    if (jogadores.length > 0) {
+        
+        jogadores.forEach(player => {
+            console.log(player)
+            $('#favourites').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                    <div class="row g-0">
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${player.Name}</h5>
+                                <p class="card-text">
+                                    <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
+                                    </small>
+                                </p>
+                                <div class="fixed">
+                                    <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
+                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                                    onclick="Remove_player(${player.Id})">
+                                        <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
+                                        
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="margin: none;">
+                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `)
+        });
+
+    }
+
     console.log("ready!");
     ko.applyBindings(new vm());
-
+   
 
 });
 
@@ -166,19 +199,57 @@ $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
 
-function add_player() {
+function add_player(records) {
+
     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
-    var name = event.target.id
-    var id = name.split("_")
 
-    console.log(Array.isArray(jogadores));
-    id = id[1]
-    if (!jogadores.includes(id)) {
 
-        jogadores.push(id);
+
+    count = 0
+    for (let key in jogadores) {
+
+        if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    console.log(count)
+    if (count === 0) {
+
+        jogadores.push(records);
         console.log(jogadores)
         jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
-
+        player = records
+        $('#fav_div').show()
+        $('#favourites').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                    <div class="row g-0">
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${player.Name}</h5>
+                                <p class="card-text">
+                                    <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
+                                    </small>
+                                </p>
+                                <div class="fixed">
+                                    <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
+                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                                    onclick="Remove_player(${player.Id})">
+                                        <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="margin: none;">
+                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `);
         alert("Jogador adicionado aos favoritos")
     }
     else {
@@ -186,15 +257,20 @@ function add_player() {
     }
 
 };
-function Remove_player(){
+function Remove_player(records) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log(records)
     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+    for (let key in jogadores) {
+        console.log('key' + key)
+        if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key].Id) === JSON.stringify(records)) {
+            jogadores.pop(key);
+            console.log(jogadores)
+            break
 
-    var name = event.target.id
-    var id = name.split("_")
-    id = id[1]
-    jogadores.pop(id);
-    console.log(jogadores)
+        }
+    }
     jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
     alert("Jogador removido dos favoritos")
-
+    location.reload();
 }

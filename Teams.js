@@ -143,6 +143,48 @@ var vm = function () {
 };
 
 $(document).ready(function () {
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
+    $('#fav_div').show()
+
+
+    if (Teams.length > 0) {
+        
+        Teams.forEach(Team => {
+            console.log(Team)
+            $('#favourites').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                    <div class="row g-0">
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${Team.Name}</h5>
+                                <p class="card-text">
+                                    <a href="./countryDetails.html?id=${Team.CountryId}" class="nav-link">${Team.CountryName}</a>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <a href="./positionDetails.html?id=${Team.PositionId}" class="nav-link">${Team.PositionName}</a>
+                                    </small>
+                                </p>
+                                <div class="fixed">
+                                    <a href="./TeamsDetails.html?id=${Team.Id}" class="btn btn-primary">Show Details</a>
+                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                                    onclick="Remove_player(${Team.Id})">
+                                        <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
+                                        
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="margin: none;">
+                <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `)
+        });
+
+    }
     console.log("ready!");
     ko.applyBindings(new vm());
 });
@@ -155,35 +197,79 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-function addTeam() {
-    var lista_team = JSON.parse(localStorage.getItem("Team")) || [];
-    var name = event.target.id
-    var id = name.split("_")
 
-    console.log(Array.isArray(lista_team));
-    id = id[1]
-    if (!lista_team.includes(id)) {
+function add_player(records) {
 
-        lista_team.push(id);
-        console.log(lista_team)
-        lista_team = localStorage.setItem("Team", JSON.stringify(lista_team))
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
 
-        alert("Equipa adicionada aos favoritos")
+
+
+    count = 0
+    for (let key in Teams) {
+
+        if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    console.log(count)
+    if (count === 0) {
+
+        Teams.push(records);
+        console.log(Teams)
+        Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
+        Team = records
+        $('#fav_div').show()
+        $('#favourites').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                    <div class="row g-0">
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${Team.Name}</h5>
+                                <p class="card-text">
+                                    <a href="./countryDetails.html?id=${Team.CountryId}" class="nav-link">${Team.CountryName}</a>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <a href="./positionDetails.html?id=${Team.PositionId}" class="nav-link">${Team.PositionName}</a>
+                                    </small>
+                                </p>
+                                <div class="fixed">
+                                    <a href="./TeamsDetails.html?id=${Team.Id}" class="btn btn-primary">Show Details</a>
+                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                                    onclick="Remove_player(${Team.Id})">
+                                        <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="margin: none;">
+                <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `);
+        alert("Team adicionado aos favoritos")
     }
     else {
-        alert("Equipa já nos favoritos")
+        alert("Team já nos favoritos")
     }
 
 };
-function RemoveTeam(){
-    var lista_team = JSON.parse(localStorage.getItem("Team")) || [];
+function Remove_player(records) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log(records)
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
+    for (let key in Teams) {
+        console.log('key' + key)
+        if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key].Id) === JSON.stringify(records)) {
+            Teams.pop(key);
+            console.log(Teams)
+            break
 
-    var name = event.target.id
-    var id = name.split("_")
-    id = id[1]
-    lista_team.pop(id);
-    console.log(lista_team)
-    lista_team = localStorage.setItem("Team", JSON.stringify(lista_team))
-    alert("Equipa removido dos favoritos")
-
+        }
+    }
+    Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
+    alert("Team removido dos favoritos")
+    location.reload();
 }

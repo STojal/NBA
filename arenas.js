@@ -52,6 +52,7 @@ var vm = function () {
             hideLoading();
             self.records(data.Records);
             var recoords_data = self.records();
+            localStorage.setItem("Teste", JSON.stringify(recoords_data))
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -59,19 +60,10 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             criarmapa(recoords_data)
-            self.SetFavourites(data.Records);
-            SetFavourites()
             setList(recoords_data)
         });
     };
-    function SetFavourites() {
-        var lista_arenas = JSON.parse(localStorage.getItem("Arenas")) || [];
-        self.SetFavourites(self.records().filter(function (arena) {
 
-            return lista_arenas.includes((arena.Id).toString());
-
-        }))
-    }
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -135,14 +127,63 @@ var vm = function () {
 };
 
 $(document).ready(function () {
+    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
+    $('#fav_div').show()
+
+
+    if (arenas.length > 0) {
+        
+        arenas.forEach(arena => {
+            console.log(arena)
+            $('#favourites').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                    <div class="row g-0">
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${arena.Name}</h5>
+                                <p class="card-text">
+                                    <a href="./countryDetails.html?id=${arena.CountryId}" class="nav-link">${arena.CountryName}</a>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <a href="./positionDetails.html?id=${arena.PositionId}" class="nav-link">${arena.PositionName}</a>
+                                    </small>
+                                </p>
+                                <div class="fixed">
+                                    <a href="./arenasDetails.html?id=${arena.Id}" class="btn btn-primary">Show Details</a>
+                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                                    onclick="Remove_player(${arena.Id})">
+                                        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>
+                                        
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="margin: none;">
+                <img src="${arena.Photo}" alt="${arena.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `)
+        });
+
+    }
+
     console.log("ready!");
     ko.applyBindings(new vm());
+
+    
+
+
+
+
 
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-    
+
 })
 
 
@@ -182,73 +223,125 @@ function criarmapa(recoords_data) {
     };
 };
 
-function add_arena() {
-    var arenas = JSON.parse(localStorage.getItem("Arenas")) || [];
-    var name = event.target.id
-    var id = name.split("_")
+function add_player(records) {
 
-    console.log(Array.isArray(arenas));
-    id = id[1]
-    if (!arenas.includes(id)) {
+    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
 
-        arenas.push(id);
+
+
+    count = 0
+    for (let key in arenas) {
+
+        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    console.log(count)
+    if (count === 0) {
+
+        arenas.push(records);
         console.log(arenas)
-        arenas = localStorage.setItem("Arenas", JSON.stringify(arenas))
-
-        alert("Arena adicionado aos favoritos")
+        arenas = localStorage.setItem("arenas", JSON.stringify(arenas))
+        arena = records
+        $('#fav_div').show()
+        $('#favourites').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                    <div class="row g-0">
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">${arena.Name}</h5>
+                                <p class="card-text">
+                                    <a href="./countryDetails.html?id=${arena.CountryId}" class="nav-link">${arena.CountryName}</a>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-body-secondary">
+                                        <a href="./positionDetails.html?id=${arena.PositionId}" class="nav-link">${arena.PositionName}</a>
+                                    </small>
+                                </p>
+                                <div class="fixed">
+                                    <a href="./arenasDetails.html?id=${arena.Id}" class="btn btn-primary">Show Details</a>
+                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                                    onclick="Remove_player(${arena.Id})">
+                                        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" style="margin: none;">
+                <img src="${arena.Photo}" alt="${arena.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `);
+        alert("Arenas adicionado aos favoritos")
     }
     else {
-        alert("Arena já nos favoritos")
+        alert("Arenas já nos favoritos")
     }
 
 };
-function Remove_arena() {
-    var arenas = JSON.parse(localStorage.getItem("Arenas")) || [];
+function Remove_player(records) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log(records)
+    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
+    for (let key in arenas) {
+        console.log('key' + key)
+        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key].Id) === JSON.stringify(records)) {
+            arenas.pop(key);
+            console.log(arenas)
+            break
 
-    var name = event.target.id
-    var id = name.split("_")
-    id = id[1]
-    arenas.pop(id);
-    console.log(arenas)
-    arenas = localStorage.setItem("Arenas", JSON.stringify(arenas))
-    alert("Arena removida dos favoritos")
-
-}
-
-function setList(results){
-    console.log(results)
-    for (const arena of results){
-        // creating a li element for each result item
-        const resultItem = document.createElement('li')
-
-        // adding a class to each item of the results
-        resultItem.classList.add('result-item')
-
-        // grabbing the name of the current point of the loop and adding the name as the list item's text
-        const text = document.createTextNode(arena.name)
-
-        // appending the text to the result item
-        resultItem.appendChild(text)
-    
+        }
     }
-
-    var searchInput = document.querySelector('#search')
-    searchInput.addEventListener("input", (e) => {
-        let value = e.target.value
-    
-        if (value && value.trim().length > 5){
-            value = value.toLowerCase()
-            console.log(value)
-            //returning only the results of setList if the value of the search is included in the person's name
-            setList(results.filter(arena => {
-                console.log((arena.Name).toLowerCase())
-                console.log(arena.Name.toLowerCase().includes(value))
-                return arena.Name.includes(value)}));
-        
-    };});
-
-
-
-
-
+    arenas = localStorage.setItem("arenas", JSON.stringify(arenas))
+    alert("Arena removido dos favoritos")
+    location.reload();
 }
+
+
+
+
+
+
+
+
+    function setList(results) {
+        console.log(results)
+        for (const arena of results) {
+            // creating a li element for each result item
+            const resultItem = document.createElement('li')
+
+            // adding a class to each item of the results
+            resultItem.classList.add('result-item')
+
+            // grabbing the name of the current point of the loop and adding the name as the list item's text
+            const text = document.createTextNode(arena.name)
+
+            // appending the text to the result item
+            resultItem.appendChild(text)
+
+        }
+
+        var searchInput = document.querySelector('#search')
+        searchInput.addEventListener("input", (e) => {
+            let value = e.target.value
+
+            if (value && value.trim().length > 5) {
+                value = value.toLowerCase()
+                console.log(value)
+                //returning only the results of setList if the value of the search is included in the person's name
+                setList(results.filter(arena => {
+                    console.log((arena.Name).toLowerCase())
+                    console.log(arena.Name.toLowerCase().includes(value))
+                    return arena.Name.includes(value)
+                }));
+
+            };
+        });
+
+
+
+
+
+    }

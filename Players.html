@@ -136,57 +136,11 @@
             <!-- /ko -->
 
             <!-- ko if: SetFavourites().length >0 -->
-            <div>Favourites
+            <div  id="fav_div" >Favourites
                 <div class="row" id="favourites" style="margin: 10px;">
-                    <div data-bind="foreach: SetFavourites" class="row" id="Players">
-
-                        <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;"
-                            !important>
-                            <div class="row g-0">
-                                <div class="col-md-7">
-                                    <div class="card-body">
-                                        <h5 class="card-title" data-bind="text: Name"></h5>
-                                        <p class="card-text" data-bind="text: CountryName">
-                                            <a href="./countryDetails.html?id=" class="nav-link"
-                                                data-bind="text: CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }"
-                                                title="Show Country Details"></a>
-                                        </p>
-                                        <p class="card-text">
-                                            <small class="text-body-secondary" data-bind="text: PositionName">
-                                                <a href="./positionDetails.html?id=" class="nav-link"
-                                                    data-bind="text: PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }"
-                                                    title="Show Position Details"></a>
-                                            </small>
-                                        </p>
-                                        <div class="fixed">
-                                            <a href="./PlayersDetails.html" class="btn btn-primary"
-                                                data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show
-                                                Details</a>
-                                            <button class="btn btn-default btn-xs"
-                                                style="background-color: red; border-radius: 30px; ">
-                                                <i class="fa-solid fa-trash"
-                                                    data-bind="attr: { 'id': 'favourite_' + Id } "
-                                                    title="Remove to favorites" onclick="Remove_player()"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5" style="margin: none;">
-                                    <!-- ko if: Photo === null -->
-                                    <img src="images/logo players.png" alt data-bind="text: Name" class="card-img-top"
-                                        style="width: 168px; height: 185px;border-radius:5px ">
-                                    <!-- /ko -->
-                                    <!-- ko ifnot: Photo === null -->
-                                    <img data-bind="attr: { src: Photo, alt: 'Name' }" class="card-img-top"
-                                        style="width: 168px; height: 185px;border-radius:5px ">
-                                    <!-- /ko -->
-                                </div>
-                            </div>
-
-                        </div>
 
 
-                    </div>
+
 
                 </div>
             </div>
@@ -222,9 +176,9 @@
                                     <a href="./PlayersDetails.html" class="btn btn-primary"
                                         data-bind="attr: { href:'./PlayersDetails.html?id=' + Id }">Show Details</a>
                                     <button class="btn btn-default btn-xs"
-                                        style="background-color: red; border-radius: 30px; ">
-                                        <i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id } "
-                                            title="Add to favorites" onclick="add_player()"></i>
+                                        style="background-color: red; border-radius: 30px; "
+                                        data-bind="attr: { 'id': 'favourite_' + Id }, click: function() { add_player($data) }">
+                                        <i class="fa-regular fa-heart" title="Add to favorites"></i>
                                     </button>
                                 </div>
                             </div>

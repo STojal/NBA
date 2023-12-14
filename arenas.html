@@ -138,34 +138,16 @@
             <div class="container mt-5">
                 <div class="row">
 
-                    <!-- ko if: SetFavourites().length >0 -->
-                    <!-- ko foreach: SetFavourites -->
-                    <div>Favourites
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <div class="card"
-                                    data-bind="style: { 'background-image': 'url(' + Photo + ')', 'background-size': 'cover' }">
-                                    <h5 class="card-title" data-bind="text: Name"></h5>
-                                    <p class="card-text"><strong>State:</strong> <a
-                                            data-bind="attr: { href:'./stateDetails.html?id=' + StateId }, text: StateName"></a>
-                                    </p>
-                                    <p class="card-text"><strong>Team:</strong> <a
-                                            data-bind="attr: { href:'./TeamsDetails.html?id=' + TeamId+ '&acronym=' + TeamAcronym }, text: TeamName"></a>
-                                    </p>
-                                    <p class="card-text"><strong>Location:</strong> <span
-                                            data-bind="text: Location"></span></p>
-                                    <a href="#" class="btn btn-outline-primary me-2"
-                                        data-bind="attr: { href:'./arenaDetails.html?id=' + Id }">Show Details</a>
-                                    <button class="btn btn-outline-danger" title="Add to favorites"
-                                        data-bind="attr: { 'id': 'favourite_' + Id } " title="Remove to favorites"
-                                        onclick="Remove_arena()">
-                                        <i class="fa-solid fa-trash"></i> </button>
-                                </div>
-                            </div>
+
+                    <div  id="fav_div" >Favourites
+                        <div class="row" id="favourites" style="margin: 10px;">
+        
+        
+        
+        
                         </div>
                     </div>
-                    <!-- /ko -->
-                    <!-- /ko-->
+
 
                     <div> All arenas</div>
                     <!-- ko foreach: records -->
@@ -187,7 +169,7 @@
                                 </a>
                                 <button class="btn btn-default btn-xs"
                                     style="background-color: red; border-radius: 30px;"
-                                    data-bind="attr: { 'id': 'favourite_' + Id } " onclick="add_arena()">
+                                    data-bind="attr: { 'id': 'favourite_' + Id }, click: function() { add_player($data) }">
                                     <i class="fa-regular fa-heart" data-bind="attr: { 'id': 'favourite_' + Id }"
                                         title="Add to favorites"></i>
                                 </button>
