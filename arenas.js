@@ -306,12 +306,16 @@ $("#tags").on("input", function () {
 
     }
     else if (inputValue.length == 2) {
-        new vp()
-
+        url = 'http://192.168.160.58/NBA/api/Arenas/Search?q=' + $("#tags").val();
+        console.log('CALL: getAutocomplete...');
+        ajaxHelper(url, 'GET').done(function (data) {
+            autocomplete = data
+            localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
+        });
     }
 
     var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
-    
+
     if (autocomplete.length != 0) {
         $("#tags").autocomplete({
             source: function (request, response) {
@@ -347,28 +351,15 @@ $("#tags").on("input", function () {
         })
     }
 })
-var vp = function () {
-    url = 'http://192.168.160.58/NBA/api/Arenas/Search?q=' + $("#tags").val();
-    var self = this;
-    self.todo = ko.observable('');
-    console.log('CALL: getAutocomplete...');
-    ajaxHelper(url, 'GET').done(function (data) {
-        autocomplete = data
-        localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
-    });
-
-
-    function ajaxHelper(uri, method, data) {
-        return $.ajax({
-            type: method,
-            url: uri,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: data ? JSON.stringify(data) : null,
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log("AJAX Call[" + uri + "] Fail...");
-            }
-
-        })
-    }
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
+        }
+    })
 }
