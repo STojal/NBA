@@ -19,6 +19,9 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
         integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+        integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -59,7 +62,6 @@
                                 <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
                                 <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
                                 <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
-                                <li><a class="dropdown-item" href="States.html">States</a></li>
                                 <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
 
                             </ul>
@@ -75,24 +77,24 @@
                             </label>
                         </li>
                     </ul>
-                    <form>
-                        <input type="hidden" name="page" value="1">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-sm" type="text" name="q"
-                                placeholder="Insira o nome" id="search">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i
-                                        class="fa fa-search small"></i></button>
-                                <a href='/NBA/Arenas/Search?q=' + q class="btn btn-default btn-sm"
-                                    title="Limpar o filtro"><i class="fa fa-times"></i></a>
-                            </div>
+
+                    <div class="ui-widget">
+                        <label for="tags"></label>
+                        <input id="tags" placeholder="Pesquise por um jogador">
+                        
+                        <div class="input-group-append" style="float: right;">
+                            <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i
+                                    class="fa fa-search small"></i></button>
+                            <a href='/NBA/Arenas/Search?q=' + q class="btn btn-default btn-sm"
+                                title="Limpar o filtro"><i class="fa fa-times"></i></a>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </nav>
         <!-- Working Area -->
-        <div id="mapid"></div>
+        <!--<div id="mapid"></div>-->
         <div class="container">
             <div class="border-bottom py-2 mb-2">
                 <h2 data-bind="text:displayName"></h2>
@@ -139,12 +141,12 @@
                 <div class="row">
 
 
-                    <div  id="fav_div" >Favourites
+                    <div id="fav_div">Favourites
                         <div class="row" id="favourites" style="margin: 10px;">
-        
-        
-        
-        
+
+
+
+
                         </div>
                     </div>
 
@@ -222,6 +224,7 @@
         integrity="sha512-YbLeROkNBfkWaL5RmVsg7G1JQp0by0pCmJgBpOfAQOPTKIchg79fVzahpg5YPUMS1+77WCcpd84OTOK0gdf8BA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="arenas.js"></script>
     <script src="forAllPages.js"></script>
 </body>

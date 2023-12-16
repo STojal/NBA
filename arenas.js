@@ -59,8 +59,7 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            criarmapa(recoords_data)
-            setList(recoords_data)
+            //criarmapa(recoords_data)
         });
     };
 
@@ -132,7 +131,7 @@ $(document).ready(function () {
 
 
     if (arenas.length > 0) {
-        
+
         arenas.forEach(arena => {
             console.log(arena)
             $('#favourites').append(`
@@ -173,7 +172,7 @@ $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
 
-    
+
 
 
 
@@ -190,7 +189,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-
+/*
 // Não funciona pq a lista de todas as arenas não tem a lat nem a lon
 function criarmapa(recoords_data) {
     console.log(recoords_data)
@@ -221,7 +220,7 @@ function criarmapa(recoords_data) {
                 .addTo(mymap);
         }
     };
-};
+};*/
 
 function add_player(records) {
 
@@ -299,49 +298,77 @@ function Remove_player(records) {
     location.reload();
 }
 
-
-
-
-
-
-
-
-    function setList(results) {
-        console.log(results)
-        for (const arena of results) {
-            // creating a li element for each result item
-            const resultItem = document.createElement('li')
-
-            // adding a class to each item of the results
-            resultItem.classList.add('result-item')
-
-            // grabbing the name of the current point of the loop and adding the name as the list item's text
-            const text = document.createTextNode(arena.name)
-
-            // appending the text to the result item
-            resultItem.appendChild(text)
-
-        }
-
-        var searchInput = document.querySelector('#search')
-        searchInput.addEventListener("input", (e) => {
-            let value = e.target.value
-
-            if (value && value.trim().length > 5) {
-                value = value.toLowerCase()
-                console.log(value)
-                //returning only the results of setList if the value of the search is included in the person's name
-                setList(results.filter(arena => {
-                    console.log((arena.Name).toLowerCase())
-                    console.log(arena.Name.toLowerCase().includes(value))
-                    return arena.Name.includes(value)
-                }));
-
-            };
-        });
-
-
-
-
+$("#tags").on("input", function () {
+    var inputValue = $(this).val();
+    if (inputValue.length < 2) {
+        $("#ui-id-1").empty();
+        localStorage.setItem("Autoconplete", JSON.stringify([]))
 
     }
+    else if (inputValue.length == 2) {
+        new vp()
+
+    }
+
+    var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
+    
+    if (autocomplete.length != 0) {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                var term = request.term.toLowerCase();
+                var filteredAutocomplete = autocomplete.filter(function (item) {
+                    return item.Name.toLowerCase().includes(term);
+                });
+                response(filteredAutocomplete);
+            },
+            autoFocus: true,
+            minLength: 0,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .attr("data-value", item.Name)
+                .append('<a href="./arenaDetails.html?id=' + item.Id + '">' + item.Name + ' <a>')
+                .appendTo(ul);
+        };
+    }
+    else {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                response([{ label: "Player not found" }]);
+            },
+            autoFocus: true,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        })
+    }
+})
+var vp = function () {
+    url = 'http://192.168.160.58/NBA/api/Arenas/Search?q=' + $("#tags").val();
+    var self = this;
+    self.todo = ko.observable('');
+    console.log('CALL: getAutocomplete...');
+    ajaxHelper(url, 'GET').done(function (data) {
+        autocomplete = data
+        localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
+    });
+
+
+    function ajaxHelper(uri, method, data) {
+        return $.ajax({
+            type: method,
+            url: uri,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: data ? JSON.stringify(data) : null,
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log("AJAX Call[" + uri + "] Fail...");
+            }
+
+        })
+    }
+}
