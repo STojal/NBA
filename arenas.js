@@ -221,22 +221,21 @@ function add_player(records) {
 
 };
 function Remove_player(records) {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(records)
     var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
-    for (let key in arenas) {
-        console.log('key' + key)
-        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key].Id) === JSON.stringify(records)) {
-            arenas.splice(key,1);
-            break
 
+    for (let key in arenas) {
+        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key].Id) === JSON.stringify(records)) {
+            arenas.splice(key, 1);
+            break;
         }
     }
-    arenas = localStorage.setItem("arenas", JSON.stringify(arenas))
-    alert("Arena removido dos favoritos")
-    location.reload();
-}
 
+    arenas = localStorage.setItem("arenas", JSON.stringify(arenas));
+    alert("Arena removido dos favoritos");
+
+    // Remove the corresponding HTML element from the page
+    $('#favourite_' + records).closest('.col-md-4').remove();
+}
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
     if (inputValue.length < 2) {
