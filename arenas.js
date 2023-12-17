@@ -135,36 +135,21 @@ $(document).ready(function () {
         arenas.forEach(arena => {
             console.log(arena)
             $('#favourites').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">${arena.Name}</h5>
-                                <p class="card-text">
-                                    <a href="./countryDetails.html?id=${arena.CountryId}" class="nav-link">${arena.CountryName}</a>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">
-                                        <a href="./positionDetails.html?id=${arena.PositionId}" class="nav-link">${arena.PositionName}</a>
-                                    </small>
-                                </p>
-                                <div class="fixed">
-                                    <a href="./arenasDetails.html?id=${arena.Id}" class="btn btn-primary">Show Details</a>
-                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                                    onclick="Remove_player(${arena.Id})">
-                                        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>
-                                        
-                                    </button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="margin: none;">
-                <img src="${arena.Photo}" alt="${arena.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
-                        </div>
-                    </div>
-                </div>
-            `)
+            <div class="col-md-4 mb-4">
+            <div class="card">
+            <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
+            <h5 class="card-title">${arena.Name}</h5>
+            <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+            <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
+            <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
+            <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
+            <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+            onclick="Remove_player(${arena.Id})">
+            <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
+            </button>
+            </div>
+            </div>
+            </div>  `)
         });
 
     }
@@ -245,34 +230,21 @@ function add_player(records) {
         arena = records
         $('#fav_div').show()
         $('#favourites').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">${arena.Name}</h5>
-                                <p class="card-text">
-                                    <a href="./countryDetails.html?id=${arena.CountryId}" class="nav-link">${arena.CountryName}</a>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">
-                                        <a href="./positionDetails.html?id=${arena.PositionId}" class="nav-link">${arena.PositionName}</a>
-                                    </small>
-                                </p>
-                                <div class="fixed">
-                                    <a href="./arenasDetails.html?id=${arena.Id}" class="btn btn-primary">Show Details</a>
-                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                                    onclick="Remove_player(${arena.Id})">
-                                        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="margin: none;">
-                <img src="${arena.Photo}" alt="${arena.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
-                        </div>
-                    </div>
-                </div>
-            `);
+        <div class="col-md-4 mb-4">
+        <div class="card">
+        <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
+        <h5 class="card-title">${arena.Name}</h5>
+        <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+        <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
+        <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
+        <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
+        <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+        onclick="Remove_player(${arena.Id})">
+        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
+        </button>
+        </div>
+        </div>
+        </div>`);
         alert("Arenas adicionado aos favoritos")
     }
     else {
@@ -287,8 +259,7 @@ function Remove_player(records) {
     for (let key in arenas) {
         console.log('key' + key)
         if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key].Id) === JSON.stringify(records)) {
-            arenas.pop(key);
-            console.log(arenas)
+            arenas.splice(key,1);
             break
 
         }

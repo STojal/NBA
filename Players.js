@@ -262,12 +262,11 @@ function Remove_player(records) {
     console.log(records)
     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
     for (let key in jogadores) {
-        console.log('key' + key)
         if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key].Id) === JSON.stringify(records)) {
-            jogadores.pop(key);
-            console.log(jogadores)
-            break
-
+            console.log('key: ' + key);
+            jogadores.splice(key,1);
+            console.log(jogadores);
+            break;
         }
     }
     jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))

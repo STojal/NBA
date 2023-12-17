@@ -7,11 +7,11 @@ var vm = function () {
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
-    self.Id =ko.observableArray("");
-    self.Acronym =ko.observableArray("");
-    self.Name =ko.observableArray("");
+    self.Id = ko.observableArray("");
+    self.Acronym = ko.observableArray("");
+    self.Name = ko.observableArray("");
     self.Logo = ko.observable("");
-    self.SetFavourites =ko.observable("")
+    self.SetFavourites = ko.observable("")
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
@@ -148,40 +148,28 @@ $(document).ready(function () {
 
 
     if (Teams.length > 0) {
-        
+
         Teams.forEach(Team => {
             console.log(Team)
-            $('#favourites').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">${Team.Name}</h5>
-                                <p class="card-text">
-                                    <a href="./countryDetails.html?id=${Team.CountryId}" class="nav-link">${Team.CountryName}</a>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">
-                                        <a href="./positionDetails.html?id=${Team.PositionId}" class="nav-link">${Team.PositionName}</a>
-                                    </small>
-                                </p>
-                                <div class="fixed">
-                                    <a href="./TeamsDetails.html?id=${Team.Id}" class="btn btn-primary">Show Details</a>
-                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                                    onclick="Remove_player(${Team.Id})">
-                                        <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
-                                        
-                                    </button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="margin: none;">
-                <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
-                        </div>
-                    </div>
-                </div>
-            `)
+            $('#favourites').append(
+                `
+    <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">
+    <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 200px; width: 220px;">;
+
+        <div class="card-body">
+            <h5 class="card-title">${Team.Name}</h5>
+            <p class="card-text">
+                <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
+            </p>
+            <a href="./TeamsDetails.html" class="btn btn-primary"
+                href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+                <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                onclick="Remove_player(${Team.Id})">
+                    <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
+                </button>
+        </div>
+    </div>
+`);
         });
 
     }
@@ -221,33 +209,23 @@ function add_player(records) {
         Team = records
         $('#fav_div').show()
         $('#favourites').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">${Team.Name}</h5>
-                                <p class="card-text">
-                                    <a href="./countryDetails.html?id=${Team.CountryId}" class="nav-link">${Team.CountryName}</a>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">
-                                        <a href="./positionDetails.html?id=${Team.PositionId}" class="nav-link">${Team.PositionName}</a>
-                                    </small>
-                                </p>
-                                <div class="fixed">
-                                    <a href="./TeamsDetails.html?id=${Team.Id}" class="btn btn-primary">Show Details</a>
-                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                                    onclick="Remove_player(${Team.Id})">
-                                        <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5" style="margin: none;">
-                <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
-                        </div>
-                    </div>
-                </div>
+        <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">
+    <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 200px; width: 220px;">;
+
+        <div class="card-body">
+            <h5 class="card-title">${Team.Name}</h5>
+            <p class="card-text">
+                <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
+            </p>
+            <a href="./TeamsDetails.html" class="btn btn-primary"
+                href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+                <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+                onclick="Remove_player(${Team.Id})">
+                    <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
+                </button>
+        </div>
+    </div>
+                
             `);
         alert("Team adicionado aos favoritos")
     }
@@ -263,7 +241,7 @@ function Remove_player(records) {
     for (let key in Teams) {
         console.log('key' + key)
         if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key].Id) === JSON.stringify(records)) {
-            Teams.pop(key);
+            Teams.splice(key, 1);
             console.log(Teams)
             break
 
