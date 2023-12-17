@@ -174,38 +174,6 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-/*
-// Não funciona pq a lista de todas as arenas não tem a lat nem a lon
-function criarmapa(recoords_data) {
-    console.log(recoords_data)
-
-
-    console.log("window.innerHeight=", window.innerHeight);
-    $("#mapid").css("height", window.innerHeight - 200);
-    $(window).resize(function () {
-        $("#mapid").css("width ", window.innerHeight - 200);
-    });
-
-    var mymap = L.map('mapid').setView([37.8, -96], 4);
-
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidG9qYWwiLCJhIjoiY2xwdHcwMXlvMGthdTJqcXNvZmg1cTFhNyJ9.MaPOXjhqeGOO4blUtx3dGg', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-            'Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1
-    }).addTo(mymap);
-
-    for (arena of recoords_data) {
-        console.log(arena.Lat)
-        if (arena.Lat !== null) {
-            L.marker([arena.Lat, arena.Lon], { opacity: 0.80 })
-                .bindTooltip(arena.Name).openTooltip()
-                .addTo(mymap);
-        }
-    };
-};*/
 
 function add_player(records) {
 
