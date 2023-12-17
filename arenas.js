@@ -312,7 +312,7 @@ $("#tags").on("input", function () {
     else {
         $("#tags").autocomplete({
             source: function (request, response) {
-                response([{ label: "Player not found" }]);
+                response([{ label: "Arena not found" }]);
             },
             autoFocus: true,
             open: function () {

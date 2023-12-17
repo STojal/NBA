@@ -137,7 +137,7 @@ $(document).ready(function () {
 
     // console.log("fafaf" + jogadores.length)
     if (jogadores.length > 0) {
-        
+
         jogadores.forEach(player => {
             console.log(player)
             $('#favourites').append(`
@@ -177,7 +177,7 @@ $(document).ready(function () {
 
     console.log("ready!");
     ko.applyBindings(new vm());
-   
+
 
 });
 
@@ -264,7 +264,7 @@ function Remove_player(records) {
     for (let key in jogadores) {
         if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key].Id) === JSON.stringify(records)) {
             console.log('key: ' + key);
-            jogadores.splice(key,1);
+            jogadores.splice(key, 1);
             console.log(jogadores);
             break;
         }
@@ -272,4 +272,72 @@ function Remove_player(records) {
     jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
     alert("Jogador removido dos favoritos")
     location.reload();
+}
+
+$("#tags").on("input", function () {
+    var inputValue = $(this).val();
+    if (inputValue.length < 2) {
+        $("#ui-id-1").empty();
+        localStorage.setItem("AutoconpletePlayers", JSON.stringify([]))
+
+    }
+    else if (inputValue.length == 2) {
+        url = 'http://192.168.160.58/NBA/api/Players/Search?q=' + $("#tags").val();
+        console.log('CALL: getAutocomplete...');
+        ajaxHelper(url, 'GET').done(function (data) {
+            autocomplete = data
+            localStorage.setItem("AutoconpletePlayers", JSON.stringify(autocomplete))
+        });
+    }
+
+    var autocomplete = JSON.parse(localStorage.getItem("AutoconpletePlayers")) || [];
+
+    if (autocomplete.length != 0) {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                var term = request.term.toLowerCase();
+                var filteredAutocomplete = autocomplete.filter(function (item) {
+                    return item.Name.toLowerCase().includes(term);
+                });
+                response(filteredAutocomplete);
+            },
+            autoFocus: true,
+            minLength: 0,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            console.log(item.Name)
+            console.log(item.Id)
+            return $("<li>")
+                .attr("data-value", item.Name)
+                .append('<a href="./PlayersDetails.html?id=' + item.Id + '">' + item.Name + ' <a>')
+                .appendTo(ul);
+        };
+    }
+    else {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                response([{ label: "Player not found" }]);
+            },
+            autoFocus: true,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        })
+    }
+})
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
+        }
+    })
 }

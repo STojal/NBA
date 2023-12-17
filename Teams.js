@@ -235,8 +235,7 @@ function add_player(records) {
 
 };
 function Remove_player(records) {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(records)
+
     var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
     for (let key in Teams) {
         console.log('key' + key)
@@ -250,4 +249,69 @@ function Remove_player(records) {
     Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
     alert("Team removido dos favoritos")
     location.reload();
+}
+$("#tags").on("input", function () {
+    var inputValue = $(this).val();
+    if (inputValue.length < 2) {
+        $("#ui-id-1").empty();
+        localStorage.setItem("AutoconpleteTeams", JSON.stringify([]))
+
+    }
+    else if (inputValue.length == 2) {
+        url = 'http://192.168.160.58/NBA/api/Teams/Search?q=' + $("#tags").val();
+        console.log('CALL: getAutocomplete...');
+        ajaxHelper(url, 'GET').done(function (data) {
+            autocomplete = data
+            localStorage.setItem("AutoconpleteTeams", JSON.stringify(autocomplete))
+        });
+    }
+
+    var autocomplete = JSON.parse(localStorage.getItem("AutoconpleteTeams")) || [];
+
+    if (autocomplete.length != 0) {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                var term = request.term.toLowerCase();
+                var filteredAutocomplete = autocomplete.filter(function (item) {
+                    return item.Name.toLowerCase().includes(term);
+                });
+                response(filteredAutocomplete);
+            },
+            autoFocus: true,
+            minLength: 0,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            return $("<li>")
+                .attr("data-value", item.Name)
+                .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym=' + item.Acronym + '>' + item.Name + ' <a>')
+                .appendTo(ul);
+        };
+    }
+    else {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                response([{ label: "Team not found" }]);
+            },
+            autoFocus: true,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        })
+    }
+})
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
+        }
+    })
 }
