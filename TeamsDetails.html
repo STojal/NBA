@@ -18,10 +18,11 @@
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
         integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
 
+
 </head>
 
 <body>
-    <div class="background">
+    <div class="background" style="margin-bottom: 70px;" !important>
         <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
@@ -157,17 +158,20 @@
             </div>
 
 
-
-            <div class="list_frame">
-                <div class="row border-bottom g-2">
-                    <span class="span_lista_de_players">Players</span>
-                    <ul class="lista_de_players" data-bind="foreach: Players">
-                        <li>
-                            <a data-bind="attr: { href: './PlayersDetails.html?id=' + Id }">
-                                <span data-bind="text: Name"></span>
-                            </a>
-                        </li>
-                    </ul>
+            <div data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                <div style="height: 440px; overflow-y: auto;">
+                    <div class="list_frame">
+                        <div class="row border-bottom g-2">
+                            <span class="span_lista_de_players">Players</span>
+                            <ul class="lista_de_players" data-bind="foreach: Players">
+                                <li>
+                                    <a data-bind="attr: { href: './PlayersDetails.html?id=' + Id }">
+                                        <span data-bind="text: Name"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -211,7 +215,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
-        integrity="sha512-YbLeROkNBfkWaL5RmVsg7G1JQp0by0pCmJgBpOfAQOPTKIchg79fVzahpg5YPUMS1+77WCcpd84OTOK0gdf8BA=="
+        integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
     <script src="TeamsDetails.js"></script>

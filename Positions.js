@@ -57,8 +57,6 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            criarmapa(recoords_data)
-            self.SetFavourites();
         });
     };
 

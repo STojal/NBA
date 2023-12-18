@@ -2,384 +2,351 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW - NBA Test App</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="myCSS.css" />
-    <link rel="stylesheet" href="Index.css"/>
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
-        integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
- 
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>ITW - NBA Test App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="myCSS.css" />
+  <link rel="stylesheet" href="Index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
+    integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <div class="background">
-        <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
-                        height="24" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <div class="background">
+    <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png" height="24" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                                    class="fa-solid fa-caret-down"></i> Arenas</a>
-                            <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
-                                <li><a class="nav-link " aria-current="page" href="arenas.html"><i
-                                            class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
-                                <li><a class="dropdown-item" href="Maps.html"> Map</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-caret-down"></i> Arenas</a>
+              <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
+                <li><a class="nav-link " aria-current="page" href="arenas.html"><i
+                      class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                <li><a class="dropdown-item" href="Maps.html"> Map</a></li>
+              </ul>
+            </li>
 
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html"><i
-                                    class="fa fa-user-o text-primary"></i> Players</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
-                                    class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
-                                    class="fa fa-map-marker text-success"></i> States</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Auxiliary Tables</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
-                                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
-                                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
-                                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
-                                <li><a class="dropdown-item" href="States.html">States</a></li>
-                                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html"><i
+                  class="fa fa-user-o text-primary"></i> Players</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
+                  class="fa fa-flag-o text-danger"></i> Teams</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
+                  class="fa fa-map-marker text-success"></i> States</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Auxiliary Tables</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
+                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
+                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
+                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
+                <li><a class="dropdown-item" href="States.html">States</a></li>
+                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
 
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
 
-                        <li class="navbar-text">
-                            <input type="checkbox" id="darkmode-toggle" />
-                            <label for="darkmode-toggle" id="switch_mode">
-                                <i class="fa-solid fa-sun"></i>
-                                <i class="fa-regular fa-moon"></i>
-                            </label>
-                        </li>
-                    </ul>
-                    <form>
-                        <input type="hidden" name="page" value="1">
-                        <div class="input-group input-group-sm">
-                            <input class="form-control form-control-sm" type="text" name="q"
-                                placeholder="Insira o nome">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i
-                                        class="fa fa-search small"></i></button>
-                                <a href='/NBA/Arenas/Search?q=' + q class="btn btn-default btn-sm"
-                                    title="Limpar o filtro"><i class="fa fa-times"></i></a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <!-- Working Area -->
-        <div class="container-xl">
-            <div class="carousel">
-                <div class="progress-bar progress-bar--primary hide-on-desktop">
-                  <div class="progress-bar__fill"></div>
-                </div>
-              
-              <header class="main-post-wrapper">
-                
-                <div class="slides">
-                  <article class="main-post main-post--active">
-                    <div class="main-post__image">
-                      <img src="https://cdn.nba.com/manage/2023/11/USATSI_21963262-784x441.jpg" alt="New McLaren wind tunnel 'critical' to future performance, says Tech Director Key" />
-                    </div>
-                    <div class="main-post__content">
-                      <div class="main-post__tag-wrapper">
-                        <span class="main-post__tag">News</span>
-                      </div>
-                      <h1 class="main-post__title">Ultimos jogos Nba</h1>
-                      <a class="main-post__link" href="https://www.nba.com/games">
-                            <span class="main-post__link-text">find out more</span>
-                            <svg
-                              class="main-post__link-icon main-post__link-icon--arrow"
-                              width="37"
-                              height="12"
-                              viewBox="0 0 37 12"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11"
-                                stroke="white"
-                              />
-                            </svg>
-                          </a>
-                    </div>
-                  </article>
-                  <article class="main-post main-post--not-active">
-                    <div class="main-post__image">
-                      <img src="https://cdn.nba.com/manage/2023/11/GettyImages-1797516862.jpg" alt="What To Watch For in the 2019 Hungarian Grand Prix" />
-                    </div>
-                    <div class="main-post__content">
-                      <div class="main-post__tag-wrapper">
-                        <span class="main-post__tag">Winners</span>
-                      </div>
-                      <h1 class="main-post__title">Team where the winners of last season</h1>
-                      <a class="main-post__link" href="#">
-                            <svg
-                              class="main-post__link-icon main-post__link-icon--play-btn"
-                              width="30"
-                              height="30"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <circle
-                                cx="10"
-                                cy="10"
-                                r="9"
-                                stroke="#C20000"
-                                stroke-width="2"
-                              />
-                              <path d="M14 10L8 6V14L14 10Z" fill="white" />
-                            </svg>
-                            <span class="main-post__link-text">play video</span>
-                          </a>
-                    </div>
-                  </article>
-                  <article class="main-post main-post--not-active">
-                    <div class="main-post__image">
-                      <img src="https://cdn.nba.com/manage/2023/11/banchero-784x441.jpg" alt="Hamilton wants harder championship fight from Leclerc and
-                          Verstappen" />
-                    </div>
-                    <div class="main-post__content">
-                      <div class="main-post__tag-wrapper">
-                        <span class="main-post__tag">Statistics</span>
-                      </div>
-                      <h1 class="main-post__title">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                      </h1>
-                      <a class="main-post__link" href="#">
-                            <span class="main-post__link-text">find out more</span>
-                            <svg
-                              class="main-post__link-icon main-post__link-icon--arrow"
-                              width="37"
-                              height="12"
-                              viewBox="0 0 37 12"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11"
-                                stroke="white"
-                              />
-                            </svg>
-                          </a>
-                    </div>
-                  </article>
-                </div>
-              </header>
-              
-              <div class="posts-wrapper hide-on-mobile">
-                <article class="post post--active">
-                  <div class="progress-bar">
-                    <div class="progress-bar__fill"></div>
-                  </div>
-                  <header class="post__header">
-                    <span class="post__tag">Ultimos jogos</span>
-                    <p class="post__published">Resultados ao vivo</p>
-                  </header>
-                  <h2 class="post__title">Resultados</h2>
-                </article>
-                <article class="post">
-                  <div class="progress-bar">
-                    <div class="progress-bar__fill"></div>
-                  </div>
-                  <header class="post__header">
-                    <span class="post__tag">Winners</span>
-                    <p class="post__published">2023</p>
-                  </header>
-                  <h2 class="post__title">aaaaaaaaaaaaaaaaaaa</h2>
-                </article>
-                <article class="post">
-                  <div class="progress-bar">
-                    <div class="progress-bar__fill"></div>
-                  </div>
-                  <header class="post__header">
-                    <span class="post__tag">News</span>
-                    <p class="post__published">16 Dezembro 2023</p>
-                  </header>
-                  <h2 class="post__title">aaaaaaaaaaaaaaaaaaaaaaaa
-                  </h2>
-                </article>
+            <li class="navbar-text">
+              <input type="checkbox" id="darkmode-toggle" />
+              <label for="darkmode-toggle" id="switch_mode">
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-regular fa-moon"></i>
+              </label>
+            </li>
+          </ul>
+          <form>
+            <input type="hidden" name="page" value="1">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-sm" type="text" name="q" placeholder="Insira o nome">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i
+                    class="fa fa-search small"></i></button>
+                <a href='/NBA/Arenas/Search?q=' + q class="btn btn-default btn-sm" title="Limpar o filtro"><i
+                    class="fa fa-times"></i></a>
               </div>
-              </div>
-
-            <p>A National Basketball Association (NBA) é uma das principais ligas de basquetebol do mundo e tem uma rica
-                história que remonta à sua fundação em 6 de junho de 1946. Aqui estão alguns marcos importantes na
-                história
-                da NBA: </p>
-
-            <div class="row container" style="margin-left: 30px;">
-                <div class="row col-7">
-                    <ul>
-                        <li>
-                            <p>
-                                Fundação (1946): A NBA foi fundada como Basketball Association of America (BAA) em Nova
-                                York. A
-                                liga começou com 11 equipas.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Fusão com a National Basketball League (NBL) (1949): A BAA fundiu-se com a National
-                                Basketball
-                                League, expandindo-se para 17 equipas e formando a National Basketball Association
-                                (NBA).
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Dinastia dos Celtics (1957-1969): Os Boston Celtics, liderados por jogadores como Bill
-                                Russell e
-                                Bob Cousy, dominaram a liga, conquistando 11 campeonatos em 13 anos.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Era dos Lakers e Celtics (1980s): Os Los Angeles Lakers, liderados por Magic Johnson e
-                                Kareem
-                                Abdul-Jabbar, e os Boston Celtics, liderados por Larry Bird, protagonizaram uma das
-                                maiores
-                                rivalidades na história da NBA durante a década de 1980.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Michael Jordan e os Chicago Bulls (1984-1998): Michael Jordan, considerado um dos
-                                maiores
-                                jogadores de basquete de todos os tempos, levou os Chicago Bulls a seis títulos da NBA
-                                durante
-                                os anos 1990.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Expansão Internacional (1990s): A NBA expandiu-se internacionalmente, realizando jogos e
-                                desenvolvendo uma grande base de fãs global.
-                            </p>
-                        </li>
-                </div>
-                <div class="row col-5" ;
-                    style="border:solid 3px black;background-image:url(images/nba-logo-background.jpg); ;background-size: cover;">
-                    <h1 style="text-align: center;">Últimos campeões</h1>
-                    <h4>
-                        <p>2023:<img src="images/denver-nuggets.png"> DENVER NUGGETS </br></p>
-                        <p></p>
-                        <p>2022:<img src="images/golden-state-warriors.png"> GOLDEN STATE WARRIORS</br></p>
-                        <p></p>
-                        <p>2021:<img src="images/milwaukee-bucks.png"> MILWAUKEE BUCKS</br></p>
-                        <p></p>
-                        <p>2020:<img src="images/los-angeles-lakers.png"> LOS ANGELES LAKERS</br></p>
-                        <p></p>
-                        <p>2019:<img src="images/toronto-raptors.png">TORONTO RAPTORS</br></p>
-
-                    </h4>
-                </div>
-                <div class="row col-12">
-                    <ul>
-                        <li>
-                            <p>
-                                Era pós-Jordan (Final dos anos 90 até início dos anos 2000): Com a aposentadoria de
-                                Michael
-                                Jordan, outras estrelas, como Kobe Bryant, Tim Duncan e Shaquille O'Neal, emergiram como
-                                líderes
-                                de suas equipas.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Era do "Small Ball" e Golden State Warriors (2010s): Os Golden State Warriors, liderados
-                                por
-                                Stephen Curry e Klay Thompson, introduziram com sucesso a estratégia do "small ball" e
-                                venceram
-                                múltiplos campeonatos.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                LeBron James e Miami Heat (2010-2014): LeBron James, uma das maiores estrelas da era
-                                moderna,
-                                liderou o Miami Heat a quatro finais consecutivas, vencendo dois títulos.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Retorno de LeBron James aos Cleveland Cavaliers (2014-2018): LeBron voltou aos Cavaliers
-                                e
-                                levou
-                                a equipa a vencer o campeonato da NBA em 2016, encerrando um jejum de títulos de
-                                Cleveland.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Golden State Warriors vs. Cleveland Cavaliers (2015-2018): Essas duas equipas
-                                encontraram-se
-                                nas
-                                finais por quatro anos consecutivos, com cada equipa a ganhar dois títulos.
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                Toronto Raptors (2019): O Toronto Raptors tornou-se a primeira equipa canadense a vencer
-                                um
-                                campeonato da NBA em 2019.
-                            </p>
-                        </li>
-                    </ul>
-                    <p>
-                        Esses são apenas alguns momentos destacados na história da NBA, que continua a evoluir com novas
-                        estrelas emergindo e novas histórias sendo escritas a cada temporada.
-                    </p>
-                </div>
             </div>
+          </form>
         </div>
-        <!-- End of Working Area -->
-        <nav class="navbar navbar-light bg-light fixed-bottom">
-            <div class="container small">
-                <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
-                <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
-                        href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-                <div class="navbar-nav">
-                    <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
-                            Aveiro</a>
-                    </div>
+      </div>
+    </nav>
+    <!-- Working Area -->
+    <div class="container-xl">
+      <div class="carousel">
+        <div class="progress-bar progress-bar--primary hide-on-desktop">
+          <div class="progress-bar__fill"></div>
+        </div>
+
+        <header class="main-post-wrapper">
+
+          <div class="slides">
+            <article class="main-post main-post--active">
+              <div class="main-post__image">
+                <img src="https://cdn.nba.com/manage/2023/11/USATSI_21963262-784x441.jpg"
+                  alt="New McLaren wind tunnel 'critical' to future performance, says Tech Director Key" />
+              </div>
+              <div class="main-post__content">
+                <div class="main-post__tag-wrapper">
+                  <span class="main-post__tag">News</span>
                 </div>
+                <h1 class="main-post__title">Ultimos jogos Nba</h1>
+                <a class="main-post__link" href="https://www.nba.com/games">
+                  <span class="main-post__link-text">find out more</span>
+                  <svg class="main-post__link-icon main-post__link-icon--arrow" width="37" height="12"
+                    viewBox="0 0 37 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11" stroke="white" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="main-post main-post--not-active">
+              <div class="main-post__image">
+                <img src="https://cdn.nba.com/manage/2023/11/GettyImages-1797516862.jpg"
+                  alt="What To Watch For in the 2019 Hungarian Grand Prix" />
+              </div>
+              <div class="main-post__content">
+                <div class="main-post__tag-wrapper">
+                  <span class="main-post__tag">Winners</span>
+                </div>
+                <h1 class="main-post__title">Team where the winners of last season</h1>
+                <a class="main-post__link" href="#">
+                  <svg class="main-post__link-icon main-post__link-icon--play-btn" width="30" height="30"
+                    viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="9" stroke="#C20000" stroke-width="2" />
+                    <path d="M14 10L8 6V14L14 10Z" fill="white" />
+                  </svg>
+                  <span class="main-post__link-text">play video</span>
+                </a>
+              </div>
+            </article>
+            <article class="main-post main-post--not-active">
+              <div class="main-post__image">
+                <img src="https://cdn.nba.com/manage/2023/11/banchero-784x441.jpg" alt="Hamilton wants harder championship fight from Leclerc and
+                          Verstappen" />
+              </div>
+              <div class="main-post__content">
+                <div class="main-post__tag-wrapper">
+                  <span class="main-post__tag">Statistics</span>
+                </div>
+                <h1 class="main-post__title">aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                </h1>
+                <a class="main-post__link" href="#">
+                  <span class="main-post__link-text">find out more</span>
+                  <svg class="main-post__link-icon main-post__link-icon--arrow" width="37" height="12"
+                    viewBox="0 0 37 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11" stroke="white" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </header>
+
+        <div class="posts-wrapper hide-on-mobile">
+          <article class="post post--active">
+            <div class="progress-bar">
+              <div class="progress-bar__fill"></div>
             </div>
-        </nav>
+            <header class="post__header">
+              <span class="post__tag">Ultimos jogos</span>
+              <p class="post__published">Resultados ao vivo</p>
+            </header>
+            <h2 class="post__title">Resultados</h2>
+          </article>
+          <article class="post">
+            <div class="progress-bar">
+              <div class="progress-bar__fill"></div>
+            </div>
+            <header class="post__header">
+              <span class="post__tag">Winners</span>
+              <p class="post__published">2023</p>
+            </header>
+            <h2 class="post__title">aaaaaaaaaaaaaaaaaaa</h2>
+          </article>
+          <article class="post">
+            <div class="progress-bar">
+              <div class="progress-bar__fill"></div>
+            </div>
+            <header class="post__header">
+              <span class="post__tag">News</span>
+              <p class="post__published">16 Dezembro 2023</p>
+            </header>
+            <h2 class="post__title">aaaaaaaaaaaaaaaaaaaaaaaa
+            </h2>
+          </article>
+        </div>
+      </div>
+
+      <p>A National Basketball Association (NBA) é uma das principais ligas de basquetebol do mundo e tem uma rica
+        história que remonta à sua fundação em 6 de junho de 1946. Aqui estão alguns marcos importantes na
+        história
+        da NBA: </p>
+
+      <div class="row container" style="margin-left: 30px;">
+        <div class="row col-7">
+          <ul>
+            <li>
+              <p>
+                Fundação (1946): A NBA foi fundada como Basketball Association of America (BAA) em Nova
+                York. A
+                liga começou com 11 equipas.
+              </p>
+            </li>
+            <li>
+              <p>
+                Fusão com a National Basketball League (NBL) (1949): A BAA fundiu-se com a National
+                Basketball
+                League, expandindo-se para 17 equipas e formando a National Basketball Association
+                (NBA).
+              </p>
+            </li>
+            <li>
+              <p>
+                Dinastia dos Celtics (1957-1969): Os Boston Celtics, liderados por jogadores como Bill
+                Russell e
+                Bob Cousy, dominaram a liga, conquistando 11 campeonatos em 13 anos.
+              </p>
+            </li>
+            <li>
+              <p>
+                Era dos Lakers e Celtics (1980s): Os Los Angeles Lakers, liderados por Magic Johnson e
+                Kareem
+                Abdul-Jabbar, e os Boston Celtics, liderados por Larry Bird, protagonizaram uma das
+                maiores
+                rivalidades na história da NBA durante a década de 1980.
+              </p>
+            </li>
+            <li>
+              <p>
+                Michael Jordan e os Chicago Bulls (1984-1998): Michael Jordan, considerado um dos
+                maiores
+                jogadores de basquete de todos os tempos, levou os Chicago Bulls a seis títulos da NBA
+                durante
+                os anos 1990.
+              </p>
+            </li>
+            <li>
+              <p>
+                Expansão Internacional (1990s): A NBA expandiu-se internacionalmente, realizando jogos e
+                desenvolvendo uma grande base de fãs global.
+              </p>
+            </li>
+        </div>
+        <div class="row col-5" ;
+          style="border:solid 3px black;background-image:url(images/nba-logo-background.jpg); ;background-size: cover;">
+          <h1 style="text-align: center;">Últimos campeões</h1>
+          <h4>
+            <p>2023:<img src="images/denver-nuggets.png"> DENVER NUGGETS </br></p>
+            <p></p>
+            <p>2022:<img src="images/golden-state-warriors.png"> GOLDEN STATE WARRIORS</br></p>
+            <p></p>
+            <p>2021:<img src="images/milwaukee-bucks.png"> MILWAUKEE BUCKS</br></p>
+            <p></p>
+            <p>2020:<img src="images/los-angeles-lakers.png"> LOS ANGELES LAKERS</br></p>
+            <p></p>
+            <p>2019:<img src="images/toronto-raptors.png">TORONTO RAPTORS</br></p>
+
+          </h4>
+        </div>
+        <div class="row col-12">
+          <ul>
+            <li>
+              <p>
+                Era pós-Jordan (Final dos anos 90 até início dos anos 2000): Com a aposentadoria de
+                Michael
+                Jordan, outras estrelas, como Kobe Bryant, Tim Duncan e Shaquille O'Neal, emergiram como
+                líderes
+                de suas equipas.
+              </p>
+            </li>
+            <li>
+              <p>
+                Era do "Small Ball" e Golden State Warriors (2010s): Os Golden State Warriors, liderados
+                por
+                Stephen Curry e Klay Thompson, introduziram com sucesso a estratégia do "small ball" e
+                venceram
+                múltiplos campeonatos.
+              </p>
+            </li>
+            <li>
+              <p>
+                LeBron James e Miami Heat (2010-2014): LeBron James, uma das maiores estrelas da era
+                moderna,
+                liderou o Miami Heat a quatro finais consecutivas, vencendo dois títulos.
+              </p>
+            </li>
+            <li>
+              <p>
+                Retorno de LeBron James aos Cleveland Cavaliers (2014-2018): LeBron voltou aos Cavaliers
+                e
+                levou
+                a equipa a vencer o campeonato da NBA em 2016, encerrando um jejum de títulos de
+                Cleveland.
+              </p>
+            </li>
+            <li>
+              <p>
+                Golden State Warriors vs. Cleveland Cavaliers (2015-2018): Essas duas equipas
+                encontraram-se
+                nas
+                finais por quatro anos consecutivos, com cada equipa a ganhar dois títulos.
+              </p>
+            </li>
+            <li>
+              <p>
+                Toronto Raptors (2019): O Toronto Raptors tornou-se a primeira equipa canadense a vencer
+                um
+                campeonato da NBA em 2019.
+              </p>
+            </li>
+          </ul>
+          <p>
+            Esses são apenas alguns momentos destacados na história da NBA, que continua a evoluir com novas
+            estrelas emergindo e novas histórias sendo escritas a cada temporada.
+          </p>
+        </div>
+      </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    <!-- End of Working Area -->
+    <nav class="navbar navbar-light bg-light fixed-bottom">
+      <div class="container small">
+        <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
+        <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt"
+            class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+        <div class="navbar-nav">
+          <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
+              Aveiro</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
-    integrity="sha512-YbLeROkNBfkWaL5RmVsg7G1JQp0by0pCmJgBpOfAQOPTKIchg79fVzahpg5YPUMS1+77WCcpd84OTOK0gdf8BA=="
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
+    integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="forAllPages.js"></script>
-<script src="Index.js"></script>
+  <script src="forAllPages.js"></script>
+  <script src="Index.js"></script>
 </body>
 
 </html>

@@ -65,21 +65,12 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
 
-            self.SetFavourites(data.Records);
-            SetFavourites()
+
         });
     };
 
 
 
-    function SetFavourites() {
-        var lista_team = JSON.parse(localStorage.getItem("Team")) || [];
-        self.SetFavourites(self.records().filter(function (team) {
-
-            return lista_team.includes((team.Id).toString());
-
-        }))
-    }
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -161,7 +152,7 @@ $(document).ready(function () {
             <p class="card-text">
                 <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
             </p>
-            <a href="./TeamsDetails.html" class="btn btn-primary"
+            <a  class="btn btn-primary"
                 href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
                 <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
                 onclick="Remove_player(${Team.Id})">
@@ -217,7 +208,7 @@ function add_player(records) {
             <p class="card-text">
                 <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
             </p>
-            <a href="./TeamsDetails.html" class="btn btn-primary"
+            <a  class="btn btn-primary"
                 href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
                 <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
                 onclick="Remove_player(${Team.Id})">
