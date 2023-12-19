@@ -175,6 +175,56 @@ $(document).ready(function () {
 
     }
 
+    var teams = JSON.parse(localStorage.getItem("Teams")) || []
+    if (teams.length > 0) {
+        teams.forEach(Team => {
+            console.log(Team)
+            $('#flush-collapseOne').append(
+                `
+            <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
+            <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 250px; width: 100%;">
+
+            <div class="card-body">
+            <h5 class="card-title">${Team.Name}</h5>
+            <p class="card-text">
+            <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
+            </p>
+            <a  class="btn btn-primary"
+            href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+
+            </div>
+            </div>
+`);
+
+
+
+
+        })
+    }
+
+    var Arenas = JSON.parse(localStorage.getItem("arenas")) || []
+    if (Arenas.length > 0) {
+        Arenas.forEach(arena => {
+            $('#flush-collapseTwo').append(`
+
+            <div class="card">
+            <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
+            <h5 class="card-title">${arena.Name}</h5>
+            <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+            <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
+            <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
+            <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
+            <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+            onclick="Remove_player(${arena.Id})">
+            <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
+            </button>
+            </div>
+
+            `);
+        })
+    }
+
+
     console.log("ready!");
     ko.applyBindings(new vm());
 
@@ -202,7 +252,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
 function add_player(records) {
 
     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
-
+    
 
 
     count = 0
