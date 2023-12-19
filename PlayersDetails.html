@@ -53,15 +53,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Auxiliary Tables</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
-                                    <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
-                                    <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
-                                    <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
-                                    <li><a class="dropdown-item" href="States.html">States</a></li>
-                                    <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
-    
-                                </ul>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
+                                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
+                                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
+                                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
+                                <li><a class="dropdown-item" href="States.html">States</a></li>
+                                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
+
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
@@ -155,17 +155,67 @@
                                 data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
                                 <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
                             </a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100%">
+                                Carrer details
+                              </button>
                         </div>
+                        <!--
+                            <div class="row border-bottom g-2 info-row" data-bind="visible: Photo() != '' && Photo() != null">
+                        <div class="col-12 header-underline">Photo</div>
+                        <div class="small col-12" data-bind="attr: { 'style': 'background-image: url(' + Photo + '); background-size: cover;' }">
+                            <a class="link-dark text-decoration-none link-hover"
+                                data-bind="attr: { href: Photo, alt: Name, title: Name }" target="_blank">
+                                <img class="img-thumbnail" data-bind="attr: { src: Photo }" />
+                            </a>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100%">
+                                Career details
+                            </button>
+                        </div>
+                    </div>
+
+
+                        -->
                     </div>
                 </div>
             </div>
-
+            
             <div class="mt-3">
                 <a href="Players.html" class="btn btn-secondary btn-sm"><i class="fa fa-list"></i> Back to List</a>
             </div>
         </div>
+        
 
 
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Carrer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--ko ifnot:Seasons==null-->
+                        <h5><b>Seasons</b></h5>
+                        <div data-bind="foreach: Seasons" class="row" id="Players">
+                            <a data-bind="text:Season,attr: {href:'./SeasonsDetails.html?id=' + Id }"></a>
+                        </div>
+                        <!--/ko-->
+                        <!--ko ifnot:Teams==null-->
+                        <h5><b>Teams</b></h5>
+                        <div data-bind="foreach: Teams" class="row" id="Players">
+                            <a data-bind="text:Name,attr:  {href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">"></a>
+                        </div>
+                        <!--/ko-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Modal -->

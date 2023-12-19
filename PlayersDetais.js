@@ -21,6 +21,8 @@ var vm = function () {
     self.School = ko.observable('');
     self.Photo = ko.observable('');
     self.Biography = ko.observable('');
+    self.Seasons =ko.observable('')
+    self.Teams =ko.observable('')
 
     //--- Page Events
     self.activate = function (id) {
@@ -43,6 +45,8 @@ var vm = function () {
             self.School(data.School);
             self.Photo(data.Photo);
             self.Biography(data.Biography);
+            self.Seasons(data.Seasons);
+            self.Teams(data.Teams);
         });
     };
 
