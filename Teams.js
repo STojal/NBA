@@ -162,64 +162,14 @@ $(document).ready(function () {
                 </div>
 `)
         })
-    };
-        //adcionar o off canvas os Arenas
-    var Arenas = JSON.parse(localStorage.getItem("arenas")) || []
-    if (Arenas.length > 0) {
-        Arenas.forEach(arena => {
-            $('#flush-collapseOne').append(`
+    }else{
+        $('#favourites').append(`
+            <div class="info">Nenhuma Team nos favoritos</div>
 
-            <div class="card">
-            <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
-            <h5 class="card-title">${arena.Name}</h5>
-            <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
-            <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
-            <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
-            <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
-            <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-            onclick="Remove_player(${arena.Id})">
-            <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
-            </button>
-            </div>
+            `)
 
-            `);
-        })
     }
-    //adcionar o off canvas os jogadores
-    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || []
-    if (jogadores.length > 0) {
-        jogadores.forEach(player => {
-            $('#flush-collapseTwo').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                <div class="row g-0">
-                <div class="col-md-7">
-                <div class="card-body">
-                <h5 class="card-title">${player.Name}</h5>
-                <p class="card-text">
-                <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
-                </p>
-                <p class="card-text">
-                <small class="text-body-secondary">
-                <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
-                </small>
-                </p>
-                <div class="fixed">
-                <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
-                <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                onclick="Remove_player(${player.Id})">
-                <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
-                </button>
-                </div>
-                </div>
-                </div>
-                <div class="col-md-5" style="margin: none;">
-                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
-                </div>
-                </div>
-                </div>
-            `);
-        })
-    }
+    
 
 
 
@@ -264,6 +214,7 @@ function add_player(records) {
         console.log(Teams)
         Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
         Team = records
+        $('#favourites .info').remove()
         $('#fav_div').show()
         $('#favourites').append(`
         <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">

@@ -50,7 +50,7 @@ var vm = function () {
             console.log(data);
             hideLoading();
             self.records(data.Records);
-            var recoords_data =self.records();
+            var recoords_data = self.records();
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);

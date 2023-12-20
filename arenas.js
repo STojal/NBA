@@ -126,70 +126,8 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-    //team adcionar o off canvas
     var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
-    $('#fav_div').show()
-    var teams = JSON.parse(localStorage.getItem("Teams")) || []
-    if (teams.length > 0) {
-        teams.forEach(Team => {
-            console.log(Team)
-            $('#flush-collapseOne').append(
-                `
-            <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
-            <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 250px; width: 100%;">
-
-            <div class="card-body">
-            <h5 class="card-title">${Team.Name}</h5>
-            <p class="card-text">
-            <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
-            </p>
-            <a  class="btn btn-primary"
-            href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
-
-            </div>
-            </div>
-`);
-
-
-
-
-        })
-    }
-    //adiciona o jogadores off canvas
-    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || []
-    if (jogadores.length > 0) {
-        jogadores.forEach(player => {
-            $('#flush-collapseTwo').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                <div class="row g-0">
-                <div class="col-md-7">
-                <div class="card-body">
-                <h5 class="card-title">${player.Name}</h5>
-                <p class="card-text">
-                <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
-                </p>
-                <p class="card-text">
-                <small class="text-body-secondary">
-                <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
-                </small>
-                </p>
-                <div class="fixed">
-                <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
-                <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                onclick="Remove_player(${player.Id})">
-                <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
-                </button>
-                </div>
-                </div>
-                </div>
-                <div class="col-md-5" style="margin: none;">
-                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
-                </div>
-                </div>
-                </div>
-            `);
-        })
-    }
+    
 
     // adciona arenas aos favouritos
     if (arenas.length > 0) {
@@ -213,9 +151,14 @@ $(document).ready(function () {
             </div>
 
   `)
-
-
         });
+
+    }
+    else{
+        $('#favourites').append(`
+            <div class="info">Nenhuma arena nos favoritos</div>
+
+            `)
 
     }
 
@@ -261,6 +204,7 @@ function add_player(records) {
         console.log(arenas)
         arenas = localStorage.setItem("arenas", JSON.stringify(arenas))
         arena = records
+        $('#favourites .info').remove()
         $('#fav_div').show()
         $('#favourites').append(`
         <div class="col-md-4 mb-4">
@@ -294,12 +238,18 @@ function Remove_player(records) {
             break;
         }
     }
+    if (arenas.length === 0){
+        $('#favourites').append(`
+        <div class="info">Nenhuma Team nos favoritos</div>
 
+        `)
+    }
     arenas = localStorage.setItem("arenas", JSON.stringify(arenas));
     alert("Arena removido dos favoritos");
 
     // Remove the corresponding HTML element from the page
     $('#favourite_' + records).closest('.col-md-4').remove();
+    
 }
 $("#tags").on("input", function () {
     var inputValue = $(this).val();

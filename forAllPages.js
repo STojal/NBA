@@ -1,3 +1,5 @@
+//darkomode
+
 const darkmodeToggle = document.getElementById('darkmode-toggle');
 const background = document.querySelector('.background');
 const navbar = document.querySelector('.navbar');
@@ -7,6 +9,7 @@ console.log(darkmode_state)
 
 darkmodeToggle.addEventListener('change', function () {
   if (this.checked) {
+    //mudar para dark
     background.style.background = 'hsl(0, 1%, 14%)';
     background.style.color = 'rgb(192,192,192)';
     $('nav').removeClass("navbar navbar-expand-lg navbar-light bg-light")
@@ -22,11 +25,12 @@ darkmodeToggle.addEventListener('change', function () {
     $("tr:odd").css("background-color", "gray");
     $('#drop').css("background-color", "rgb(40, 40, 40)")
     $('#switch_mode').css("background-color", "#242424");
-    $('.dropdown-menu').css('background-color','rgb(40, 40, 40)')
-    $('.dropdown-menu a').css('color','#1d4e83')
+    $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
+    $('.dropdown-menu a').css('color', '#1d4e83')
 
 
   } else {
+    //mudar para light
     $(".fa-sun").css({ left: "5px", color: " #fff", transition: "0.3s" });
     $(".fa-moon").css({ left: "60px", color: "#7e7e7e", transition: "0.3s" });
     background.style.background = 'hsl(0, 0%, 100%)';
@@ -39,10 +43,10 @@ darkmodeToggle.addEventListener('change', function () {
     $('.page-link:first').css("background-color", "blue");
     $('#drop').css("background-color", "white")
     $('#switch_mode').css("background-color", "white");
-    $('.dropdown-menu').css('background-color','white')
-    $('.dropdown-menu a').css('color','black')
-    $('#drop').css('color','black')
-    
+    $('.dropdown-menu').css('background-color', 'white')
+    $('.dropdown-menu a').css('color', 'black')
+    $('#drop').css('color', 'black')
+
 
 
 
@@ -54,7 +58,320 @@ darkmodeToggle.addEventListener('change', function () {
   localStorage.setItem("darkmode_state", darkmode_state)
 });
 $(document).ready(function () {
+  console.log(window.location.href)
+  //favourites adcionar fariando na pagina:
+  if (window.location.href.includes("/NBA/arenas.html")) {
+    //team adcionar o off canvas
+    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
+    $('#fav_div').show()
+    var teams = JSON.parse(localStorage.getItem("Teams")) || []
+    if (teams.length > 0) {
+      teams.forEach(Team => {
+        console.log(Team)
+        $('#flush-collapseOne').append(
+          `
+            <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
+            <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 250px; width: 100%;">
 
+            <div class="card-body">
+            <h5 class="card-title">${Team.Name}</h5>
+            <p class="card-text">
+            <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
+            </p>
+            <a  class="btn btn-primary"
+            href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+
+            </div>
+            </div>
+`);
+
+
+
+
+      })
+    }
+    else {
+      $('#flush-collapseOne').append(`
+    <div class="info">Nenhuma arena nos favoritos</div>
+
+    `)
+
+    }
+    //adiciona o jogadores off canvas
+    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || []
+    if (jogadores.length > 0) {
+      jogadores.forEach(player => {
+        $('#flush-collapseTwo').append(`
+                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                <div class="row g-0">
+                <div class="col-md-7">
+                <div class="card-body">
+                <h5 class="card-title">${player.Name}</h5>
+                <p class="card-text">
+                <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
+                </p>
+                <p class="card-text">
+                <small class="text-body-secondary">
+                <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
+                </small>
+                </p>
+                <div class="fixed">
+                <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
+                </div>
+                </div>
+                </div>
+                <div class="col-md-5" style="margin: none;">
+                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                </div>
+                </div>
+                </div>
+            `);
+      })
+    }
+    else {
+      $('#flush-collapseTwo').append(`
+    <div class="info">Nenhum jogador nos favoritos</div>
+
+    `)
+    }
+  }
+else if(window.location.href.includes("/NBA/Players.html")){
+  var teams = JSON.parse(localStorage.getItem("Teams")) || []
+    if (teams.length > 0) {
+        teams.forEach(Team => {
+            console.log(Team)
+            $('#flush-collapseOne').append(
+                `
+            <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
+            <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 250px; width: 100%;">
+
+            <div class="card-body">
+            <h5 class="card-title">${Team.Name}</h5>
+            <p class="card-text">
+            <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
+            </p>
+            <a  class="btn btn-primary"
+            href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+
+            </div>
+            </div>
+`);
+
+
+
+
+        })
+    }
+    else{
+        $('#flush-collapseOne').append(`
+        <div class="info">Nenhuma Team nos favoritos</div>
+    
+        `)
+    }
+
+    var Arenas = JSON.parse(localStorage.getItem("arenas")) || []
+    if (Arenas.length > 0) {
+        Arenas.forEach(arena => {
+            $('#flush-collapseTwo').append(`
+
+            <div class="card">
+            <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
+            <h5 class="card-title">${arena.Name}</h5>
+            <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+            <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
+            <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
+            <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
+            <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+            onclick="Remove_player(${arena.Id})">
+            <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
+            </button>
+            </div>
+
+            `);
+        })
+    }
+    else{
+        $('#flush-collapseTwo').append(`
+        <div class="info">Nenhuma Arena nos favoritos</div>
+    
+        `)
+    }
+}
+else if(window.location.href.includes("/NBA/Teams.html")){
+
+   //adcionar o off canvas os Arenas
+   var Arenas = JSON.parse(localStorage.getItem("arenas")) || []
+   if (Arenas.length > 0) {
+       Arenas.forEach(arena => {
+           $('#flush-collapseOne').append(`
+
+           <div class="card">
+           <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
+           <h5 class="card-title">${arena.Name}</h5>
+           <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+           <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
+           <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
+           <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
+           <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+           onclick="Remove_player(${arena.Id})">
+           <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
+           </button>
+           </div>
+
+           `);
+       })
+   }
+   else{
+       $('#flush-collapseOne').append(`
+       <div class="info">Nenhuma Arena nos favoritos</div>
+   
+       `)
+   }
+   //adcionar o off canvas os jogadores
+   var jogadores = JSON.parse(localStorage.getItem("jogadores")) || []
+   if (jogadores.length > 0) {
+       jogadores.forEach(player => {
+           $('#flush-collapseTwo').append(`
+               <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+               <div class="row g-0">
+               <div class="col-md-7">
+               <div class="card-body">
+               <h5 class="card-title">${player.Name}</h5>
+               <p class="card-text">
+               <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
+               </p>
+               <p class="card-text">
+               <small class="text-body-secondary">
+               <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
+               </small>
+               </p>
+               <div class="fixed">
+               <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
+               <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
+               onclick="Remove_player(${player.Id})">
+               <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
+               </button>
+               </div>
+               </div>
+               </div>
+               <div class="col-md-5" style="margin: none;">
+               <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+               </div>
+               </div>
+               </div>
+           `);
+       })
+   }
+   else{
+       $('#flush-collapseTwo').append(`
+       <div class="info">Nenhum jogador nos favoritos</div>
+   
+       `)
+   }
+
+}
+else{
+     //adcionar o off canvas os Arenas
+     var Arenas = JSON.parse(localStorage.getItem("arenas")) || []
+     if (Arenas.length > 0) {
+         Arenas.forEach(arena => {
+             $('#flush-collapseOne').append(`
+ 
+             <div class="card">
+             <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
+             <h5 class="card-title">${arena.Name}</h5>
+             <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+             <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
+             <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
+             <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
+             
+             </div>
+ 
+             `);
+         })
+     }
+     else {
+         $('#flush-collapseOne').append(`
+         <div class="info">Nenhuma Arena nos favoritos</div>
+     
+         `)
+     }
+     //adcionar o off canvas os jogadores
+     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || []
+     if (jogadores.length > 0) {
+         jogadores.forEach(player => {
+             $('#flush-collapseTwo').append(`
+                 <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
+                 <div class="row g-0">
+                 <div class="col-md-7">
+                 <div class="card-body">
+                 <h5 class="card-title">${player.Name}</h5>
+                 <p class="card-text">
+                 <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
+                 </p>
+                 <p class="card-text">
+                 <small class="text-body-secondary">
+                 <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
+                 </small>
+                 </p>
+                 <div class="fixed">
+                 <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
+                 
+                 </div>
+                 </div>
+                 </div>
+                 <div class="col-md-5" style="margin: none;">
+                 <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                 </div>
+                 </div>
+                 </div>
+             `);
+         })
+     }
+     else {
+         $('#flush-collapseTwo').append(`
+         <div class="info">Nenhum jogador nos favoritos</div>
+     
+         `)
+     }
+     var teams = JSON.parse(localStorage.getItem("Teams")) || []
+     if (teams.length > 0) {
+         teams.forEach(Team => {
+             console.log(Team)
+             $('#flush-collapseTree').append(
+                 `
+             <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
+             <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 250px; width: 100%;">
+ 
+             <div class="card-body">
+             <h5 class="card-title">${Team.Name}</h5>
+             <p class="card-text">
+             <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
+             </p>
+             <a  class="btn btn-primary"
+             href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+ 
+             </div>
+             </div>
+ `);
+ 
+ 
+ 
+ 
+         })
+     }
+     else {
+         $('#flush-collapseOne').append(`
+     <div class="info">Nenhuma arena nos favoritos</div>
+ 
+     `)
+ 
+     }
+}
+
+
+
+  //guardar dados
   if (darkmode_state == 1) {
     background.style.background = 'hsl(0, 1%, 14%)';
     background.style.color = 'rgb(192,192,192)';
@@ -71,8 +388,8 @@ $(document).ready(function () {
     $('.card').css('background-color', "gray")
     $('.page-link').css("background-color", "rgb(40, 40, 40)");
     $('#drop').css("background-color", "rgb(40, 40, 40)")
-    $('.dropdown-menu').css('background-color','rgb(40, 40, 40)')
-    $('.dropdown-menu a').css('color','#1d4e83')
+    $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
+    $('.dropdown-menu a').css('color', '#1d4e83')
 
 
 
@@ -84,6 +401,7 @@ $(document).ready(function () {
     $('#drop').css("background-color", "white")
 
   }
+  //drop da arena
   $('#arenasbutton').hover(function () {
     $('#drop').slideDown(500);
     //console.log($('#arenasbutton:hover').length)
@@ -97,4 +415,5 @@ $(document).ready(function () {
       $('#drop').slideUp(500);
     }
   });
+
 });

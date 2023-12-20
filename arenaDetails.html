@@ -48,8 +48,10 @@
                                     class="fa fa-user-o text-primary"></i> Players</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="States.html"><i
-                                    class="fa fa-map-marker text-success"></i> States</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                                        role="button" aria-controls="offcanvasExample">
+                                        Favourites
+                                    </a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Auxiliary Tables</a>
@@ -91,6 +93,56 @@
             </div>
         </nav>
         <!-- Work Area-->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Favourites</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Arenas
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                Jogadores
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTree" aria-expanded="false"
+                                aria-controls="flush-collapseTree">
+                                Teams
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTree" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionFlushExample">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="container">
 
