@@ -275,30 +275,37 @@ $("#tags").on("input", function () {
     }
 
     var autocomplete = JSON.parse(localStorage.getItem("AutoconpleteTeams")) || [];
-
     if (autocomplete.length != 0) {
+        
         $("#tags").autocomplete({
             source: function (request, response) {
                 var term = request.term.toLowerCase();
+                
                 var filteredAutocomplete = autocomplete.filter(function (item) {
                     return item.Name.toLowerCase().includes(term);
                 });
+
                 response(filteredAutocomplete);
+                console.log("aaaa")
             },
             autoFocus: true,
-            minLength: 0,
+            minLength: 1,
             open: function () {
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
             },
 
-        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+        }).data("ui-autocomplete")._renderItem = function (ul, item) { 
+            console.log(item.Name)
+            console.log(item.Id)
+            console.log(item.Acronym)
             return $("<li>")
                 .attr("data-value", item.Name)
-                .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym=' + item.Acronym + '>' + item.Name + ' <a>')
+                .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym='+ item.Acronym+'">' + item.Name + ' <a>')
                 .appendTo(ul);
         };
     }
     else {
+
         $("#tags").autocomplete({
             source: function (request, response) {
                 response([{ label: "Team not found" }]);
