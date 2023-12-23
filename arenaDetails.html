@@ -201,10 +201,11 @@
             <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
                 <div class="col-2">Photo</div>
 
-                <div class="small col-10"
-                    data-bind="style: { 'background-image': 'url(' + Photo + ')', 'background-size': 'cover' }">
-                    <a class="link-dark text-decoration-none" data-bind="attr: { href: Photo, alt: Name, title: Name }"
-                        target="_blank"></a>
+                <div class="small col-10">
+                    <a class="link-dark text-decoration-none link-hover"
+                                data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
+                                <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
+                            </a>
                 </div>
             </div>
             <a href="./arenas.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
