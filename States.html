@@ -176,15 +176,15 @@
 
             <div data-bind="foreach: records" class="row" id="Players">
                 <div class="card" style="width: 15rem;">
-
-                    <!--ko if: Flag === null -->
-                    <img src="images/logo players.png" alt data-bind="text: Name" class="card-img-top"
-                        style="height: 150px;width: 200px;">
-                    <!--/ko-->
-                    <!--ko ifnot: Flag === null -->
-                    <img data-bind="attr: { src: Flag, alt: 'Name',title:'Name' }" class="card-img-top"
-                        style="height: 150px;width: 200px;">
-                    <!--/ko-->
+                    <!-- ko if: Flag === null -->
+                    <div class="imagemDivsStates col-md-5" style="background-image: url('images/logo players.png')" >
+                    </div>
+                    <!-- /ko -->
+                    <!-- ko ifnot: Flag === null -->
+                    <div class="imagemDivsStates col-md-5" data-bind="style: { 'background-image': 'url(' + Flag + ')'}">
+                    </div>
+                    <!-- /ko -->
+                    
                     <div class="card-body">
                         <h5 class="card-title" data-bind="text: Name"></h5>
                         <p class="card-text">

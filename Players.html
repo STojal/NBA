@@ -235,16 +235,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5" style="margin: none;">
-                            <!-- ko if: Photo === null -->
-                            <img src="images/logo players.png" alt data-bind="text: Name" class="card-img-top"
-                                style="width: 168px; height: 185px;border-radius:5px ">
-                            <!-- /ko -->
-                            <!-- ko ifnot: Photo === null -->
-                            <img data-bind="attr: { src: Photo, alt: 'Name' }" class="card-img-top"
-                                style="width: 168px; height: 185px;border-radius:5px ">
-                            <!-- /ko -->
+                         <!-- ko if: Photo === null -->
+                        <div class="imagemDivsPlayers col-md-5" style="background-image: url('images/logo players.png')" >
                         </div>
+                        <!-- /ko -->
+                        <!-- ko ifnot: Photo === null -->
+                        <div class="imagemDivsPlayers col-md-5" data-bind="style: { 'background-image': 'url(' + Photo + ')'}">
+                        </div>
+                        <!-- /ko -->
+                        
+                           
+
                     </div>
 
                 </div>

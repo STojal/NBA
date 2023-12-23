@@ -266,3 +266,27 @@ li.page-item a {
   height: 100%;
   margin-bottom: 50px;
 }
+.imagemDivsTeams {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 220px;
+  height: 240px;
+  margin: 0;
+  background-position: center center;
+}
+.imagemDivsPlayers {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 152px;
+  height: 186px;
+  margin: 0;
+  background-position: center center;
+}
+.imagemDivsStates {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 150px;
+  margin: 0;
+  background-position: center center;
+}
