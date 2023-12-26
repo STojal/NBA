@@ -2,12 +2,12 @@
 google.charts.load('current', { 'packages': ['bar'] });
 google.charts.setOnLoadCallback(drawChart);
 
-var composedUri = "http://192.168.160.58/Olympics/api/statistics/games_athletes";
+var composedUri = "http://192.168.160.58/NBA/api/Statistics/Top5RankedPlayerByPlayoffSeason";
 // Set chart options
 var options = {
     chart: {
         title: 'Estatísticas Gerais',
-        subtitle: 'N.º de Atletas por Edição dos Jogos Olímpicos',
+        subtitle: 'N.º de Players por Season ',
     },
     bars: 'horizontal', // Required for Material Bar Charts.
     legend: { position: 'none' },
@@ -23,11 +23,14 @@ function drawChart() {
     // Create our data table.
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Edição'); // Implicit domain label col.
-    data.addColumn('number', 'Atletas'); // Implicit series 1 data col.
+    data.addColumn('number', 'Players'); // Implicit series 1 data col.
     ajaxHelper(composedUri, 'GET').done(function (stats) {
         // Interact with the data returned
         $.each(stats, function (index, item) {
-            data.addRow([item.Name, item.Counter]);
+            var test = (item.Players)
+            console.log(test.length)
+            val = test.length
+            data.addRow([item.Season, val]);
         })
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
