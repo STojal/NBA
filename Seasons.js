@@ -179,11 +179,26 @@ function Remove_season(records) {
 
 
 function favorites() {
+    console.log("aaaaaa")
     var seasons = JSON.parse(localStorage.getItem("season")) || [];
     var table = document.getElementById("table1");
     var buttons = table.getElementsByTagName("button");
     const val = Object.values(buttons);
-    console.log
+    
+      
+      // Iterate over the numeric indices in the object
+      for (let index in buttons) {
+        if (buttons.hasOwnProperty(index)) {
+          // Access the nested properties for the current index
+          let nestedProperties = buttons[index]["__ko__1703606670251"]["1__ko__1703606670251"];
+      
+          // Do something with the nested properties
+          console.log(`Index ${index}:`, nestedProperties);
+          
+          // Example: Accessing the 'context' property within nestedProperties
+          let context = nestedProperties.context;
+          console.log(`Context for index ${index}:`, context);
+        }
 
     /*
     if (seasons.length != 0) {
@@ -198,4 +213,4 @@ function favorites() {
             }
         }
     }*/
-}
+      }}

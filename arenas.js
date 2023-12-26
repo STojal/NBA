@@ -268,9 +268,10 @@ $("#tags").on("input", function () {
     }
 
     var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
-
+    console.log(autocomplete.length != 0)
     if (autocomplete.length != 0) {
         $("#tags").autocomplete({
+            
             source: function (request, response) {
                 var term = request.term.toLowerCase();
                 var filteredAutocomplete = autocomplete.filter(function (item) {
@@ -281,17 +282,30 @@ $("#tags").on("input", function () {
             autoFocus: true,
             minLength: 0,
             open: function () {
+
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+            if (item.Name != undefined){
             return $("<li>")
                 .attr("data-value", item.Name)
-                .append('<a href="./arenaDetails.html?id=' + item.Id + '">' + item.Name + ' <a>')
+                .append('<a href="./arenaDetails.html?id=' + item.Id + '"><span>' + item.Name + '</span> <a>')
                 .appendTo(ul);
-        };
+        }
+            else{
+                return $("<li>")
+                .attr("data-value", item.Name)
+                .append('<span>Arena not found</span>')
+                .appendTo(ul);
+            }
+    
+    
+    };
     }
     else {
+
         $("#tags").autocomplete({
             source: function (request, response) {
                 response([{ label: "Arena not found" }]);

@@ -295,13 +295,20 @@ $("#tags").on("input", function () {
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) { 
-            console.log(item.Name)
-            console.log(item.Id)
-            console.log(item.Acronym)
-            return $("<li>")
-                .attr("data-value", item.Name)
-                .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym='+ item.Acronym+'">' + item.Name + ' <a>')
-                .appendTo(ul);
+
+            if (item.Name != undefined){
+                return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym='+ item.Acronym+'">' + item.Name + ' <a>')
+                    .appendTo(ul);
+            }
+                else{
+                    return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<span>Team not found</span>')
+                    .appendTo(ul);
+                }
+
         };
     }
     else {

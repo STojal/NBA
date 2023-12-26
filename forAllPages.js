@@ -27,8 +27,8 @@ darkmodeToggle.addEventListener('change', function () {
     $('#switch_mode').css("background-color", "#242424");
     $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
     $('.dropdown-menu a').css('color', '#1d4e83')
-    $('#offcanvasExample').css('background-color', ' #000066')
-    $('#offcanvasExample').css('color', ' white')
+    $('#offcanvasScrolling').css('background-color', ' #000066')
+    $('#offcanvasScrolling').css('color', ' white')
 
 
 
@@ -50,8 +50,8 @@ darkmodeToggle.addEventListener('change', function () {
     $('.dropdown-menu').css('background-color', 'white')
     $('.dropdown-menu a').css('color', 'black')
     $('#drop').css('color', 'black')
-    $('#offcanvasExample').css('background-color', 'white')
-    $('#offcanvasExample').css('color', ' black')
+    $('#offcanvasScrolling').css('background-color', 'white')
+    $('#offcanvasScrolling').css('color', ' black')
     $('#accordionFlushExample').css('background-color', 'white')
     $('#accordionFlushExample').css('color', ' black')
 
@@ -82,8 +82,8 @@ $(document).ready(function () {
     $('#drop').css("background-color", "rgb(40, 40, 40)")
     $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
     $('.dropdown-menu a').css('color', '#1d4e83')
-    $('#offcanvasExample').css('background-color', ' #000066')
-    $('#offcanvasExample').css('color', ' white')
+    $('#offcanvasScrolling').css('background-color', ' #000066')
+    $('#offcanvasScrolling').css('color', ' white')
 
 
 
@@ -93,8 +93,8 @@ $(document).ready(function () {
     $('nav').removeClass("navbar navbar-expand-lg navbar-dark bg-dark")
     $('nav').addClass("navbar navbar-expand-lg navbar-light bg-light")
     $('#drop').css("background-color", "white")
-    $('#offcanvasExample').css('background-color', ' white')
-    $('#offcanvasExample').css('color', ' black')
+    $('#offcanvasScrolling').css('background-color', ' white')
+    $('#offcanvasScrolling').css('color', ' black')
 
 
   }

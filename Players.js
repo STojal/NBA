@@ -319,12 +319,20 @@ $("#tags").on("input", function () {
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
-            console.log(item.Name)
-            console.log(item.Id)
-            return $("<li>")
-                .attr("data-value", item.Name)
-                .append('<a href="./PlayersDetails.html?id=' + item.Id + '">' + item.Name + ' <a>')
-                .appendTo(ul);
+
+            if (item.Name != undefined){
+                return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<a href="./PlayersDetails.html?id=' + item.Id + '">' + item.Name + ' <a>')
+                    .appendTo(ul);
+            }
+                else{
+                    return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<span>Player not found</span>')
+                    .appendTo(ul);
+                }
+
         };
     }
     else {
