@@ -49,10 +49,10 @@
                                     class="fa fa-user-o text-primary"></i> Players</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasExample"
-                                role="button" aria-controls="offcanvasExample">
-                                Favourites
-                            </a></li>
+                                    <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasScrolling"
+                                        role="button" aria-controls="offcanvasExample" onclick="offcanvas()">
+                                        Favourites
+                                    </a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Auxiliary Tables</a>
@@ -81,11 +81,12 @@
                 </div>
             </div>
         </nav>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Favourites</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Favourites</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+                    onclick="clearoffcanvas()"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -99,7 +100,7 @@
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-
+                            <!-- Your content for the "Arenas" section goes here -->
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -112,7 +113,7 @@
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-
+                            <!-- Your content for the "Jogadores" section goes here -->
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -125,7 +126,7 @@
                         </h2>
                         <div id="flush-collapseTree" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-
+                            <!-- Your content for the "Teams" section goes here -->
                         </div>
                     </div>
                 </div>

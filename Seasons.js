@@ -128,6 +128,7 @@ var vm = function () {
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
+    favorites()
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {
@@ -135,6 +136,66 @@ $(document).ajaxComplete(function (event, xhr, options) {
 })
 
 
+function add_season(records) {
+    var seasons = JSON.parse(localStorage.getItem("season")) || [];
+    count = 0
+    for (let key in seasons) {
+
+        if (seasons.hasOwnProperty(key) && JSON.stringify(seasons[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    console.log(count)
+    if (count === 0) {
+
+        seasons.push(records);
+        console.log(seasons)
+        seasons = localStorage.setItem("season", JSON.stringify(seasons))
+        player = records
+
+    }
+    else {
+        alert("season já nos favoritos")
+    }
+
+};
+function Remove_season(records) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log(records)
+    var Seasons = JSON.parse(localStorage.getItem("season")) || [];
+    for (let key in Seasons) {
+        if (Seasons.hasOwnProperty(key) && JSON.stringify(Seasons[key].Id) === JSON.stringify(records)) {
+            console.log('key: ' + key);
+            Seasons.splice(key, 1);
+            console.log(Seasons);
+            break;
+        }
+    }
+    Seasons = localStorage.setItem("season", JSON.stringify(Seasons))
+    alert("season removido dos favoritos")
+    location.reload();
+}
 
 
+function favorites() {
+    var seasons = JSON.parse(localStorage.getItem("season")) || [];
+    var table = document.getElementById("table1");
+    var buttons = table.getElementsByTagName("button");
+    const val = Object.values(buttons);
+    console.log
 
+    /*
+    if (seasons.length != 0) {
+        for (i = 0; i < seasons.length; i++) {
+            for (p = 0; p < rows.length; p++) {
+                /*console.log(cells[p])
+                console.log(seasons[i])
+                if ((rows[p])["id"] == seasons[i]["Id"]) {
+                    console.log("aaa")
+                }
+                
+            }
+        }
+    }*/
+}

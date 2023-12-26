@@ -352,3 +352,8 @@ function ajaxHelper(uri, method, data) {
         }
     })
 }
+$(window).scroll(function() {
+    if($('.ui-autocomplete').length != 0){
+        $('.ui-autocomplete').hide()
+    }
+});
