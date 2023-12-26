@@ -42,3 +42,7 @@ function progress() {
     currentMainPost.classList.remove("main-post--not-active");
   }
 }
+function mudapag(){
+  var a = $('#searchId').val()
+  window.location.href = 'teste1.html?Search&q='+ a  +'&page=1&pagesize=10'
+}
