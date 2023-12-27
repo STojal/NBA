@@ -81,11 +81,7 @@
                 </div>
             </div>
         </nav>
-        <div id="back_to_list">
-            <a href="#" class="btn btn-default btn-sm small" onclick="goBack()">
-                <i class="fa fa-list"></i> Back to Previus page
-              </a>
-        </div>
+        
         <!-- Work Area-->
         <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
 
@@ -141,7 +137,11 @@
 
         <div class="container">
             <div class="py-2 border-bottom mb-3">
+                <a href="#" class="estatistics btn btn-default btn-sm small" onclick="goBack()" style="float: right;margin-top: 15px;">
+                    <i class="fa fa-list"></i> Back to Previus page
+                  </a>
                 <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+                
             </div>
             <div class="row border-bottom g-2">
                 <div class="col-2">Name</div>

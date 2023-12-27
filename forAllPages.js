@@ -34,8 +34,8 @@ darkmodeToggle.addEventListener('change', function () {
     $('body').css('background-color', 'hsl(0, 1%, 14%)')
     $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)')
     $('.accordion-item').css('--bs-accordion-btn-color', 'white')
-    $('#estatistics').css('background-color', ' rgb(14, 46, 97)')
-    $('#estatistics').css('color', 'cyan')
+    $('.estatistics').css('background-color', ' rgb(14, 46, 97)')
+    $('.estatistics').css('color', 'cyan')
 
 
 
@@ -65,8 +65,8 @@ darkmodeToggle.addEventListener('change', function () {
     $('body').css('background-color', 'white')
     $('.accordion-item').css('--bs-accordion-btn-bg', 'white')
     $('.accordion-item').css('--bs-accordion-btn-color', 'black')
-    $('#estatistics').css('background-color', 'white ')
-    $('#estatistics').css('color', 'black')
+    $('.estatistics').css('background-color', 'white ')
+    $('.estatistics').css('color', 'black')
 
 
     darkmode_state = 0
@@ -101,8 +101,8 @@ $(document).ready(function () {
     $('body').css('background-color', 'hsl(0, 1%, 14%)')
     $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)');
     $('.accordion-item').css('--bs-accordion-btn-color', 'white')
-    $('#estatistics').css('background-color', ' rgb(14, 46, 97)')
-    $('#estatistics').css('color', 'cyan')
+    $('.estatistics').css('background-color', ' rgb(14, 46, 97)')
+    $('.estatistics').css('color', 'cyan')
 
 
 
