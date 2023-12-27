@@ -45,10 +45,10 @@
                   class="fa fa-user-o text-primary"></i> Players</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
                   class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                  <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasScrolling"
-                    role="button" aria-controls="offcanvasExample" onclick="offcanvas()">
-                    Favourites
-                </a></li>
+            <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas"
+                data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
+                Favourites
+              </a></li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Auxiliary Tables</a>
@@ -73,23 +73,25 @@
               </label>
             </li>
             <li class="nav-item" style="margin-left:20px ;margin-top:5px">
-                <div class="input-group input-group-sm">
-                <input class="form-control form-control-sm" type="text" name="q" placeholder="Insira o nome" id="searchId">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-sm" type="text" name="q" placeholder="Insira o nome"
+                  id="searchId">
                 <div class="input-group-append">
-                  <button type="submit" class="btn btn-default btn-sm" title="Filtrar" onclick="mudapag()" ><i
+                  <button type="submit" class="btn btn-default btn-sm" title="Filtrar" onclick="mudapag()"><i
                       class="fa fa-search small"></i></button>
                   <a href='/NBA/Arenas/Search?q=' + q class="btn btn-default btn-sm" title="Limpar o filtro"><i
                       class="fa fa-times"></i></a>
                 </div>
             </li>
           </ul>
-          
+
         </div>
       </div>
     </nav>
     <!-- Working Area -->
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-      id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+      aria-labelledby="staticBackdropLabel">
+
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Favourites</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
@@ -134,29 +136,29 @@
       </div>
     </div>
     <nav class="navbar navbar-light bg-light fixed-bottom">
-        <div class="container small">
-          <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
-          <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt"
-              class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-          <div class="navbar-nav">
-            <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
-                Aveiro</a>
-            </div>
+      <div class="container small">
+        <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
+        <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt"
+            class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+        <div class="navbar-nav">
+          <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
+              Aveiro</a>
           </div>
         </div>
-      </nav>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
-      integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="forAllPages.js"></script>
-    <script src="Teste.js"></script>
+      </div>
+    </nav>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
+    integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="forAllPages.js"></script>
+  <script src="Teste.js"></script>
 
-  </body>
-  
-  </html>
+</body>
+
+</html>

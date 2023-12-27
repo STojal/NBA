@@ -47,8 +47,7 @@
                                     class="fa fa-user-o text-primary"></i> Players</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasScrolling"
-                                        role="button" aria-controls="offcanvasExample" onclick="offcanvas()">
+                                    <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
                                         Favourites
                                     </a></li>
                         <li class="nav-item dropdown">
@@ -80,8 +79,8 @@
             </div>
         </nav>
         <!-- Working Area -->
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Favourites</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
