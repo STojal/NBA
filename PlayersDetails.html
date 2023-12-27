@@ -48,9 +48,10 @@
                                     class="fa fa-user-o text-primary"></i> Players</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                                    <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
-                                        Favourites
-                                    </a></li>
+                        <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas"
+                                data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
+                                Favourites
+                            </a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Auxiliary Tables</a>
@@ -75,12 +76,13 @@
                             </label>
                         </li>
                     </ul>
-                    
+
                 </div>
             </div>
         </nav>
         <!-- Work Area-->
-        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+            aria-labelledby="staticBackdropLabel">
 
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Favourites</h5>
@@ -145,7 +147,7 @@
                                 <div class="card-section">
                                     <div class="row">
                                         <div class="col-4">Player Id</div>
-                                        <div class="col-8" data-bind="text: Id"></div>
+                                        <div class="col-8" data-bind="text: Id" id="idplayer"></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4">Name</div>
@@ -196,39 +198,27 @@
                                 data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
                                 <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
                             </a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100%">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop1" style="width: 100%" onclick="statiplayer()">
                                 Carrer details
-                              </button>
-                        </div>
-                        <!--
-                            <div class="row border-bottom g-2 info-row" data-bind="visible: Photo() != '' && Photo() != null">
-                        <div class="col-12 header-underline">Photo</div>
-                        <div class="small col-12" data-bind="attr: { 'style': 'background-image: url(' + Photo + '); background-size: cover;' }">
-                            <a class="link-dark text-decoration-none link-hover"
-                                data-bind="attr: { href: Photo, alt: Name, title: Name }" target="_blank">
-                                <img class="img-thumbnail" data-bind="attr: { src: Photo }" />
-                            </a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 100%">
-                                Career details
                             </button>
                         </div>
-                    </div>
 
-
-                        -->
                     </div>
                 </div>
             </div>
-            
+
             <div class="mt-3">
-                <a href="Players.html" class="btn btn-secondary btn-sm"><i class="fa fa-list"></i> Back to List</a>
+                <a href="#" class="btn btn-default btn-sm small" onclick="goBack()">
+                    <i class="fa fa-list"></i> Back to Previus page
+                  </a>
             </div>
         </div>
-        
+
 
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -245,50 +235,63 @@
                         <!--/ko-->
                         <!--ko ifnot:Teams==null-->
                         <h5><b>Teams</b></h5>
-                        <div data-bind="foreach: Teams" class="row" id="Players">
-                            <a data-bind="text:Name,attr:  {href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">"></a>
+                        <div data-bind="foreach: Teams" class="row" id="Players" style="margin-bottom: 50px;">
+                            <a
+                                data-bind="text:Name,attr:  {href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">"></a>
                         </div>
                         <!--/ko-->
+                        <h5><b>Ranking do jogador por season</b></h5>
+                        <div id="ranksPlayer">
+                            <ol id="rankregular">
+
+
+
+                            </ol>
+                        </div>
                     </div>
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                     </div>
                 </div>
+
             </div>
         </div>
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            <img src="images/logo site.png" height="30" /> Loading data...
-                        </h5>
-                    </div>
-                    <div class="modal-body text-center">
-                        <i class="fa fa-spin fa-3x fa-refresh"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of Work Area -->
-        <nav class="navbar navbar-light bg-light fixed-bottom">
-            <div class="container small">
-                <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
-                <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
-                        href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-                <div class="navbar-nav">
-                    <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
-                            Aveiro</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
     </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <img src="images/logo site.png" height="30" /> Loading data...
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fa fa-spin fa-3x fa-refresh"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Work Area -->
+    <nav class="navbar navbar-light bg-light fixed-bottom">
+        <div class="container small">
+            <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
+            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
+                    href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+            <div class="navbar-nav">
+                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
+                        Aveiro</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

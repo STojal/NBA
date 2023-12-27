@@ -27,8 +27,15 @@ darkmodeToggle.addEventListener('change', function () {
     $('#switch_mode').css("background-color", "#242424");
     $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
     $('.dropdown-menu a').css('color', '#1d4e83')
-    $('#offcanvasScrolling').css('background-color', ' #000066')
-    $('#offcanvasScrolling').css('color', ' white')
+    $('#staticBackdrop').css('background-color', ' rgb(14, 46, 97)')
+    $('#staticBackdrop').css('color', ' white')
+    $('.modal-content').css('background-color', ' rgb(14, 46, 97)')
+    $('.modal-content').css('color', ' white')
+    $('body').css('background-color', 'hsl(0, 1%, 14%)')
+    $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)')
+    $('.accordion-item').css('--bs-accordion-btn-color', 'white')
+    $('#estatistics').css('background-color', ' rgb(14, 46, 97)')
+    $('#estatistics').css('color', 'cyan')
 
 
 
@@ -50,10 +57,16 @@ darkmodeToggle.addEventListener('change', function () {
     $('.dropdown-menu').css('background-color', 'white')
     $('.dropdown-menu a').css('color', 'black')
     $('#drop').css('color', 'black')
-    $('#offcanvasScrolling').css('background-color', 'white')
-    $('#offcanvasScrolling').css('color', ' black')
-    $('#accordionFlushExample').css('background-color', 'white')
-    $('#accordionFlushExample').css('color', ' black')
+    $('#staticBackdrop').css('background-color', 'white')
+    $('#staticBackdrop').css('color', ' black')
+    $('.modal-content').css('background-color', 'white')
+    $('.modal-content').css('color', ' black')
+
+    $('body').css('background-color', 'white')
+    $('.accordion-item').css('--bs-accordion-btn-bg', 'white')
+    $('.accordion-item').css('--bs-accordion-btn-color', 'black')
+    $('#estatistics').css('background-color', 'white ')
+    $('#estatistics').css('color', 'black')
 
 
     darkmode_state = 0
@@ -65,7 +78,6 @@ darkmodeToggle.addEventListener('change', function () {
 $(document).ready(function () {
   //guardar dados
   if (darkmode_state == 1) {
-    background.style.background = 'hsl(0, 1%, 14%)';
     background.style.color = 'rgb(192,192,192)';
     darkmode_state = 1
     $('nav').removeClass("navbar navbar-expand-lg navbar-light bg-light")
@@ -82,8 +94,15 @@ $(document).ready(function () {
     $('#drop').css("background-color", "rgb(40, 40, 40)")
     $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
     $('.dropdown-menu a').css('color', '#1d4e83')
-    $('#offcanvasScrolling').css('background-color', ' #000066')
-    $('#offcanvasScrolling').css('color', ' white')
+    $('#staticBackdrop').css('background-color', ' rgb(14, 46, 97)')
+    $('#staticBackdrop').css('color', ' white')
+    $('.modal-content').css('background-color', ' rgb(14, 46, 97)')
+    $('.modal-content').css('color', ' white')
+    $('body').css('background-color', 'hsl(0, 1%, 14%)')
+    $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)');
+    $('.accordion-item').css('--bs-accordion-btn-color', 'white')
+    $('#estatistics').css('background-color', ' rgb(14, 46, 97)')
+    $('#estatistics').css('color', 'cyan')
 
 
 
@@ -93,8 +112,12 @@ $(document).ready(function () {
     $('nav').removeClass("navbar navbar-expand-lg navbar-dark bg-dark")
     $('nav').addClass("navbar navbar-expand-lg navbar-light bg-light")
     $('#drop').css("background-color", "white")
-    $('#offcanvasScrolling').css('background-color', ' white')
-    $('#offcanvasScrolling').css('color', ' black')
+    $('#staticBackdrop').css('background-color', ' white')
+    $('#staticBackdrop').css('color', ' black')
+    $('.modal-content').css('background-color', ' white')
+    $('.modal-content').css('color', ' black')
+
+    
 
 
   }
@@ -213,4 +236,7 @@ function clearoffcanvas() {
   $('#flush-collapseTree').empty()
   $('#flush-collapseTwo').empty()
   $('#flush-collapseOne').empty()
+}
+function goBack() {
+  window.history.back();
 }

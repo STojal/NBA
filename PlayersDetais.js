@@ -114,3 +114,46 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
+
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
+        }
+    });
+}
+function statiplayer(){
+    var idplayer =$('#idplayer').text()
+    composedUri = 'http://192.168.160.58/NBA/api/Statistics/PlayerRankBySeason?playerId=' + idplayer
+    ajaxHelper(composedUri, 'GET').done(function (stats) {
+        console.log(stats)
+        var count =0
+
+        var sortedData = stats.sort((a, b) => a.Rank - b.Rank);
+        console.log(sortedData)
+        
+        $.each(sortedData, function (index, item) {
+            console.log(item)
+            var val = (item.Rank)
+            if(item.SeasonType == "Regular Season"){
+            $('#rankregular').append('<li><a>'+ item.Season +'</a>'+':'  +val+'</li>')}
+            else{
+                if (count==0){
+                $('#ranksPlayer').append('<h5><b>Ranking do jogador nos Playoffs</b></h5><ol id="rankPlayoffs"></ol>')
+                $('#rankPlayoffs').append('<li><a>'+ item.Season +'</a>'+':'  +val+'</li>')
+                count +=1
+                }else{
+                    $('#rankPlayoffs').append('<li><a>'+ item.Season +'</a>'+':'  +val+'</li>')
+                }
+
+            }
+        })}
+        
+       )}
+
