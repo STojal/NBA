@@ -100,7 +100,7 @@ $(document).ready(function () {
 
 });
 function offcanvas() {
-  console.log("help")
+  //console.log("help")
   //adcionar o off canvas os Arenas
   var Arenas = JSON.parse(localStorage.getItem("arenas")) || []
   if (Arenas.length > 0) {
@@ -167,7 +167,7 @@ function offcanvas() {
   var teams = JSON.parse(localStorage.getItem("Teams")) || []
   if (teams.length > 0) {
     teams.forEach(Team => {
-      console.log(Team)
+      //console.log(Team)
       $('#flush-collapseTree').append(
         `
                <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">

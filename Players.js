@@ -139,7 +139,7 @@ $(document).ready(function () {
     if (jogadores.length > 0) {
 
         jogadores.forEach(player => {
-            console.log(player)
+            //console.log(player)
             $('#favourites').append(`
                 <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
                     <div class="row g-0">

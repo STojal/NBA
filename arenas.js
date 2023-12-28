@@ -132,7 +132,7 @@ $(document).ready(function () {
     if (arenas.length > 0) {
 
         arenas.forEach(arena => {
-            console.log(arena)
+            //console.log(arena)
             $('#favourites').append(`
             <div class="col-md-4 mb-4">
             <div class="card">

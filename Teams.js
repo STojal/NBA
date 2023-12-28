@@ -141,7 +141,7 @@ $(document).ready(function () {
     if (Teams.length > 0) {
 
         Teams.forEach(Team => {
-            console.log(Team)
+            //console.log(Team)
             $('#favourites').append(
                 `
                 
