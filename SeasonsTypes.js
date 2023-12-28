@@ -196,7 +196,6 @@ function add_player(records) {
 
         fav.push(records);
         //console.log(fav)
-        console.log('aaaa')
         fav = localStorage.setItem("Seasontypefav", JSON.stringify(fav))
         alert("Season type adicionado aos favoritos")
         mudarbotao(records.Id)

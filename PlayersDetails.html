@@ -191,14 +191,16 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <div class="row border-bottom g-2 info-row" data-bind="visible: Photo() != '' && Photo() != null">
+                    <div class="row border-bottom g-2 info-row" >
+                        <!--ko if: Photo!= null-->
                         <div class="col-12 header-underline">Photo</div>
                         <div class="small col-12">
                             <a class="link-dark text-decoration-none link-hover"
                                 data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
                                 <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
                             </a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <!--/ko-->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop1" style="width: 70%" onclick="statiplayer()">
                                 Carrer details
                             </button>

@@ -51,6 +51,8 @@ var vm = function () {
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
+            var record = data.Records
+            localStorage.setItem('records',JSON.stringify(record))
             self.Height(data.Height);
             self.records(data.Records);
             self.currentPage(data.CurrentPage);
@@ -128,7 +130,6 @@ var vm = function () {
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
-    favorites()
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {
@@ -136,81 +137,161 @@ $(document).ajaxComplete(function (event, xhr, options) {
 })
 
 
-function add_season(records) {
-    var seasons = JSON.parse(localStorage.getItem("season")) || [];
-    count = 0
-    for (let key in seasons) {
+function checkfav() {
+    var Season = localStorage.getItem('records')
+    Season = JSON.parse(Season) || []
+    var fav = localStorage.getItem('Seasonfav')
+    var list = JSON.parse(fav) || [];
+    for (i = 0; i < Season.length; i++) {
+        //console.log("aaa")
 
-        if (seasons.hasOwnProperty(key) && JSON.stringify(seasons[key]) === JSON.stringify(records)) {
+        //console.log(Season[i])
+        var check = list.some(item => item.Id === Season[i].Id);
+        //console.log(check)
+        if (check) {
+            mudarbotao(Season[i].Id)
+        }
+    }
+}
+function mudarbotao(id) {
+    var itemRemove = '#favestado_' + id
+    var itemADD = '#favestado_' + id
+    $(itemRemove).empty()
+    $(itemADD).append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;;margin-left: 10px;"' +
+        'onclick="Remove_player('+ id +')">' +
+        '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
+        '</button>')
+}
+
+function Remove_player(records) {
+    //console.log(records)
+    var fav = JSON.parse(localStorage.getItem("Seasonfav")) || [];
+    for (let key in fav) {
+        if (fav.hasOwnProperty(key) && JSON.stringify(fav[key].Id) === JSON.stringify(records)) {
+            fav.splice(key, 1);
+            //console.log(fav);
+            break;
+        }
+    }
+    
+    fav = localStorage.setItem("Seasonfav", JSON.stringify(fav))
+    alert("Season  removido dos favoritos")
+    location.reload()
+}
+//adcionar os fav
+function add_player(records) {
+
+
+    console.log(records)
+    var fav = JSON.parse(localStorage.getItem("Seasonfav")) || [];
+
+
+
+    count = 0
+    for (let key in fav) {
+
+        if (fav.hasOwnProperty(key) && JSON.stringify(fav[key]) === JSON.stringify(records)) {
             count = 1
 
         }
     }
-    console.log(count)
+    //console.log(count)
     if (count === 0) {
 
-        seasons.push(records);
-        console.log(seasons)
-        seasons = localStorage.setItem("season", JSON.stringify(seasons))
-        player = records
+        fav.push(records);
+        //console.log(fav)
+        fav = localStorage.setItem("Seasonfav", JSON.stringify(fav))
+        alert("Season  adicionado aos favoritos")
+        mudarbotao(records.Id)
 
     }
     else {
-        alert("season já nos favoritos")
+        alert("Season  já nos favoritos")
     }
 
 };
-function Remove_season(records) {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(records)
-    var Seasons = JSON.parse(localStorage.getItem("season")) || [];
-    for (let key in Seasons) {
-        if (Seasons.hasOwnProperty(key) && JSON.stringify(Seasons[key].Id) === JSON.stringify(records)) {
-            console.log('key: ' + key);
-            Seasons.splice(key, 1);
-            console.log(Seasons);
-            break;
-        }
+
+$("#tags").on("input", function () {
+    var inputValue = $(this).val();
+    if (inputValue.length < 2) {
+        $("#ui-id-1").empty();
+        localStorage.setItem("Autoconplete", JSON.stringify([]))
+
     }
-    Seasons = localStorage.setItem("season", JSON.stringify(Seasons))
-    alert("season removido dos favoritos")
-    location.reload();
-}
+    else if (inputValue.length == 2) {
+        url = 'http://192.168.160.58/NBA/api/Seasons/Search?q=' + $("#tags").val();
+        console.log('CALL: getAutocomplete...');
+        ajaxHelper(url, 'GET').done(function (data) {
+            autocomplete = data
+            localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
+        });
+    }
 
+    var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
+    console.log(autocomplete.length != 0)
+    if (autocomplete.length != 0) {
+        $("#tags").autocomplete({
+            
+            source: function (request, response) {
+                var term = request.term.toLowerCase();
+                var filteredAutocomplete = autocomplete.filter(function (item) {
+                    return item.Season.includes(term);
+                });
+                response(filteredAutocomplete);
+            },
+            autoFocus: true,
+            minLength: 0,
+            open: function () {
 
-function favorites() {
-    console.log("aaaaaa")
-    var seasons = JSON.parse(localStorage.getItem("season")) || [];
-    var table = document.getElementById("table1");
-    var buttons = table.getElementsByTagName("button");
-    const val = Object.values(buttons);
-    
-      
-      // Iterate over the numeric indices in the object
-      for (let index in buttons) {
-        if (buttons.hasOwnProperty(index)) {
-          // Access the nested properties for the current index
-          let nestedProperties = buttons[index]["__ko__1703606670251"]["1__ko__1703606670251"];
-      
-          // Do something with the nested properties
-          console.log(`Index ${index}:`, nestedProperties);
-          
-          // Example: Accessing the 'context' property within nestedProperties
-          let context = nestedProperties.context;
-          console.log(`Context for index ${index}:`, context);
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+            if (item.Season != undefined){
+            return $("<li>")
+                .attr("data-value", item.Season)
+                .append('<a href="./SeasonsDetails.html?id=' + item.Id + '"><span>' + item.Season + '</span> <a>')
+                .appendTo(ul);
         }
-
-    /*
-    if (seasons.length != 0) {
-        for (i = 0; i < seasons.length; i++) {
-            for (p = 0; p < rows.length; p++) {
-                /*console.log(cells[p])
-                console.log(seasons[i])
-                if ((rows[p])["id"] == seasons[i]["Id"]) {
-                    console.log("aaa")
-                }
-                
+            else{
+                return $("<li>")
+                .attr("data-value", item.Season)
+                .append('<span>Season not found</span>')
+                .appendTo(ul);
             }
+    
+    
+    };
+    }
+    else {
+
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                response([{ label: "Season not found" }]);
+            },
+            autoFocus: true,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        })
+    }
+})
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
         }
-    }*/
-      }}
+    })
+}
+$(window).scroll(function() {
+        if($('.ui-autocomplete').length != 0){
+            $('.ui-autocomplete').hide()
+        }
+});

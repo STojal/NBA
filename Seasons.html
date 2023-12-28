@@ -14,9 +14,13 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="myCSS.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+    integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
         integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+    
 </head>
 
 <body>
@@ -74,6 +78,12 @@
                             </label>
                         </li>
                     </ul>
+                    <div class="ui-widget">
+                        <label for="tags"></label>
+                        <input id="tags" placeholder="Pesquise por uma Season">
+
+
+                    </div>
                     
                 </div>
             </div>
@@ -191,9 +201,16 @@
                             <a class="btn btn-default btn-light btn-xs"
                                 data-bind="attr: { href:'./SeasonsDetails.html?id=' + Id }"><i class="fa fa-eye"
                                     title="Show details"></i></a>
-                            <button class="btn btn-default btn-xs"><i class="fa-regular fa-heart"
-                                    data-bind="attr : { 'id': 'favourite_' + Id },click: function() { add_season($data) }"
-                                    title="Add to favorites"></i></button>
+                                    <div style="float:right" data-bind="attr: { 'id': 'favestado_' + Id }">
+                                        
+                                        <button class="btn btn-default btn-xs"
+                                            style="background-color: red; border-radius: 30px;" class="favourite"
+                                            data-bind="attr: { 'id': 'favourite_' + Id }, click: function() { add_player($data) }, with:{afterRender:checkfav()}" >
+                                            <i class="fa-regular fa-heart" title="Add to favorites"></i>
+                                        </button>
+                                        
+
+                                    </div>
                         </td>
                     </tr>
                 </tbody>
@@ -228,6 +245,7 @@
             </div>
         </nav>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -237,6 +255,8 @@
         integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
     <script src="Seasons.js"></script>
     <script src="forAllPages.js"></script>
 </body>
