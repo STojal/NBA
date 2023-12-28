@@ -52,7 +52,7 @@ var vm = function () {
             console.log(data);
             hideLoading();
             var record = data.Records
-            localStorage.setItem('records',JSON.stringify(record))
+            localStorage.setItem('records', JSON.stringify(record))
             self.Height(data.Height);
             self.records(data.Records);
             self.currentPage(data.CurrentPage);
@@ -158,7 +158,7 @@ function mudarbotao(id) {
     var itemADD = '#favestado_' + id
     $(itemRemove).empty()
     $(itemADD).append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;;margin-left: 10px;"' +
-        'onclick="Remove_player('+ id +')">' +
+        'onclick="Remove_player(' + id + ')">' +
         '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
         '</button>')
 }
@@ -173,7 +173,7 @@ function Remove_player(records) {
             break;
         }
     }
-    
+
     fav = localStorage.setItem("Seasonfav", JSON.stringify(fav))
     alert("Season  removido dos favoritos")
     location.reload()
@@ -210,14 +210,16 @@ function add_player(records) {
     }
 
 };
-
+//autocomplete
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
+    //only works if lenght is more than 2
     if (inputValue.length < 2) {
         $("#ui-id-1").empty();
         localStorage.setItem("Autoconplete", JSON.stringify([]))
 
     }
+    //call the api
     else if (inputValue.length == 2) {
         url = 'http://192.168.160.58/NBA/api/Seasons/Search?q=' + $("#tags").val();
         console.log('CALL: getAutocomplete...');
@@ -226,12 +228,13 @@ $("#tags").on("input", function () {
             localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
         });
     }
-
+    //appends the inf
     var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
     console.log(autocomplete.length != 0)
+    //if autocomplete has something
     if (autocomplete.length != 0) {
         $("#tags").autocomplete({
-            
+
             source: function (request, response) {
                 var term = request.term.toLowerCase();
                 var filteredAutocomplete = autocomplete.filter(function (item) {
@@ -242,28 +245,41 @@ $("#tags").on("input", function () {
             autoFocus: true,
             minLength: 0,
             open: function () {
+                darkmodestate = localStorage.getItem("darkmode_state")
 
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
+                if (darkmodestate == 1) {
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "gray",
+                    });
+                }
+                else{
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "white",
+                    });
+                }
+
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
-            if (item.Season != undefined){
-            return $("<li>")
-                .attr("data-value", item.Season)
-                .append('<a href="./SeasonsDetails.html?id=' + item.Id + '"><span>' + item.Season + '</span> <a>')
-                .appendTo(ul);
-        }
-            else{
+            if (item.Season != undefined) {
                 return $("<li>")
-                .attr("data-value", item.Season)
-                .append('<span>Season not found</span>')
-                .appendTo(ul);
+                    .attr("data-value", item.Season)
+                    .append('<a href="./SeasonsDetails.html?id=' + item.Id + '"><span>' + item.Season + '</span> <a>')
+                    .appendTo(ul);
             }
-    
-    
-    };
-    }
+            else {
+                return $("<li>")
+                    .attr("data-value", item.Season)
+                    .append('<span>Season not found</span>')
+                    .appendTo(ul);
+            }
+
+
+        };
+    }    //if autocomplete has nothing
+
     else {
 
         $("#tags").autocomplete({
@@ -290,8 +306,8 @@ function ajaxHelper(uri, method, data) {
         }
     })
 }
-$(window).scroll(function() {
-        if($('.ui-autocomplete').length != 0){
-            $('.ui-autocomplete').hide()
-        }
+$(window).scroll(function () {
+    if ($('.ui-autocomplete').length != 0) {
+        $('.ui-autocomplete').hide()
+    }
 });

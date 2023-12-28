@@ -209,6 +209,7 @@ function goBack() {
 window.onload = function() {
   darkmodecheck()
 };
+//dark mode check e muda as para dark ou white 
 function darkmodecheck(){
   if (darkmode_state == 1) {
     background.style.color = 'rgb(192,192,192)';

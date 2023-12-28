@@ -1,3 +1,4 @@
+//barra de progresso
 let mainPosts = document.querySelectorAll(".main-post");
 let posts = document.querySelectorAll(".post");
 

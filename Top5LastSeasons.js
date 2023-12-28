@@ -5,13 +5,14 @@ $(document).ready(function () {
     ajaxHelper(composedUri, 'GET').done(function (stats) {
         var sortedData = stats.sort((a, b) => b.Season - a.Season);
         var reverseddata = sortedData.reverse()
-
+        //reversed the data so that it appers from biiger to smaller
 
         for (count = 0; count < 5; count++) {
             console.log(reverseddata[count])
             var players = reverseddata[count].Players
-            console.log(typeof(players[4].PlayerId))
+            //players da season
 
+                //Append depending on the index of the season
 
                 item = '#item'+count+'Title'
                 $(item).text(reverseddata[count].Season)

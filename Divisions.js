@@ -51,6 +51,7 @@ var vm = function () {
             hideLoading();
             self.records(data.Records);
             self.currentPage(data.CurrentPage);
+            //guarda o valor para ser utilizado posteriormente
             var record = data.Records
             localStorage.setItem('records',JSON.stringify(record))
             self.hasNext(data.HasNext);
@@ -131,7 +132,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
 
-
+//verifica se esta nos fav
 function checkfav() {
     var Divisions = localStorage.getItem('records')
     Divisions = JSON.parse(Divisions) || []
@@ -148,6 +149,7 @@ function checkfav() {
         }
     }
 }
+// muda o botao para o de remover
 function mudarbotao(id) {
     var itemRemove = '#favestado_' + id
     var itemADD = '#favestado_' + id
@@ -157,7 +159,7 @@ function mudarbotao(id) {
         '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
         '</button>')
 }
-
+//remove player
 function Remove_player(records) {
     //console.log(records)
     var fav = JSON.parse(localStorage.getItem("Divisionsfav")) || [];

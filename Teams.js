@@ -132,12 +132,12 @@ var vm = function () {
     }
     console.log("VM initialized!");
 };
-
 $(document).ready(function () {
     var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
     $('#fav_div').show()
 
-    //teams favourites
+    //show the favs 
+
     if (Teams.length > 0) {
 
         Teams.forEach(Team => {
@@ -196,7 +196,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-
+//add to fav and append is to the start of the page
 function add_player(records) {
 
     var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
@@ -249,6 +249,7 @@ function add_player(records) {
     }
 
 };
+//remove player
 function Remove_player(records) {
 
     var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
@@ -265,13 +266,17 @@ function Remove_player(records) {
     alert("Team removido dos favoritos")
     location.reload();
 }
+//autocomplete 
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
+    //empty until lenght >2 
+
     if (inputValue.length < 2) {
         $("#ui-id-1").empty();
         localStorage.setItem("AutoconpleteTeams", JSON.stringify([]))
 
     }
+        //call api 
     else if (inputValue.length == 2) {
         url = 'http://192.168.160.58/NBA/api/Teams/Search?q=' + $("#tags").val();
         console.log('CALL: getAutocomplete...');
@@ -298,7 +303,19 @@ $("#tags").on("input", function () {
             autoFocus: true,
             minLength: 1,
             open: function () {
+                darkmodestate = localStorage.getItem("darkmode_state")
+
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
+                if (darkmodestate == 1) {
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "gray",
+                    });
+                }
+                else{
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "white",
+                    });
+                }
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) { 

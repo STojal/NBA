@@ -132,7 +132,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
 
-
+//check if the seasontype is on fav
 function checkfav() {
     var seasontypes = localStorage.getItem('records')
     seasontypes = JSON.parse(seasontypes) || []
@@ -149,6 +149,7 @@ function checkfav() {
         }
     }
 }
+// change the botton
 function mudarbotao(id) {
     var itemRemove = '#favestado_' + id
     var itemADD = '#favestado_' + id
@@ -158,7 +159,7 @@ function mudarbotao(id) {
         '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
         '</button>')
 }
-
+//remove from fav
 function Remove_player(records) {
     //console.log(records)
     var fav = JSON.parse(localStorage.getItem("Seasontypefav")) || [];

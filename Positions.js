@@ -135,7 +135,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-
+//check if fav contains the position
 function checkfav() {
     var Position = localStorage.getItem('records')
     Position = JSON.parse(Position) || []
@@ -163,7 +163,7 @@ function mudarbotao(id) {
         '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
         '</button>')
 }
-
+//remove from fav
 function Remove_player(records) {
     
     //console.log(records)
@@ -180,7 +180,7 @@ function Remove_player(records) {
     alert("Position removido dos favoritos")
     location.reload()
 }
-//adcionar os fav
+//add too fav
 function add_player(records) {
 
 

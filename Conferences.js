@@ -125,6 +125,7 @@ $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());    
 });
+//verifica se esta nos fav
 function checkfav() {
     var Conference = localStorage.getItem('records')
     Conference = JSON.parse(Conference) || []
@@ -146,7 +147,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
 
-
+//moda o botao para o de remover
 function mudarbotao(id) {
     var itemRemove = '#favestado_' + id
     var itemADD = '#favestado_' + id
@@ -156,7 +157,7 @@ function mudarbotao(id) {
         '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
         '</button>')
 }
-
+//remove player dos fav
 function Remove_player(records) {
     //console.log(records)
     var Conferences = JSON.parse(localStorage.getItem("Conferences")) || [];

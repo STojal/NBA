@@ -130,7 +130,7 @@ var vm = function () {
     }
     console.log("VM initialized!");
 };
-
+//adciona o cimo da pagina
 $(document).ready(function () {
     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
     $('#fav_div').show()
@@ -208,7 +208,7 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
-
+//add player to fav
 function add_player(records) {
 
     var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
@@ -268,6 +268,7 @@ function add_player(records) {
     }
 
 };
+//remove player from fav
 function Remove_player(records) {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
     console.log(records)
@@ -284,7 +285,7 @@ function Remove_player(records) {
     alert("Jogador removido dos favoritos")
     location.reload();
 }
-
+//autocomplete
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
     if (inputValue.length < 2) {
@@ -315,7 +316,19 @@ $("#tags").on("input", function () {
             autoFocus: true,
             minLength: 0,
             open: function () {
+                darkmodestate = localStorage.getItem("darkmode_state")
+
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
+                if (darkmodestate == 1) {
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "gray",
+                    });
+                }
+                else{
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "white",
+                    });
+                }
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {

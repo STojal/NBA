@@ -8,7 +8,7 @@ var options = {
     chart: {
         title: 'Estatísticas Gerais',
         subtitle: 'N.º de Players nos Playoffs ',
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: 'transparent',
     },
     legend: { position: 'none' },
     height: 800,
@@ -20,7 +20,7 @@ var options1 = {
     chart: {
         title: 'Estatísticas Gerais',
         subtitle: 'N.º de Players na Regular Season ',
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: 'transparent',
     },
     legend: { position: 'none' },
     height: 800,

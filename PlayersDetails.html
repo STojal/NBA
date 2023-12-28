@@ -153,7 +153,9 @@
                                         <div class="col-4">Name</div>
                                         <div class="col-8" data-bind="text: Name"></div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: CountryName() != '' && CountryName() != null">
+                                        
+
                                         <div class="col-4">Country</div>
                                         <div class="col-8">
                                             <a class="nav-link link-hover"
@@ -161,27 +163,27 @@
                                                 title="Show Country Details"></a>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: PositionName() != '' && PositionName() != null">
                                         <div class="col-4">Position</div>
                                         <div class="col-8" data-bind="text: PositionName"></div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: Height() != '' && Height() != null">
                                         <div class="col-4">Height</div>
                                         <div class="col-8" data-bind="text: Height"></div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: Weight() != '' && Weight() != null">
                                         <div class="col-4">Weight</div>
                                         <div class="col-8" data-bind="text: Weight"></div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: School() != '' && School() != null"> 
                                         <div class="col-4">School</div>
                                         <div class="col-8" data-bind="text: School"></div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: DraftYear() != '' && DraftYear() != null">
                                         <div class="col-4">Draft Year</div>
                                         <div class="col-8" data-bind="text: DraftYear"></div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" data-bind="visible: Biography() != '' && Biography() != null">
                                         <div class="col-4">Biography</div>
                                         <div class="col-8" data-bind="text: Biography"></div>
                                     </div>
@@ -192,23 +194,25 @@
                 </div>
                 <div class="col-2">
                     <div class="row border-bottom g-2 info-row" >
-                        <!--ko if: Photo!= null-->
+                        
                         <div class="col-12 header-underline">Photo</div>
                         <div class="small col-12">
                             <a class="link-dark text-decoration-none link-hover"
                                 data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
                                 <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
                             </a>
-                        <!--/ko-->
+
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop1" style="width: 70%" onclick="statiplayer()">
                                 Carrer details
                             </button>
-                            <button class="btn btn-default btn-xs"
-                                        style="background-color: red; border-radius: 30px;" id="favourite"
-                                        onclick="add_player()">
-                                        <i class="fa-regular fa-heart" title="Add to favorites"></i>
-                                    </button>
+                            <div id="favestado" style="float:right" >
+                                
+                                <button class="btn btn-default btn-xs"
+                                  style="background-color: red; border-radius: 30px; float: right;margin-top: 8px;" id="favourite"
+                                  onclick="add_player()">
+                                  <i class="fa-regular fa-heart" title="Add to favorites"></i>
+                                </button>
                         </div>
 
                     </div>
@@ -244,7 +248,7 @@
                         <h5><b>Teams</b></h5>
                         <div data-bind="foreach: Teams" class="row" id="Players" style="margin-bottom: 50px;">
                             <a
-                                data-bind="text:Name,attr:  {href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }">"></a>
+                                data-bind="text:Name,attr:  {href:'./TeamsDetails.html?id=' + Id+ '&acronym=' + Acronym }"></a>
                         </div>
                         <!--/ko-->
                         <h5><b>Ranking do jogador por season</b></h5>
@@ -288,8 +292,8 @@
     <nav class="navbar navbar-light bg-light fixed-bottom">
         <div class="container small">
             <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
-            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a
-                    href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
+            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U  <a
+                    href="mailto:jsp@ua.pt" class="text-decoration-none text-muted"></a>.</div>
             <div class="navbar-nav">
                 <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
                         Aveiro</a>

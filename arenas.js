@@ -52,7 +52,6 @@ var vm = function () {
             hideLoading();
             self.records(data.Records);
             var recoords_data = self.records();
-            localStorage.setItem("Teste", JSON.stringify(recoords_data))
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -182,7 +181,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
-
+//add palyer to fav
 function add_player(records) {
 
     var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
@@ -229,6 +228,7 @@ function add_player(records) {
     }
 
 };
+//remove player 
 function Remove_player(records) {
     var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
 
@@ -283,7 +283,19 @@ $("#tags").on("input", function () {
             minLength: 0,
             open: function () {
 
+                darkmodestate = localStorage.getItem("darkmode_state")
+
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
+                if (darkmodestate == 1) {
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "gray",
+                    });
+                }
+                else{
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "white",
+                    });
+                }
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
@@ -330,6 +342,7 @@ function ajaxHelper(uri, method, data) {
         }
     })
 }
+//desabilita o autocomplete 
 $(window).scroll(function() {
         if($('.ui-autocomplete').length != 0){
             $('.ui-autocomplete').hide()

@@ -134,6 +134,7 @@ $(document).ready(function () {
     console.log("document.ready!");
     ko.applyBindings(new vm());
 });
+//change button
 function mudarbotao(id){
     $('#favourite').remove()
             $('#favestado').append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;margin-top: 20px;margin-right: 10px;"'+
