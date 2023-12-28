@@ -137,11 +137,18 @@
 
         <div class="container">
             <div class="py-2 border-bottom mb-3">
+                <div id="favestado" >
                 <a href="#" class="estatistics btn btn-default btn-sm small" onclick="goBack()" style="float: right;margin-top: 15px;">
                     <i class="fa fa-list"></i> Back to Previus page
                   </a>
-                <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+                <button class="btn btn-default btn-xs"
+                  style="background-color: red; border-radius: 30px; float: right;margin-top: 20px;margin-right: 10px;" id="favourite"
+                  onclick="add_player()">
+                  <i class="fa-regular fa-heart" title="Add to favorites"></i>
+                </button>
                 
+            </div>
+            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
             </div>
             <div class="row border-bottom g-2">
                 <div class="col-2">Name</div>

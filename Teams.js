@@ -144,8 +144,12 @@ $(document).ready(function () {
             console.log(Team)
             $('#favourites').append(
                 `
+                
                 <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">
-                <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 200px; width: 220px;">;
+                <div class="imagemDivsTeams"
+                style="background-image: url('${Team.Logo}')">
+
+            </div>
 
                 <div class="card-body">
                 <h5 class="card-title">${Team.Name}</h5>
@@ -218,7 +222,10 @@ function add_player(records) {
         $('#fav_div').show()
         $('#favourites').append(`
         <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">
-    <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 200px; width: 220px;">;
+        <div class="imagemDivsTeams"
+        style="background-image: url('${Team.Logo}')">
+
+    </div>
 
         <div class="card-body">
             <h5 class="card-title">${Team.Name}</h5>

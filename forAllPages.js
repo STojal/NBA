@@ -36,6 +36,8 @@ darkmodeToggle.addEventListener('change', function () {
     $('.accordion-item').css('--bs-accordion-btn-color', 'white')
     $('.estatistics').css('background-color', ' rgb(14, 46, 97)')
     $('.estatistics').css('color', 'cyan')
+    $('table').removeClass()
+    $('table').addClass("table table-dark table-striped")
 
 
 
@@ -67,6 +69,8 @@ darkmodeToggle.addEventListener('change', function () {
     $('.accordion-item').css('--bs-accordion-btn-color', 'black')
     $('.estatistics').css('background-color', 'white ')
     $('.estatistics').css('color', 'black')
+    $('table').removeClass()
+    $('table').addClass("table table-striped table-sm small")
 
 
     darkmode_state = 0
@@ -76,51 +80,9 @@ darkmodeToggle.addEventListener('change', function () {
   localStorage.setItem("darkmode_state", darkmode_state)
 });
 $(document).ready(function () {
+  
   //guardar dados
-  if (darkmode_state == 1) {
-    background.style.color = 'rgb(192,192,192)';
-    darkmode_state = 1
-    $('nav').removeClass("navbar navbar-expand-lg navbar-light bg-light")
-    $('nav').addClass("navbar navbar-expand-lg navbar-dark bg-dark")
-    $('.nav').removeClass("navbar-light bg-light")
-    $('.nav').addClass("navbar-dark bg-dark")
-    $('.nav').css('color', 'rgb(192,192,192)');
-    $('#darkmode-toggle').css('background', "linear-gradient(180deg, #777, #3a3a3a)");
-    $(".fa-sun").css({ left: "5px", color: "#7e7e7e", transition: "0.3s" });
-    $(".fa-moon").css({ left: "60px", color: "#fff", transition: "0.3s" });
-    $('#switch_mode').css("background-color", "#242424");
-    $('.card').css('background-color', "gray")
-    $('.page-link').css("background-color", "rgb(40, 40, 40)");
-    $('#drop').css("background-color", "rgb(40, 40, 40)")
-    $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
-    $('.dropdown-menu a').css('color', '#1d4e83')
-    $('#staticBackdrop').css('background-color', ' rgb(14, 46, 97)')
-    $('#staticBackdrop').css('color', ' white')
-    $('.modal-content').css('background-color', ' rgb(14, 46, 97)')
-    $('.modal-content').css('color', ' white')
-    $('body').css('background-color', 'hsl(0, 1%, 14%)')
-    $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)');
-    $('.accordion-item').css('--bs-accordion-btn-color', 'white')
-    $('.estatistics').css('background-color', ' rgb(14, 46, 97)')
-    $('.estatistics').css('color', 'cyan')
-
-
-
-
-  }
-  else {
-    $('nav').removeClass("navbar navbar-expand-lg navbar-dark bg-dark")
-    $('nav').addClass("navbar navbar-expand-lg navbar-light bg-light")
-    $('#drop').css("background-color", "white")
-    $('#staticBackdrop').css('background-color', ' white')
-    $('#staticBackdrop').css('color', ' black')
-    $('.modal-content').css('background-color', ' white')
-    $('.modal-content').css('color', ' black')
-
-    
-
-
-  }
+  darkmodecheck()
   //drop da arena
   $('#arenasbutton').hover(function () {
     $('#drop').slideDown(500);
@@ -189,7 +151,7 @@ function offcanvas() {
                    </div>
                    </div>
                    <div class="col-md-5" style="margin: none;">
-                   <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                   <div class="imagemDivsPlayers col-md-5" style="background-image: url('${player.Photo}')""></div>
                    </div>
                    </div>
                    </div>
@@ -209,7 +171,10 @@ function offcanvas() {
       $('#flush-collapseTree').append(
         `
                <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
-               <img src="${Team.Logo}" alt="${Team.Name}" class="card-img-top" style="height: 250px; width: 100%;">
+               <div class="imagemDivsTeams"
+        style="background-image: url('${Team.Logo}')">
+
+    </div>
    
                <div class="card-body">
                <h5 class="card-title">${Team.Name}</h5>
@@ -239,4 +204,55 @@ function clearoffcanvas() {
 }
 function goBack() {
   window.history.back();
+}
+
+window.onload = function() {
+  darkmodecheck()
+};
+function darkmodecheck(){
+  if (darkmode_state == 1) {
+    background.style.color = 'rgb(192,192,192)';
+    darkmode_state = 1
+    $('nav').removeClass("navbar navbar-expand-lg navbar-light bg-light")
+    $('nav').addClass("navbar navbar-expand-lg navbar-dark bg-dark")
+    $('.nav').removeClass("navbar-light bg-light")
+    $('.nav').addClass("navbar-dark bg-dark")
+    $('.nav').css('color', 'rgb(192,192,192)');
+    $('#darkmode-toggle').css('background', "linear-gradient(180deg, #777, #3a3a3a)");
+    $(".fa-sun").css({ left: "5px", color: "#7e7e7e", transition: "0.3s" });
+    $(".fa-moon").css({ left: "60px", color: "#fff", transition: "0.3s" });
+    $('#switch_mode').css("background-color", "#242424");
+    $('.card').css('background-color', "gray")
+    $('.page-link').css("background-color", "rgb(40, 40, 40)");
+    $('#drop').css("background-color", "rgb(40, 40, 40)")
+    $('.dropdown-menu').css('background-color', 'rgb(40, 40, 40)')
+    $('.dropdown-menu a').css('color', '#1d4e83')
+    $('#staticBackdrop').css('background-color', ' rgb(14, 46, 97)')
+    $('#staticBackdrop').css('color', ' white')
+    $('.modal-content').css('background-color', ' rgb(14, 46, 97)')
+    $('.modal-content').css('color', ' white')
+    $('body').css('background-color', 'hsl(0, 1%, 14%)')
+    $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)');
+    $('.accordion-item').css('--bs-accordion-btn-color', 'white')
+    $('.estatistics').css('background-color', ' rgb(14, 46, 97)')
+    $('.estatistics').css('color', 'cyan')
+    $('table').removeClass()
+    $('table').addClass("table table-dark table-striped")
+
+
+
+  }
+  else {
+    $('nav').removeClass("navbar navbar-expand-lg navbar-dark bg-dark")
+    $('nav').addClass("navbar navbar-expand-lg navbar-light bg-light")
+    $('#drop').css("background-color", "white")
+    $('#staticBackdrop').css('background-color', ' white')
+    $('#staticBackdrop').css('color', ' black')
+    $('.modal-content').css('background-color', ' white')
+    $('.modal-content').css('color', ' black')
+
+    
+
+
+  }
 }

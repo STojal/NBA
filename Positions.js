@@ -50,7 +50,9 @@ var vm = function () {
             console.log(data);
             hideLoading();
             self.records(data.Records);
-            var recoords_data =self.records();
+
+            var record = data.Records
+            localStorage.setItem('records',JSON.stringify(record))
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -134,3 +136,80 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 
 
+function checkfav() {
+    var Position = localStorage.getItem('records')
+    Position = JSON.parse(Position) || []
+    var fav = localStorage.getItem('Positionsfav')
+    var list = JSON.parse(fav) || [];
+    for (i = 0; i < Position.length; i++) {
+        //console.log("aaa")
+
+        //console.log(Position[i])
+        var check = list.some(item => item.Id === Position[i].Id);
+        //console.log(check)
+        if (check) {
+            mudarbotao(Position[i].Id)
+        }
+    }
+}
+
+function mudarbotao(id) {
+    var itemRemove = '#favestado_' + id
+    var itemADD = '#favestado_' + id
+
+    $(itemRemove).empty()
+    $(itemADD).append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;;margin-left: 10px;"' +
+        'onclick="Remove_player(\'' + id + '\')">' +
+        '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
+        '</button>')
+}
+
+function Remove_player(records) {
+    
+    //console.log(records)
+    var fav = JSON.parse(localStorage.getItem("Positionsfav")) || [];
+    for (let key in fav) {
+        if (fav.hasOwnProperty(key) && JSON.stringify(fav[key].Id) === JSON.stringify(records)) {
+            fav.splice(key, 1);
+            //console.log(fav);
+            break;
+        }
+    }
+    
+    fav = localStorage.setItem("Positionsfav", JSON.stringify(fav))
+    alert("Position removido dos favoritos")
+    location.reload()
+}
+//adcionar os fav
+function add_player(records) {
+
+
+    console.log(records)
+    var fav = JSON.parse(localStorage.getItem("Positionsfav")) || [];
+
+
+
+    count = 0
+    for (let key in fav) {
+
+        if (fav.hasOwnProperty(key) && JSON.stringify(fav[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    //console.log(count)
+    if (count === 0) {
+
+        fav.push(records);
+        //console.log(fav)
+        console.log('aaaa')
+        fav = localStorage.setItem("Positionsfav", JSON.stringify(fav))
+        alert("Position adicionado aos favoritos")
+        mudarbotao(records.Id)
+
+    }
+    else {
+        alert("Position já nos favoritos")
+    }
+
+};

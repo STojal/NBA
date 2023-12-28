@@ -8,21 +8,24 @@ var options = {
     chart: {
         title: 'Estatísticas Gerais',
         subtitle: 'N.º de Players nos Playoffs ',
+        backgroundColor: 'rgba(0,0,0,0)',
     },
     legend: { position: 'none' },
     height: 800,
     hAxis: { textStyle: { fontSize: 11, fontName: 'Open Sans' } },
-    vAxis: { textStyle: { fontSize: 11, fontName: 'Open Sans' } }
+    vAxis: { textStyle: { fontSize: 11, fontName: 'Open Sans' } },
 };
+
 var options1 = {
     chart: {
         title: 'Estatísticas Gerais',
         subtitle: 'N.º de Players na Regular Season ',
+        backgroundColor: 'rgba(0,0,0,0)',
     },
     legend: { position: 'none' },
     height: 800,
     hAxis: { textStyle: { fontSize: 11, fontName: 'Open Sans' } },
-    vAxis: { textStyle: { fontSize: 11, fontName: 'Open Sans' } }
+    vAxis: { textStyle: { fontSize: 11, fontName: 'Open Sans' } },
 };
 
 // Callback that creates and populates a data table,
@@ -39,7 +42,6 @@ function drawChart() {
     ajaxHelper(composedUri, 'GET').done(function (stats) {
         // Interact with the data returned
         $.each(stats, function (index, item) {
-            console.log(item)
 
             var val = (item.Players)
             if (item.SeasonType == 'Playoffs'){

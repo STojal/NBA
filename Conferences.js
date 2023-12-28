@@ -50,7 +50,8 @@ var vm = function () {
             console.log(data);
             hideLoading();
             self.records(data.Records);
-            var recoords_data = self.records();
+            var record = data.Records
+            localStorage.setItem('records',JSON.stringify(record))
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
@@ -81,7 +82,6 @@ var vm = function () {
         const start = Date.now();
         while (Date.now() - start < milliseconds);
     }
-
     function showLoading() {
         $("#myModal").modal('show', {
             backdrop: 'static',
@@ -123,9 +123,85 @@ var vm = function () {
 
 $(document).ready(function () {
     console.log("ready!");
-    ko.applyBindings(new vm());
+    ko.applyBindings(new vm());    
 });
+function checkfav() {
+    var Conference = localStorage.getItem('records')
+    Conference = JSON.parse(Conference) || []
+    var fav = localStorage.getItem('Conferences')
+    var list = JSON.parse(fav) || [];
+    for (i = 0; i < Conference.length; i++) {
+        //console.log("aaa")
+
+        //console.log(Conference[i])
+        var check = list.some(item => item.Id === Conference[i].Id);
+        //console.log(check)
+        if (check) {
+            mudarbotao(Conference[i].Id)
+        }
+    }
+}
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
+
+function mudarbotao(id) {
+    var itemRemove = '#favestado_' + id
+    var itemADD = '#favestado_' + id
+    $(itemRemove).empty()
+    $(itemADD).append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;;margin-left: 10px;"' +
+        'onclick="Remove_player('+ id +')">' +
+        '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
+        '</button>')
+}
+
+function Remove_player(records) {
+    //console.log(records)
+    var Conferences = JSON.parse(localStorage.getItem("Conferences")) || [];
+    for (let key in Conferences) {
+        if (Conferences.hasOwnProperty(key) && JSON.stringify(Conferences[key].Id) === JSON.stringify(records)) {
+            Conferences.splice(key, 1);
+            //console.log(Conferences);
+            break;
+        }
+    }
+    
+    Conferences = localStorage.setItem("Conferences", JSON.stringify(Conferences))
+    alert("Conference removido dos favoritos")
+    location.reload()
+}
+//adcionar os fav
+function add_player(records) {
+
+
+    console.log(records)
+    var Conferences = JSON.parse(localStorage.getItem("Conferences")) || [];
+
+
+
+    count = 0
+    for (let key in Conferences) {
+
+        if (Conferences.hasOwnProperty(key) && JSON.stringify(Conferences[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    //console.log(count)
+    if (count === 0) {
+
+        Conferences.push(records);
+        //console.log(Conferences)
+        console.log('aaaa')
+        Conferences = localStorage.setItem("Conferences", JSON.stringify(Conferences))
+        alert("Conference adicionado aos favoritos")
+        mudarbotao(records.Id)
+
+    }
+    else {
+        alert("Conference já nos favoritos")
+    }
+
+};

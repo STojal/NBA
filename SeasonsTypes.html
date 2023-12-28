@@ -194,9 +194,16 @@
                                     <a class="btn btn-default btn-light btn-xs"
                                         data-bind="attr: { href:'./SeasonsTypesDetails.html?id=' + Id }"><i
                                             class="fa fa-eye" title="Show details"></i></a>
-                                    <button class="btn btn-default btn-xs"><i class="fa-regular fa-heart"
-                                            data-bind="attr : { 'id': 'favourite_' + Id }"
-                                            title="Add to favorites"></i></button>
+                                            <div style="float:right" data-bind="attr: { 'id': 'favestado_' + Id }">
+                                        
+                                            <button class="btn btn-default btn-xs"
+                                                style="background-color: red; border-radius: 30px;" class="favourite"
+                                                data-bind="attr: { 'id': 'favourite_' + Id }, click: function() { add_player($data) }, with:{afterRender:checkfav()}" >
+                                                <i class="fa-regular fa-heart" title="Add to favorites"></i>
+                                            </button>
+                                            
+    
+                                        </div>
                                 </td>
                             </tr>
                         </tbody>

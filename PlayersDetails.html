@@ -199,9 +199,14 @@
                                 <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
                             </a>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop1" style="width: 100%" onclick="statiplayer()">
+                                data-bs-target="#staticBackdrop1" style="width: 70%" onclick="statiplayer()">
                                 Carrer details
                             </button>
+                            <button class="btn btn-default btn-xs"
+                                        style="background-color: red; border-radius: 30px;" id="favourite"
+                                        onclick="add_player()">
+                                        <i class="fa-regular fa-heart" title="Add to favorites"></i>
+                                    </button>
                         </div>
 
                     </div>

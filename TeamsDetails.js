@@ -42,6 +42,9 @@ var vm = function () {
             console.log(data);
             hideLoading();
 
+            checkfav(data)
+            localStorage.setItem('Teamsadd', JSON.stringify(data))
+
             self.Id(data.Id);
             self.Acronym(data.Acronym);
             self.Name(data.Name);
@@ -59,7 +62,18 @@ var vm = function () {
             
         });
     };
+    //adcionar e retirar o botao dos fav
+    function checkfav(team){
+        console.log(team)
+        var fav = localStorage.getItem('Teams')
+        var list = JSON.parse(fav) || [];
+        var check = list.some(item => item.Id === team.Id);
 
+        if (check) {
+            mudarbotao(team.Id)
+        }
+
+    }
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -120,7 +134,61 @@ $(document).ready(function () {
     console.log("document.ready!");
     ko.applyBindings(new vm());
 });
-
+function mudarbotao(id){
+    $('#favourite').remove()
+            $('#favestado').append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;margin-top: 20px;margin-right: 10px;"'+
+                                    'onclick="Remove_player('+id+')">'+
+                                    '<i class="fa-solid fa-trash" id="favourite_${team.Id}" title="Remove to favorites" ></i>'+
+                                    '</button>')
+}
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+//Remover os fav
+function Remove_player(records) {
+    //console.log(records)
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
+    for (let key in Teams) {
+        if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key].Id) === JSON.stringify(records)) {
+            Teams.splice(key, 1);
+            //console.log(Teams);
+            break;
+        }
+    }
+    Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
+    alert("Team removido dos favoritos")
+    location.reload()
+}
+//adcionar os fav
+function add_player() {
+    
+    var records = localStorage.getItem('Teamsadd')
+    records = JSON.parse(records)
+    console.log(records)
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
+    
+
+
+    count = 0
+    for (let key in Teams) {
+
+        if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key]) === JSON.stringify(records)) {
+            count = 1
+
+        }
+    }
+    //console.log(count)
+    if (count === 0) {
+
+        Teams.push(records);
+        //console.log(Teams)
+        Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
+        alert("Team adicionado aos favoritos")
+        mudarbotao(records.Id)
+
+    }
+    else {
+        alert("Team já nos favoritos")
+    }
+    
+};

@@ -165,8 +165,8 @@ $(document).ready(function () {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5" style="margin: none;">
-                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        
+                        <div class="imagemDivsPlayers col-md-5" style="background-image: url('${player.Photo}')"">
                         </div>
                     </div>
                 </div>
@@ -255,9 +255,9 @@ function add_player(records) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5" style="margin: none;">
-                <img src="${player.Photo}" alt="${player.Name}" class="card-img-top" style="width: 168px; height: 185px; border-radius: 5px;">
+                        <div class="imagemDivsPlayers col-md-5" style="background-image: url('${player.Photo}')" >
                         </div>
+                        
                     </div>
                 </div>
             `);

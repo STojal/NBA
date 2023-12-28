@@ -23,6 +23,7 @@ var vm = function () {
     self.Biography = ko.observable('');
     self.Seasons =ko.observable('')
     self.Teams =ko.observable('')
+    self.Data =ko.observable('')
 
     //--- Page Events
     self.activate = function (id) {
@@ -32,6 +33,9 @@ var vm = function () {
             console.log(data);
             hideLoading();
 
+            checkfav(data)
+            localStorage.setItem('Jogadoradd', JSON.stringify(data))
+            self.Data(data)
             self.Id(data.Id);
             self.Name(data.Name);
             self.Birthdate(data.Birthdate);
@@ -93,7 +97,25 @@ var vm = function () {
             }
         }
     };
+    function checkfav(player){
 
+        var fav = localStorage.getItem('jogadores')
+        var list = JSON.parse(fav) || [];
+        var check = list.some(item => item.Id === player.Id);
+
+        if (check) {
+            
+            $('#favourite').remove()
+            $('#favestado').append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"'+
+                                    'onclick="Remove_player('+player.Id+')">'+
+                                    '<i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>'+
+                                    '</button>')
+        }
+        else{
+            
+
+        }
+    }
     //--- start ....
     showLoading();
     var pg = getUrlParameter('id');
@@ -107,6 +129,7 @@ var vm = function () {
 };
 
 $(document).ready(function () {
+     
     console.log("document.ready!");
     ko.applyBindings(new vm());
 });
@@ -157,3 +180,47 @@ function statiplayer(){
         
        )}
 
+    function Remove_player(records) {
+        //console.log(records)
+        var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+        for (let key in jogadores) {
+            if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key].Id) === JSON.stringify(records)) {
+                jogadores.splice(key, 1);
+                //console.log(jogadores);
+                break;
+            }
+        }
+        jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
+        alert("Jogador removido dos favoritos")
+        location.reload();
+    }
+    function add_player() {
+        var records = localStorage.getItem('Jogadoradd')
+        records = JSON.parse(records)
+        var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+        
+    
+    
+        count = 0
+        for (let key in jogadores) {
+    
+            if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key]) === JSON.stringify(records)) {
+                count = 1
+    
+            }
+        }
+        //console.log(count)
+        if (count === 0) {
+    
+            jogadores.push(records);
+            //console.log(jogadores)
+            jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
+            player = records
+            alert("Jogador adicionado aos favoritos")
+            location.reload();
+        }
+        else {
+            alert("Jogador já nos favoritos")
+        }
+        
+    };
