@@ -141,39 +141,46 @@ $(document).ready(function () {
     if (Teams.length > 0) {
 
         Teams.forEach(Team => {
-            //console.log(Team)
+            if (Team.Logo == null) {
+                console.log('null')
+                var logo = 'images/equipas.png'
+            }
+            else {
+                var logo = Team.Logo
+            }
             $('#favourites').append(
-                `
-                
-                <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">
-                <div class="imagemDivsTeams"
-                style="background-image: url('${Team.Logo}')">
 
-            </div>
+                '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">' +
+                '<div class="imagemDivsTeams"' +
+                'style="background-image: url(' + logo + ')">' +
 
-                <div class="card-body">
-                <h5 class="card-title">${Team.Name}</h5>
-                <p class="card-text">
-                <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
-                </p>
-                <a  class="btn btn-primary"
-                href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
-                <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                onclick="Remove_player(${Team.Id})">
-                <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
-                </button>
-                </div>
-                </div>
-`)
+                '</div>' +
+
+                '<div class="card-body">' +
+                '<h5 class="card-title">' + Team.Name + '</h5>' +
+                '<p class="card-text">' +
+                '<strong>Acronym:</strong><span>' + Team.Acronym + '</span> <br>' +
+                '</p>' +
+                '<a  class="btn btn-primary"' +
+                'href="./TeamsDetails.html?id=' + Team.Id + '&acronym=' + Team.Acronym + '">Show Details</a>' +
+                '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"' +
+                'onclick="Remove_player(' + Team.Id + ')">' +
+                '<i class="fa-solid fa-trash" id="favourite_' + Team.Id + '" title="Remove to favorites" ></i>' +
+                '</button>' +
+                '</div>' +
+                '</div>'
+            );
+            //console.log(Team)
+
         })
-    }else{
+    } else {
         $('#favourites').append(`
             <div class="info">Nenhuma Team nos favoritos</div>
 
             `)
 
     }
-    
+
 
 
 
@@ -217,31 +224,41 @@ function add_player(records) {
         Teams.push(records);
         console.log(Teams)
         Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
-        Team = records
+        var Team = records
         $('#favourites .info').remove()
         $('#fav_div').show()
-        $('#favourites').append(`
-        <div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">
-        <div class="imagemDivsTeams"
-        style="background-image: url('${Team.Logo}')">
+        if (Team.Logo == null) {
+            console.log('null')
+            var logo = 'images/equipas.png'
+        }
+        else {
+            var logo = Team.Logo
+        }
+        $('#favourites').append(
 
-    </div>
+            '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">' +
+            '<div class="imagemDivsTeams"' +
+            'style="background-image: url(' + logo + ')">' +
 
-        <div class="card-body">
-            <h5 class="card-title">${Team.Name}</h5>
-            <p class="card-text">
-                <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
-            </p>
-            <a  class="btn btn-primary"
-                href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
-                <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                onclick="Remove_player(${Team.Id})">
-                    <i class="fa-solid fa-trash" id="favourite_${Team.Id}" title="Remove to favorites" ></i>
-                </button>
-        </div>
-    </div>
-                
-            `);
+            '</div>' +
+
+            '<div class="card-body">' +
+            '<h5 class="card-title">' + Team.Name + '</h5>' +
+            '<p class="card-text">' +
+            '<strong>Acronym:</strong><span>' + Team.Acronym + '</span> <br>' +
+            '</p>' +
+            '<a  class="btn btn-primary"' +
+            'href="./TeamsDetails.html?id=' + Team.Id + '&acronym=' + Team.Acronym + '">Show Details</a>' +
+            '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"' +
+            'onclick="Remove_player(' + Team.Id + ')">' +
+            '<i class="fa-solid fa-trash" id="favourite_' + Team.Id + '" title="Remove to favorites" ></i>' +
+            '</button>' +
+            '</div>' +
+            '</div>'
+        );
+        //console.log(Team)
+
+    
         alert("Team adicionado aos favoritos")
     }
     else {
@@ -276,7 +293,7 @@ $("#tags").on("input", function () {
         localStorage.setItem("AutoconpleteTeams", JSON.stringify([]))
 
     }
-        //call api 
+    //call api 
     else if (inputValue.length == 2) {
         url = 'http://192.168.160.58/NBA/api/Teams/Search?q=' + $("#tags").val();
         console.log('CALL: getAutocomplete...');
@@ -288,11 +305,11 @@ $("#tags").on("input", function () {
 
     var autocomplete = JSON.parse(localStorage.getItem("AutoconpleteTeams")) || [];
     if (autocomplete.length != 0) {
-        
+
         $("#tags").autocomplete({
             source: function (request, response) {
                 var term = request.term.toLowerCase();
-                
+
                 var filteredAutocomplete = autocomplete.filter(function (item) {
                     return item.Name.toLowerCase().includes(term);
                 });
@@ -311,27 +328,27 @@ $("#tags").on("input", function () {
                         backgroundColor: "gray",
                     });
                 }
-                else{
+                else {
                     $(".ui-autocomplete:visible").css({
                         backgroundColor: "white",
                     });
                 }
             },
 
-        }).data("ui-autocomplete")._renderItem = function (ul, item) { 
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
-            if (item.Name != undefined){
+            if (item.Name != undefined) {
                 return $("<li>")
                     .attr("data-value", item.Name)
-                    .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym='+ item.Acronym+'">' + item.Name + ' <a>')
+                    .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym=' + item.Acronym + '">' + item.Name + ' <a>')
                     .appendTo(ul);
             }
-                else{
-                    return $("<li>")
+            else {
+                return $("<li>")
                     .attr("data-value", item.Name)
                     .append('<span>Team not found</span>')
                     .appendTo(ul);
-                }
+            }
 
         };
     }
@@ -361,8 +378,8 @@ function ajaxHelper(uri, method, data) {
         }
     })
 }
-$(window).scroll(function() {
-    if($('.ui-autocomplete').length != 0){
+$(window).scroll(function () {
+    if ($('.ui-autocomplete').length != 0) {
         $('.ui-autocomplete').hide()
     }
 });

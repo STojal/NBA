@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div class="background" style="margin-bottom: 70px;" !important>
+    <div class="background">
         <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
@@ -67,7 +67,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
+                    <ul class="navbar-nav justify-content-end" id="bd-theme" >
 
                         <li class="navbar-text">
                             <input type="checkbox" id="darkmode-toggle" />
@@ -158,21 +158,34 @@
             </div>
             <div class="row border-bottom g-2">
                 <div class="col-2">Conference Name</div>
-                <div class="col-10"><a class="nav-link"
-                        data-bind="text:ConferenceName, attr: { href:'./ConferenceDetails.html?id=' + ConferenceId }"
-                        title="Show Conference Details"></a></div>
+
+                <div class="col-10">
+                    <a class="nav-link link-hover"
+                    data-bind="text:ConferenceName, attr: { href:'./ConferencesDetails.html?id=' + ko.toJSON(ConferenceId) }"
+                    title="Show Conference Details"></a>
+                                            
+                    </div>
+                        
+                                        
             </div>
             <div class="row border-bottom g-2">
                 <div class="col-2">Division Name</div>
-                <div class="col-10"><a class="nav-link"
-                        data-bind="text:DivisionName, attr: { href:'./DivisionDetails.html?id=' + DivisionId }"
-                        title="Show Division Details"></a></div>
+                <div class="col-10"><a class="nav-link link-hover"
+                    data-bind="text:DivisionName, attr: { href:'./DivisionsDetails.html?id=' + ko.toJSON(DivisionId) }"
+                    title="Show Conference Details"></a>
+                                            
+                    
+                    
+                    </div>
+                    
             </div>
             <div class="row border-bottom g-2">
                 <div class="col-2">State</div>
-                <div class="col-10"><a class="nav-link"
-                        data-bind="text:StateName, attr: { href:'./StateDetails.html?id=' + StateId }"
-                        title="Show State Details"></a></div>
+                <div class="col-10"><a class="nav-link link-hover"
+                    data-bind="text:StateName, attr: { href:'./StatesDetails.html?id=' + ko.toJSON(StateId).slice(1,-1) }"
+                    title="Show Conference Details"></a>
+                    
+                    </div>
             </div>
             <div class="row border-bottom g-2">
                 <div class="col-2">City</div>

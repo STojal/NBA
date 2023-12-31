@@ -69,7 +69,7 @@
                         </li>
                         </li>
                     </ul>
-                    <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
+                    <ul class="navbar-nav justify-content-end" id="bd-theme" >
 
                         <li class="navbar-text">
                             <input type="checkbox" id="darkmode-toggle" />
@@ -159,14 +159,14 @@
 
 
             <!-- ko if:records().length > 0 -->
-            <div class="row small">
+            <div class="row small" id="responsivity">
                 <p class=" col-4 mr-auto pt-2">
                     <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
                     <span
                         data-bind="html: 'Players: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
                 </p>
-                <div class="col-8 my-0 pt-3">
-                    <ul class="pagination float-end">
+                <div class="col-8 col-sm-8 my-0 pt-3" id="NumbPage">
+                    <ul class="pagination justify-content-center justify-content-md-end">
                         <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
                         <li class="page-item float-end"><a class="page-link" title="First Page"
                                 data-bind="attr: { href: './Players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
@@ -222,16 +222,17 @@
                             <div class="card-body">
                                 <h5 class="card-title" data-bind="text: Name"></h5>
                                 <p class="card-text" data-bind="text: CountryName">
-                                    <a href="./countryDetails.html?id=" class="nav-link"
+                                    <!--<a href="./countryDetails.html?id=" class="nav-link"
                                         data-bind="text: CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }"
-                                        title="Show Country Details"></a>
+                                        title="Show Country Details"></a>-->
                                 </p>
                                 <p class="card-text">
-                                    <small class="text-body-secondary" data-bind="text: PositionName">
-                                        <a href="./positionsDetails.html?id=" class="nav-link"
+                                    <a href="./positionsDetails.html?id=" class="nav-link"
                                             data-bind="text: PositionName, attr: { href:'./positionsDetails.html?id=' + PositionId }"
-                                            title="Show Position Details"></a>
-                                    </small>
+                                            title="Show Position Details">
+                                    <small class="text-body-secondary" data-bind="text: PositionName">
+                                        
+                                    </small></a>
                                 </p>
                                 <div class="fixed">
                                     <a href="./PlayersDetails.html" class="btn btn-primary"
@@ -262,7 +263,7 @@
 
 
         </div>
-        <div class="container" style="margin-bottom: none;">
+        <div class="container" >
             <div class="row small">
                 <p class=" col-4 mr-auto pt-2">
                     <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />

@@ -66,7 +66,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
+                    <ul class="navbar-nav justify-content-end" id="bd-theme" >
 
                         <li class="navbar-text">
                             <input type="checkbox" id="darkmode-toggle" />
@@ -165,7 +165,11 @@
                                     </div>
                                     <div class="row" data-bind="visible: PositionName() != '' && PositionName() != null">
                                         <div class="col-4">Position</div>
-                                        <div class="col-8" data-bind="text: PositionName"></div>
+                                        <div class="col-8">
+                                        <a class="nav-link link-hover"
+                                                data-bind="text: PositionName, attr: { href:'./PositionsDetails.html?id=' + ko.toJSON(PositionId).slice(1,-1) }"
+                                                title="Show Position Details"></a>
+                                            </div>
                                     </div>
                                     <div class="row" data-bind="visible: Height() != '' && Height() != null">
                                         <div class="col-4">Height</div>

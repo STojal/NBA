@@ -151,7 +151,7 @@ $(document).ready(function () {
                                 </p>
                                 <p class="card-text">
                                     <small class="text-body-secondary">
-                                        <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
+                                        <a href="./positionsDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
                                     </small>
                                 </p>
                                 <div class="fixed">

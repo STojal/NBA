@@ -168,25 +168,33 @@ function offcanvas() {
   if (teams.length > 0) {
     teams.forEach(Team => {
       //console.log(Team)
+      console.log(Team.Logo)
+      if(Team.Logo==null){
+        console.log('null')
+        var logo= 'images/equipas.png'
+      }
+      else{
+        var logo = Team.Logo
+      }
       $('#flush-collapseTree').append(
-        `
-               <div class="card" style=" margin-right: 5px; margin-bottom: 5px;">
-               <div class="imagemDivsTeams"
-        style="background-image: url('${Team.Logo}')">
+        
+               '<div class="card" style=" margin-right: 5px; margin-bottom: 5px;">'+
+               '<div class="imagemDivsTeams"'+
+        'style="background-image: url('+logo+')">'+
 
-    </div>
+    '</div>'+
    
-               <div class="card-body">
-               <h5 class="card-title">${Team.Name}</h5>
-               <p class="card-text">
-               <strong>Acronym:</strong><span>${Team.Acronym}</span> <br>
-               </p>
-               <a  class="btn btn-primary"
-               href="./TeamsDetails.html?id=${Team.Id}&acronym=${Team.Acronym}">Show Details</a>
+               '<div class="card-body">'+
+              '<h5 class="card-title">'+Team.Name+'</h5>'+
+               '<p class="card-text">'+
+               '<strong>Acronym:</strong><span>'+Team.Acronym+'</span> <br>'+
+               '</p>'+
+               '<a  class="btn btn-primary"'+
+               'href="./TeamsDetails.html?id='+Team.Id+'&acronym='+Team.Acronym+'">Show Details</a>'+
    
-               </div>
-               </div>
-   `);
+               '</div>'+
+               '</div>'
+   );
     })
   }
   else {
