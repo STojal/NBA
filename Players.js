@@ -140,37 +140,36 @@ $(document).ready(function () {
 
         jogadores.forEach(player => {
             //console.log(player)
-            $('#favourites').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">${player.Name}</h5>
-                                <p class="card-text">
-                                    <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">
-                                        <a href="./positionsDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
-                                    </small>
-                                </p>
-                                <div class="fixed">
-                                    <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
-                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                                    onclick="Remove_player(${player.Id})">
-                                        <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
-                                        
-                                    </button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="imagemDivsPlayers col-md-5" style="background-image: url('${player.Photo}')"">
-                        </div>
-                    </div>
-                </div>
-            `)
+            var photo = player.Photo
+            if(player.Photo==null){
+                var photo = 'images/equipas.png'
+            }
+            $('#favourites').append(
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px !important;">' +
+                  '<div class="row g-0">' +
+                    '<div class="col-md-7">' +
+                      '<div class="card-body">' +
+                        '<h5 class="card-title">' + player.Name + '</h5>' +
+                        '<p class="card-text">' +
+                          '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+                        '</p>' +
+                        '<p class="card-text">' +
+                          '<small class="text-body-secondary">' +
+                            '<a href="./positionsDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+                          '</small>' +
+                        '</p>' +
+                        '<div class="fixed">' +
+                          '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
+                          '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;" onclick="Remove_player(' + player.Id + ')">' +
+                            '<i class="fa-solid fa-trash" id="favourite_' + player.Id + '" title="Remove to favorites"></i>' +
+                          '</button>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
+                  '</div>' +
+                '</div>'
+              );
         });
 
     }
@@ -232,35 +231,36 @@ function add_player(records) {
         player = records
         $('#fav_div').show()
         $('#favourites .info').remove()
-        $('#favourites').append(`
-                <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">${player.Name}</h5>
-                                <p class="card-text">
-                                    <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
-                                </p>
-                                <p class="card-text">
-                                    <small class="text-body-secondary">
-                                        <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
-                                    </small>
-                                </p>
-                                <div class="fixed">
-                                    <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
-                                    <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-                                    onclick="Remove_player(${player.Id})">
-                                        <i class="fa-solid fa-trash" id="favourite_${player.Id}" title="Remove to favorites" ></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="imagemDivsPlayers col-md-5" style="background-image: url('${player.Photo}')" >
-                        </div>
-                        
-                    </div>
-                </div>
-            `);
+        var photo = player.Photo
+            if(player.Photo==null){
+                 photo = 'images/equipas.png'
+            }
+            $('#favourites').append(
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px !important;">' +
+                  '<div class="row g-0">' +
+                    '<div class="col-md-7">' +
+                      '<div class="card-body">' +
+                        '<h5 class="card-title">' + player.Name + '</h5>' +
+                        '<p class="card-text">' +
+                          '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+                        '</p>' +
+                        '<p class="card-text">' +
+                          '<small class="text-body-secondary">' +
+                            '<a href="./positionsDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+                          '</small>' +
+                        '</p>' +
+                        '<div class="fixed">' +
+                          '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
+                          '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;" onclick="Remove_player(' + player.Id + ')">' +
+                            '<i class="fa-solid fa-trash" id="favourite_' + player.Id + '" title="Remove to favorites"></i>' +
+                          '</button>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
+                  '</div>' +
+                '</div>'
+              );
         alert("Jogador adicionado aos favoritos")
     }
     else {

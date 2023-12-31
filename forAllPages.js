@@ -130,32 +130,45 @@ function offcanvas() {
   var jogadores = JSON.parse(localStorage.getItem("jogadores")) || []
   if (jogadores.length > 0) {
     jogadores.forEach(player => {
-      $('#flush-collapseTwo').append(`
-                   <div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>
-                   <div class="row g-0">
-                   <div class="col-md-7">
-                   <div class="card-body">
-                   <h5 class="card-title">${player.Name}</h5>
-                   <p class="card-text">
-                   <a href="./countryDetails.html?id=${player.CountryId}" class="nav-link">${player.CountryName}</a>
-                   </p>
-                   <p class="card-text">
-                   <small class="text-body-secondary">
-                   <a href="./positionDetails.html?id=${player.PositionId}" class="nav-link">${player.PositionName}</a>
-                   </small>
-                   </p>
-                   <div class="fixed">
-                   <a href="./PlayersDetails.html?id=${player.Id}" class="btn btn-primary">Show Details</a>
-                   
-                   </div>
-                   </div>
-                   </div>
-                   <div class="col-md-5" style="margin: none;">
-                   <div class="imagemDivsPlayers col-md-5" style="background-image: url('${player.Photo}')""></div>
-                   </div>
-                   </div>
-                   </div>
-               `);
+      var photo = player.Photo
+    if (player.Photo==null){
+      photo='images/equipas.png'
+    }
+    /*
+    var position = player.PositionName
+    var country= player.CountryName
+    if(player.CountryName==null){
+      country = 'Undefined'
+    }
+    if(player.PositionName==null){
+      position = 'Undefined'
+    }*/
+
+    $('#flush-collapseTwo').append(
+    '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" !important>' +
+        '<div class="row g-0">' +
+            '<div class="col-md-7">' +
+                '<div class="card-body">' +
+                    '<h5 class="card-title">' + player.Name + '</h5>' +
+                    '<p class="card-text">' +
+                        '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+                    '</p>' +
+                    '<p class="card-text">' +
+                        '<small class="text-body-secondary">' +
+                            '<a href="./positionDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+                        '</small>' +
+                    '</p>' +
+                    '<div class="fixed">' +
+                        '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="col-md-5" style="margin: none;">' +
+                '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
+            '</div>' +
+        '</div>' +
+    '</div>'
+);
     })
   }
   else {
@@ -168,9 +181,9 @@ function offcanvas() {
   if (teams.length > 0) {
     teams.forEach(Team => {
       //console.log(Team)
-      console.log(Team.Logo)
+      
       if(Team.Logo==null){
-        console.log('null')
+        
         var logo= 'images/equipas.png'
       }
       else{
