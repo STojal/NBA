@@ -3,6 +3,7 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
+
     self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Divisions');
     self.displayName = 'NBA Divisions List';
     self.error = ko.observable('');
@@ -59,6 +60,7 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
+            checkfav()
         });
     };
 
@@ -125,7 +127,7 @@ var vm = function () {
 
 $(document).ready(function () {
     console.log("ready!");
-    ko.applyBindings(new vm());
+    ko.applyBindings(new vm())
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {

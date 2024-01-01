@@ -80,7 +80,7 @@ darkmodeToggle.addEventListener('change', function () {
   localStorage.setItem("darkmode_state", darkmode_state)
 });
 $(document).ready(function () {
-  
+
   //guardar dados
   darkmodecheck()
   //drop da arena
@@ -131,43 +131,43 @@ function offcanvas() {
   if (jogadores.length > 0) {
     jogadores.forEach(player => {
       var photo = player.Photo
-    if (player.Photo==null){
-      photo='images/equipas.png'
-    }
-    /*
-    var position = player.PositionName
-    var country= player.CountryName
-    if(player.CountryName==null){
-      country = 'Undefined'
-    }
-    if(player.PositionName==null){
-      position = 'Undefined'
-    }*/
-    $('#flush-collapseTwo').append(
-    '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" >' +
+      if (player.Photo == null) {
+        photo = 'images/equipas.png'
+      }
+      /*
+      var position = player.PositionName
+      var country= player.CountryName
+      if(player.CountryName==null){
+        country = 'Undefined'
+      }
+      if(player.PositionName==null){
+        position = 'Undefined'
+      }*/
+      $('#flush-collapseTwo').append(
+        '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px;" >' +
         '<div class="row g-0">' +
-            '<div class="col-md-7">' +
-                '<div class="card-body">' +
-                    '<h5 class="card-title">' + player.Name + '</h5>' +
-                    '<p class="card-text">' +
-                        '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
-                    '</p>' +
-                    '<p class="card-text">' +
-                        '<small class="text-body-secondary">' +
-                            '<a href="./positionDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
-                        '</small>' +
-                    '</p>' +
-                    '<div class="fixed">' +
-                        '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="col-md-5" style="margin: none;">' +
-                '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
-            '</div>' +
+        '<div class="col-md-7">' +
+        '<div class="card-body">' +
+        '<h5 class="card-title">' + player.Name + '</h5>' +
+        '<p class="card-text">' +
+        '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+        '</p>' +
+        '<p class="card-text">' +
+        '<small class="text-body-secondary">' +
+        '<a href="./positionDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+        '</small>' +
+        '</p>' +
+        '<div class="fixed">' +
+        '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
         '</div>' +
-    '</div>'
-);
+        '</div>' +
+        '</div>' +
+        '<div class="col-md-5" style="margin: none;">' +
+        '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
+        '</div>' +
+        '</div>' +
+        '</div>'
+      );
     })
   }
   else {
@@ -180,33 +180,33 @@ function offcanvas() {
   if (teams.length > 0) {
     teams.forEach(Team => {
       //console.log(Team)
-      
-      if(Team.Logo==null){
-        
-        var logo= 'images/equipas.png'
+
+      if (Team.Logo == null) {
+
+        var logo = 'images/equipas.png'
       }
-      else{
+      else {
         var logo = Team.Logo
       }
       $('#flush-collapseTree').append(
-        
-               '<div class="card" style=" margin-right: 5px; margin-bottom: 5px;">'+
-               '<div class="imagemDivsTeams"'+
-        'style="background-image: url('+logo+')">'+
 
-    '</div>'+
-   
-               '<div class="card-body">'+
-              '<h5 class="card-title">'+Team.Name+'</h5>'+
-               '<p class="card-text">'+
-               '<strong>Acronym:</strong><span>'+Team.Acronym+'</span> <br>'+
-               '</p>'+
-               '<a  class="btn btn-primary"'+
-               'href="./TeamsDetails.html?id='+Team.Id+'&acronym='+Team.Acronym+'">Show Details</a>'+
-   
-               '</div>'+
-               '</div>'
-   );
+        '<div class="card" style=" margin-right: 5px; margin-bottom: 5px;">' +
+        '<div class="imagemDivsTeams"' +
+        'style="background-image: url(' + logo + ')">' +
+
+        '</div>' +
+
+        '<div class="card-body">' +
+        '<h5 class="card-title">' + Team.Name + '</h5>' +
+        '<p class="card-text">' +
+        '<strong>Acronym:</strong><span>' + Team.Acronym + '</span> <br>' +
+        '</p>' +
+        '<a  class="btn btn-primary"' +
+        'href="./TeamsDetails.html?id=' + Team.Id + '&acronym=' + Team.Acronym + '">Show Details</a>' +
+
+        '</div>' +
+        '</div>'
+      );
     })
   }
   else {
@@ -227,11 +227,11 @@ function goBack() {
   window.history.back();
 }
 // darkmode after the ko is loaded
-window.onload = function() {
+window.onload = function () {
   darkmodecheck()
 };
 //dark mode check e muda as para dark ou white 
-function darkmodecheck(){
+function darkmodecheck() {
   if (darkmode_state == 1) {
     background.style.color = 'rgb(192,192,192)';
     darkmode_state = 1
@@ -273,7 +273,7 @@ function darkmodecheck(){
     $('.modal-content').css('background-color', ' white')
     $('.modal-content').css('color', ' black')
 
-    
+
 
 
   }

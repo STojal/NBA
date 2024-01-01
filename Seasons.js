@@ -62,6 +62,7 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             self.Photo(data.Photo);
+            checkfav()
             //self.SetFavourites();
         });
     };
