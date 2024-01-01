@@ -152,7 +152,10 @@ li.page-item a {
     --bs-pagination-padding-y: 0.375rem
   }
   
-
+  #textCarrerDetails{
+    text-align: justify;
+    font-size: small;
+  }
 }
 
 
@@ -193,7 +196,11 @@ li.page-item a {
     margin: 0;
     background-position: center center;
   }
-  
+  #textCarrerDetails{
+    justify-content: center;
+
+    font-size: small;
+  }
 
 }
 .info{

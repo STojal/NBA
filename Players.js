@@ -140,12 +140,17 @@ $(document).ready(function () {
 
         jogadores.forEach(player => {
             //console.log(player)
+            var darkmode = localStorage.getItem("darkmode_state")
+            var BacColor = 'white'
+            if (darkmode==1){
+            BacColor = 'rgb(128, 128, 128)'
+            }
             var photo = player.Photo
             if(player.Photo==null){
                 var photo = 'images/equipas.png'
             }
             $('#favourites').append(
-                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px ">' +
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px ;background-color:'+ BacColor+'">' +
                   '<div class="row g-0">' +
                     '<div class="col-md-7">' +
                       '<div class="card-body">' +
@@ -235,8 +240,13 @@ function add_player(records) {
             if(player.Photo==null){
                  photo = 'images/equipas.png'
             }
+            var darkmode = localStorage.getItem("darkmode_state")
+            var BacColor = 'white'
+            if (darkmode==1){
+            BacColor = 'rgb(128, 128, 128)'
+            }
             $('#favourites').append(
-                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px !important;">' +
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px ;background-color:'+ BacColor+'">' +
                   '<div class="row g-0">' +
                     '<div class="col-md-7">' +
                       '<div class="card-body">' +
