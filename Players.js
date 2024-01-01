@@ -145,7 +145,7 @@ $(document).ready(function () {
                 var photo = 'images/equipas.png'
             }
             $('#favourites').append(
-                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px !important;">' +
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px ">' +
                   '<div class="row g-0">' +
                     '<div class="col-md-7">' +
                       '<div class="card-body">' +

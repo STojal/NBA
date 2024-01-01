@@ -223,10 +223,11 @@ function clearoffcanvas() {
   $('#flush-collapseTwo').empty()
   $('#flush-collapseOne').empty()
 }
+// back to the page that it was previus
 function goBack() {
   window.history.back();
 }
-
+// darkmode after the ko is loaded
 window.onload = function() {
   darkmodecheck()
 };

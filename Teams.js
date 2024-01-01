@@ -141,13 +141,11 @@ $(document).ready(function () {
     if (Teams.length > 0) {
 
         Teams.forEach(Team => {
+            var logo = Team.Logo
             if (Team.Logo == null) {
-                console.log('null')
-                var logo = 'images/equipas.png'
+                logo = 'images/equipas.png'
             }
-            else {
-                var logo = Team.Logo
-            }
+
             $('#favourites').append(
 
                 '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">' +
@@ -225,6 +223,13 @@ function add_player(records) {
         console.log(Teams)
         Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
         var Team = records
+        //change the color of the card depending on the darkmode state
+        var darkmode = localStorage.getItem("darkmode_state")
+        var BacColor = 'white'
+        if (darkmode==1){
+            BacColor = 'rgb(128, 128, 128)'
+        }
+            
         $('#favourites .info').remove()
         $('#fav_div').show()
         if (Team.Logo == null) {
@@ -236,7 +241,7 @@ function add_player(records) {
         }
         $('#favourites').append(
 
-            '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">' +
+            '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;background-color: '+ BacColor+'">' +
             '<div class="imagemDivsTeams"' +
             'style="background-image: url(' + logo + ')">' +
 
