@@ -226,10 +226,10 @@ function add_player(records) {
         //change the color of the card depending on the darkmode state
         var darkmode = localStorage.getItem("darkmode_state")
         var BacColor = 'white'
-        if (darkmode==1){
+        if (darkmode == 1) {
             BacColor = 'rgb(128, 128, 128)'
         }
-            
+
         $('#favourites .info').remove()
         $('#fav_div').show()
         if (Team.Logo == null) {
@@ -241,7 +241,7 @@ function add_player(records) {
         }
         $('#favourites').append(
 
-            '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;background-color: '+ BacColor+'">' +
+            '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;background-color: ' + BacColor + '">' +
             '<div class="imagemDivsTeams"' +
             'style="background-image: url(' + logo + ')">' +
 
@@ -263,7 +263,7 @@ function add_player(records) {
         );
         //console.log(Team)
 
-    
+
         alert("Team adicionado aos favoritos")
     }
     else {
@@ -318,9 +318,12 @@ $("#tags").on("input", function () {
                 var filteredAutocomplete = autocomplete.filter(function (item) {
                     return item.Name.toLowerCase().includes(term);
                 });
+                if (filteredAutocomplete.length == 0){
+                    filteredAutocomplete =["Error"]
+
+                }
 
                 response(filteredAutocomplete);
-                console.log("aaaa")
             },
             autoFocus: true,
             minLength: 1,
@@ -341,7 +344,6 @@ $("#tags").on("input", function () {
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
-
             if (item.Name != undefined) {
                 return $("<li>")
                     .attr("data-value", item.Name)

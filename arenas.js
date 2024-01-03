@@ -277,6 +277,10 @@ $("#tags").on("input", function () {
                 var filteredAutocomplete = autocomplete.filter(function (item) {
                     return item.Name.toLowerCase().includes(term);
                 });
+                if (filteredAutocomplete.length == 0){
+                    filteredAutocomplete =["Error"]
+
+                }
                 response(filteredAutocomplete);
             },
             autoFocus: true,
