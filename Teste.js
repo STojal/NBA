@@ -4,7 +4,7 @@ $(document).ready(function () {
     var parametros = url.split("&")
     var search = parametros[1].split("=")[1]
     console.log(search)
-    urlcompost = 'http://192.168.160.58/NBA/api/Search?q='+search +'&page=1&pagesize=20'
+    urlcompost = 'http://192.168.160.58/NBA/api/Search?q='+search +'&page=1&pagesize=10'
     ajaxHelper(urlcompost, 'GET').done(function (data) {
         autocomplete = data
         console.log(autocomplete)

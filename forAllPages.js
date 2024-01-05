@@ -33,11 +33,17 @@ darkmodeToggle.addEventListener('change', function () {
     $('.modal-content').css('color', ' white')
     $('body').css('background-color', 'hsl(0, 1%, 14%)')
     $('.accordion-item').css('--bs-accordion-btn-bg', 'rgb(40, 40, 40)')
+    $('.accordion').css('--bs-accordion-bg','black')
+    $('.accordion').css('--bs-accordion-color','white')
+    $('.list-group-item').css('background-color','gray')
+
     $('.accordion-item').css('--bs-accordion-btn-color', 'white')
     $('.estatistics').css('background-color', ' rgb(14, 46, 97)')
     $('.estatistics').css('color', 'cyan')
     $('table').removeClass()
     $('table').addClass("table table-dark table-striped")
+    $('.nav').removeClass("navbar navbar-expand-lg navbar-light bg-light")
+    $('.nav').addClass("navbar navbar-expand-lg navbar-dark bg-dark")
 
 
 
@@ -71,6 +77,11 @@ darkmodeToggle.addEventListener('change', function () {
     $('.estatistics').css('color', 'black')
     $('table').removeClass()
     $('table').addClass("table table-striped table-sm small")
+    $('.nav').removeClass("navbar navbar-expand-lg navbar-dark bg-dark")
+    $('.nav').addClass("navbar navbar-expand-lg navbar-light bg-light")
+    $('.accordion').css('--bs-accordion-bg','white')
+    $('.accordion').css('--bs-accordion-color','black')
+    $('.list-group-item').css('background-color','')
 
 
     darkmode_state = 0
@@ -260,6 +271,9 @@ function darkmodecheck() {
     $('.estatistics').css('color', 'cyan')
     $('table').removeClass()
     $('table').addClass("table table-dark table-striped")
+    $('.accordion').css('--bs-accordion-bg','black')
+    $('.accordion').css('--bs-accordion-color','white')
+    $('.list-group-item').css('background-color','gray')
 
 
 
@@ -272,7 +286,9 @@ function darkmodecheck() {
     $('#staticBackdrop').css('color', ' black')
     $('.modal-content').css('background-color', ' white')
     $('.modal-content').css('color', ' black')
-
+    $('.nav').removeClass("navbar navbar-expand-lg navbar-dark bg-dark")
+    $('.nav').addClass("navbar navbar-expand-lg navbar-light bg-light")
+    
 
 
 
