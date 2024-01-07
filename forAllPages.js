@@ -246,6 +246,7 @@ function darkmodecheck() {
   if (darkmode_state == 1) {
     background.style.color = 'rgb(192,192,192)';
     darkmode_state = 1
+    $('#darkmode-toggle').prop('checked',true);
     $('nav').removeClass("navbar navbar-expand-lg navbar-light bg-light")
     $('nav').addClass("navbar navbar-expand-lg navbar-dark bg-dark")
     $('.nav').removeClass("navbar-light bg-light")
