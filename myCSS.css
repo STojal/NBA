@@ -177,14 +177,14 @@ li.page-item a {
 
   }
   .podium__city{
-    font-size: small;
+    font-size: x-small;
   }
  
   .pagination{
     display: flex;
     justify-content: center;
-    --bs-pagination-padding-x: 0.20rem;
-    --bs-pagination-padding-y: 0.375rem
+    --bs-pagination-padding-x: 0.01rem;
+    --bs-pagination-padding-y: 0.2rem
   }
   
   .imagemDivsPlayers {
@@ -197,11 +197,16 @@ li.page-item a {
     background-position: center center;
   }
   #textCarrerDetails{
+    width: 100% !important;
+    display: inline-flex;
+    
     justify-content: center;
-
-    font-size: small;
+    
+    font-size: x-small;
   }
-
+  body{
+    margin-bottom: 100px;
+  }
 }
 .info{
   border: 1px solid;
@@ -215,6 +220,7 @@ li.page-item a {
   background-color: #BDE5F8;
   background-image: url('https://i.imgur.com/ilgqWuX.png');
 }
+
 
 
 

@@ -34,11 +34,11 @@ var options1 = {
 function drawChart() {
     // Create our data table.
     var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Edição'); // Implicit domain label col.
-    data.addColumn('number', 'Players'); // Implicit series 1 data col.
+    data.addColumn('string', 'Edição'); 
+    data.addColumn('number', 'Players'); 
     var RegularSeason = new google.visualization.DataTable();
-    RegularSeason.addColumn('string', 'Regular seasons'); // Implicit domain label col.
-    RegularSeason.addColumn('number', 'Players'); // Implicit series 1 data col.
+    RegularSeason.addColumn('string', 'Regular seasons'); 
+    RegularSeason.addColumn('number', 'Players'); 
     ajaxHelper(composedUri, 'GET').done(function (stats) {
         // Interact with the data returned
         $.each(stats, function (index, item) {
@@ -50,7 +50,7 @@ function drawChart() {
                 RegularSeason.addRow([item.Season, val]);
             }
         })
-        // Instantiate and draw our chart, passing in some options.
+        // Instantiate and draw our chart  passing in some options.
 
         var chart = new google.charts.Bar(document.getElementById('chart_div'));
         var Outro = new google.charts.Bar(document.getElementById('chart_div1'));

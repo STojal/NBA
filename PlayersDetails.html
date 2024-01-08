@@ -157,10 +157,9 @@
                                         
 
                                         <div class="col-4">Country</div>
-                                        <div class="col-8">
-                                            <a class="nav-link link-hover"
-                                                data-bind="text: CountryName, attr: { href:'./CountryDetails.html?id=' + CountryId }"
-                                                title="Show Country Details"></a>
+                                        <div class="col-8" data-bind="text: CountryName">
+
+                                            
                                         </div>
                                     </div>
                                     <div class="row" data-bind="visible: PositionName() != '' && PositionName() != null">

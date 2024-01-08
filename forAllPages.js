@@ -121,7 +121,7 @@ function offcanvas() {
                <div class="card">
                <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
                <h5 class="card-title">${arena.Name}</h5>
-               <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
+               <p class="card-text"><strong>State:</strong> <a href="./statesDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
                <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
                <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
                <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
@@ -161,11 +161,11 @@ function offcanvas() {
         '<div class="card-body">' +
         '<h5 class="card-title">' + player.Name + '</h5>' +
         '<p class="card-text">' +
-        '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+        player.CountryName + 
         '</p>' +
         '<p class="card-text">' +
         '<small class="text-body-secondary">' +
-        '<a href="./positionDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+        '<a href="./positionsDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
         '</small>' +
         '</p>' +
         '<div class="fixed">' +

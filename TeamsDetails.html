@@ -104,7 +104,7 @@
                         </h2>
                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-                            
+
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -117,7 +117,7 @@
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-                       
+
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -130,14 +130,14 @@
                         </h2>
                         <div id="flush-collapseTree" class="accordion-collapse collapse"
                             data-bs-parent="#accordionFlushExample">
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container" >
+        <div class="container">
             <div class="py-2 border-bottom mb-3">
                 <div id="favestado">
                     <a href="#" class="estatistics btn btn-default btn-sm small" onclick="goBack()"
@@ -159,6 +159,7 @@
                 <div class="col-2">Acronym</div>
                 <div class="col-10" data-bind="text: Acronym"></div>
             </div>
+            <!--ko ifnot: ConferenceId() === null -->
             <div class="row border-bottom g-2">
                 <div class="col-2">Conference Name</div>
 
@@ -171,6 +172,8 @@
 
 
             </div>
+            <!--/ko-->
+            <!--ko ifnot: DivisionId() === null -->
             <div class="row border-bottom g-2">
                 <div class="col-2">Division Name</div>
                 <div class="col-10"><a class="nav-link link-hover"
@@ -182,6 +185,8 @@
                 </div>
 
             </div>
+            <!--/ko-->
+            <!--ko ifnot: StateId() === null -->
             <div class="row border-bottom g-2">
                 <div class="col-2">State</div>
                 <div class="col-10"><a class="nav-link link-hover"
@@ -190,6 +195,7 @@
 
                 </div>
             </div>
+            <!--/ko-->
             <div class="row border-bottom g-2">
                 <div class="col-2">City</div>
                 <div class="col-10" data-bind="text: City"></div>
@@ -205,10 +211,12 @@
                     </a><!--/ko-->
                 </div>
             </div>
+            <!--ko ifnot: History() === null -->
             <div class="row border-bottom g-2">
                 <div class="col-2">History</div>
                 <div class="col-10" data-bind="text: History"></div>
             </div>
+            <!--/ko-->
 
 
             <ul class="nav nav-tabs" id="myTabs">
@@ -224,7 +232,7 @@
 
             </ul>
 
-            <div class="tab-content" >
+            <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab1">
                     <div data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
                         <div style="height: 440px; overflow-y: auto;">
@@ -262,37 +270,40 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="getPlayersseason(2022)">
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                    onclick="getPlayersseason(2022)">
                                     2022-23
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse "
                                 data-bs-parent="#accordionExample">
-                                
+
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="getPlayersseason(2021)">
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                                    onclick="getPlayersseason(2021)">
                                     2021-22
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionExample">
-                             
+
                             </div>
                         </div>
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"onclick="getPlayersseason(2020)">
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                                    onclick="getPlayersseason(2020)">
                                     2020-21
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionExample">
-                                
+
                             </div>
                         </div>
                     </div>
