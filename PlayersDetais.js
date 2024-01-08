@@ -167,15 +167,18 @@ function statiplayer() {
             console.log(item)
             var val = (item.Rank)
             if (item.SeasonType == "Regular Season") {
-                $('#rankregular').append('<li><a>' + item.Season + '</a>' + ':' + val + '</li>')
+                var seasonId = item.Season
+                seasonIdId = seasonId.split('-')[0]
+                
+                $('#rankregular').append('<li>Detalhes  <a href="PlayerSeasonDetails.html?'+seasonIdId +'&'+ idplayer+'">' + item.Season + '</a>' + ' Rank:' + val + '</li>')
             }
             else {
                 if (count == 0) {
                     $('#ranksPlayer').append('<h5><b>Ranking do jogador nos Playoffs</b></h5><ol id="rankPlayoffs"></ol>')
-                    $('#rankPlayoffs').append('<li><a>' + item.Season + '</a>' + ':' + val + '</li>')
+                    $('#rankPlayoffs').append('<li><a>' + item.Season + '</a>' + ' Rank:' + val + '</li>')
                     count += 1
                 } else {
-                    $('#rankPlayoffs').append('<li><a>' + item.Season + '</a>' + ':' + val + '</li>')
+                    $('#rankPlayoffs').append('<li><a>' + item.Season + '</a>' + ' Rank: ' + val + '</li>')
                 }
 
             }
