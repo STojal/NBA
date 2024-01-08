@@ -251,6 +251,7 @@ function Remove_player(records) {
     $('#favourite_' + records).closest('.col-md-4').remove();
     
 }
+//search
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
     if (inputValue.length < 2) {
