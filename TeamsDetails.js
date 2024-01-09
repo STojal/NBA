@@ -29,9 +29,9 @@ var vm = function () {
     self.City = ko.observable('');
     self.Logo = ko.observable('');
     self.History = ko.observable('');
-    self.Seasons = ko.observable('');
-    self.Players = ko.observable('');
-
+    self.Seasons =ko.observableArray([]);
+    self.Players = ko.observableArray([]);
+    self.ReverseSeasons = ko.observableArray([]);
 
     //--- Page Events
     self.activate = function (id) {
@@ -59,6 +59,7 @@ var vm = function () {
             self.History(data.History);
             self.Seasons(data.Seasons);
             self.Players(data.Players);
+            self.ReverseSeasons((data.Seasons).reverse())
 
         });
     };
@@ -204,15 +205,9 @@ function add_player() {
 };
 function getPlayersseason(idSeason) {
     //adciona o accordion dependendo da season
-    if (idSeason == 2022) {
-        var appednto = "#collapseOne"
-    }
-    else if (idSeason == 2021) {
-        var appednto = "#collapseTwo"
-    }
-    else if (idSeason == 2020) {
-        var appednto = "#collapseThree"
-    }
+
+    var appednto = "#collaps_"+idSeason
+    
 
     var text = $('#titleTeam').text()
     text = text.split('[')[1]
