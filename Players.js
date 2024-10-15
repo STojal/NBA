@@ -12,6 +12,7 @@ var vm = function () {
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.Photo = ko.observable('');
+    self.SetFavourites = ko.observable('')
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
@@ -60,9 +61,14 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             self.Photo(data.Photo);
-            //self.SetFavourites();
+            self.SetFavourites(data.Records)
+            console.log(self.SetFavourites())
+
+
         });
     };
+
+
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -124,17 +130,265 @@ var vm = function () {
     }
     console.log("VM initialized!");
 };
-
+//adciona o cimo da pagina
 $(document).ready(function () {
+    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+    $('#fav_div').show()
+
+    // console.log("fafaf" + jogadores.length)
+    if (jogadores.length > 0) {
+
+        jogadores.forEach(player => {
+            //console.log(player)
+            var darkmode = localStorage.getItem("darkmode_state")
+            var BacColor = 'white'
+            if (darkmode==1){
+            BacColor = 'rgb(128, 128, 128)'
+            }
+            var photo = player.Photo
+            if(player.Photo==null){
+                var photo = 'images/equipas.png'
+            }
+            $('#favourites').append(
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px ;background-color:'+ BacColor+'">' +
+                  '<div class="row g-0">' +
+                    '<div class="col-md-7">' +
+                      '<div class="card-body">' +
+                        '<h5 class="card-title">' + player.Name + '</h5>' +
+                        '<p class="card-text">' +
+                          '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+                        '</p>' +
+                        '<p class="card-text">' +
+                          '<small class="text-body-secondary">' +
+                            '<a href="./positionsDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+                          '</small>' +
+                        '</p>' +
+                        '<div class="fixed">' +
+                          '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
+                          '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;" onclick="Remove_player(' + player.Id + ')">' +
+                            '<i class="fa-solid fa-trash" id="favourite_' + player.Id + '" title="Remove to favorites"></i>' +
+                          '</button>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
+                  '</div>' +
+                '</div>'
+              );
+        });
+
+    }
+    else{
+        $('#favourites').append(`
+            <div class="info">Nenhuma Jogador nos favoritos</div>
+
+            `)
+
+    }
+
+    
+
+
     console.log("ready!");
     ko.applyBindings(new vm());
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+//add player to fav
+function add_player(records) {
+
+    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+    
 
 
+    count = 0
+    for (let key in jogadores) {
 
+        if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key]) === JSON.stringify(records)) {
+            count = 1
 
+        }
+    }
+    console.log(count)
+    if (count === 0) {
 
+        jogadores.push(records);
+        console.log(jogadores)
+        jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
+        player = records
+        $('#fav_div').show()
+        $('#favourites .info').remove()
+        var photo = player.Photo
+            if(player.Photo==null){
+                 photo = 'images/equipas.png'
+            }
+            var darkmode = localStorage.getItem("darkmode_state")
+            var BacColor = 'white'
+            if (darkmode==1){
+            BacColor = 'rgb(128, 128, 128)'
+            }
+            $('#favourites').append(
+                '<div class="card mb-3" style="max-width: 400px; margin-right: 5px; margin-bottom: 5px ;background-color:'+ BacColor+'">' +
+                  '<div class="row g-0">' +
+                    '<div class="col-md-7">' +
+                      '<div class="card-body">' +
+                        '<h5 class="card-title">' + player.Name + '</h5>' +
+                        '<p class="card-text">' +
+                          '<a href="./countryDetails.html?id=' + player.CountryId + '" class="nav-link">' + player.CountryName + '</a>' +
+                        '</p>' +
+                        '<p class="card-text">' +
+                          '<small class="text-body-secondary">' +
+                            '<a href="./positionsDetails.html?id=' + player.PositionId + '" class="nav-link">' + player.PositionName + '</a>' +
+                          '</small>' +
+                        '</p>' +
+                        '<div class="fixed">' +
+                          '<a href="./PlayersDetails.html?id=' + player.Id + '" class="btn btn-primary">Show Details</a>' +
+                          '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;" onclick="Remove_player(' + player.Id + ')">' +
+                            '<i class="fa-solid fa-trash" id="favourite_' + player.Id + '" title="Remove to favorites"></i>' +
+                          '</button>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="imagemDivsPlayers col-md-5" style="background-image: url(\'' + photo + '\')"></div>' +
+                  '</div>' +
+                '</div>'
+              );
+        alert("Jogador adicionado aos favoritos")
+    }
+    else {
+        alert("Jogador já nos favoritos")
+    }
+
+};
+//remove player from fav
+function Remove_player(records) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log(records)
+    var jogadores = JSON.parse(localStorage.getItem("jogadores")) || [];
+    for (let key in jogadores) {
+        if (jogadores.hasOwnProperty(key) && JSON.stringify(jogadores[key].Id) === JSON.stringify(records)) {
+            console.log('key: ' + key);
+            jogadores.splice(key, 1);
+            console.log(jogadores);
+            break;
+        }
+    }
+    jogadores = localStorage.setItem("jogadores", JSON.stringify(jogadores))
+    alert("Jogador removido dos favoritos")
+    location.reload();
+}
+//autocomplete
+$("#tags").on("input", function () {
+    var inputValue = $(this).val();
+    if (inputValue.length < 2) {
+        $("#ui-id-1").empty();
+        localStorage.setItem("AutoconpletePlayers", JSON.stringify([]))
+
+    }
+    else if (inputValue.length == 2) {
+        url = 'http://192.168.160.58/NBA/api/Players/Search?q=' + $("#tags").val();
+        console.log('CALL: getAutocomplete...');
+        ajaxHelper(url, 'GET').done(function (data) {
+            autocomplete = data
+            localStorage.setItem("AutoconpletePlayers", JSON.stringify(autocomplete))
+        });
+    }
+
+    var autocomplete = JSON.parse(localStorage.getItem("AutoconpletePlayers")) || [];
+
+    if (autocomplete.length != 0) {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                var term = request.term.toLowerCase();
+                var filteredAutocomplete = autocomplete.filter(function (item) {
+                    return item.Name.toLowerCase().includes(term);
+                });
+                if (filteredAutocomplete.length == 0){
+                    filteredAutocomplete =["Error"]
+
+                }
+                response(filteredAutocomplete);
+            },
+            autoFocus: true,
+            minLength: 0,
+            open: function () {
+                darkmodestate = localStorage.getItem("darkmode_state")
+
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+                if (darkmodestate == 1) {
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "gray",
+                    });
+                }
+                else{
+                    $(".ui-autocomplete:visible").css({
+                        backgroundColor: "white",
+                    });
+                }
+            },
+
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+
+            if (item.Name != undefined){
+                return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<a href="./PlayersDetails.html?id=' + item.Id + '">' + item.Name + ' <a>')
+                    .appendTo(ul);
+            }
+                else{
+                    return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<span>Player not found</span>')
+                    .appendTo(ul);
+                }
+
+        };
+    }
+    else {
+        $("#tags").autocomplete({
+            source: function (request, response) {
+                response([{ label: "Player not found" }]);
+            },
+            autoFocus: true,
+            open: function () {
+                $(".ui-autocomplete:visible").css({ top: "+=20" });
+            },
+
+        })
+    }
+})
+function ajaxHelper(uri, method, data) {
+    return $.ajax({
+        type: method,
+        url: uri,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: data ? JSON.stringify(data) : null,
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX Call[" + uri + "] Fail...");
+        }
+    })
+}
+$(window).scroll(function() {
+    if($('.ui-autocomplete').length != 0){
+        $('.ui-autocomplete').hide()
+    }
+});

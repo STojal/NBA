@@ -1,11 +1,11 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA Arena Details</title>
+    <title>ITW 2023/24 - NBA Arenas List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -14,14 +14,19 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="myCSS.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
         integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
+        integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="Podiums.css">
 </head>
 
 <body>
-    <div class="background" >
+    <div class="background">
         <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
@@ -48,9 +53,10 @@
                                     class="fa fa-user-o text-primary"></i> Players</a></li>
                         <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
                                     class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                                    <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
-                                        Favourites
-                                    </a></li>
+                        <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas"
+                                data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
+                                Favourites
+                            </a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Auxiliary Tables</a>
@@ -76,13 +82,19 @@
                         </li>
                     </ul>
 
-                    
+                    <div class="ui-widget">
+                        <label for="tags"></label>
+                        <input id="tags" placeholder="Pesquise por um jogador">
+
+
+                    </div>
 
                 </div>
             </div>
         </nav>
-        <!-- Work Area-->
-        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+        <!-- Working Area -->
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+            aria-labelledby="staticBackdropLabel">
 
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Favourites</h5>
@@ -133,90 +145,44 @@
                 </div>
             </div>
         </div>
-
-        <div class="container">
-
-
-        </div>
-
-
-
-        <div class="container">
-            <div class="py-2 border-bottom mb-3">
-                <h2 data-bind="text:Name() "></h2>
-            </div>
-            <!-- ko if:Name().length > 0 -->
-            <div class="row border-bottom g-2">
-                <div class="col-2">Arena Id</div>
-                <div class="col-10" data-bind="text: Id"></div>
-            </div>
-            <!--/ko-->
-            <div class="row border-bottom g-2">
-                <div class="col-2">Name</div>
-                <div class="col-10" data-bind="text: Name"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">State</div>
-
-                <div class="col-10"><a class="nav-link" data-bind="text:StateName, attr: { href:'./StatesDetails.html?id=' + ko.toJSON(StateId).slice(1,-1) }" title="Show State Details"></a></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Team</div>
-                <div class="col-10"><a class="nav-link"
-                    data-bind="attr: { href:'./TeamsDetails.html?id=' + ko.toJSON(TeamId)+ '&acronym=' + ko.toJSON(TeamAcronym).slice(1,-1) }, text: TeamName"
-                        title="Show Team Details"></a></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Location</div>
-                <div class="col-10" data-bind="text: Location"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Lat</div>
-                <div class="col-10" data-bind="text: Lat"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Lon </div>
-                <div class="col-10" data-bind="text: Lon"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Capacity</div>
-                <div class="col-10" data-bind="text: Capacity"></div>
-            </div>
-            <!--ko ifnot: Opened()=== null -->
-            <div class="row border-bottom g-2">
-                <div class="col-2">Opened</div>
-                <div class="col-10" data-bind="text: Opened"></div>
-            </div>
-            <!-- /ko-->
-            <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
-                <div class="col-2">Photo</div>
-
-                <div class="small col-10">
-                    <a class="link-dark text-decoration-none link-hover"
-                                data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
-                                <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
-                            </a>
+        <div class="container row"  style="width: 100%;">
+            <div class="row">
+                <div class="py-2 text-center mb-3">
+                <h1>The top 5 players from the past 5 seasons</h1>
+                <a href="#" class="estatistics btn btn-default btn-sm small col-4" onclick="goBack()" >
+                    <i class="fa fa-list"></i> Back to Previus page
+                  </a>
                 </div>
-            </div>
-            <a href="#" class="estatistics btn btn-default btn-sm small" onclick="goBack()" style="margin-bottom: 40px;">
-                <i class="fa fa-list"></i> Back to Previus page
-              </a>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            <img src="images/logo site.png" height="30" /> Loading data...
-                        </h5>
+                
+                <div class="row">
+                    <div class="col-4">
+                      <div id="list-example" class="list-group position-fixed ">
+                        <a class="list-group-item list-group-item-action" href="#list-item-1" id="item0Title"></a>
+                        <a class="list-group-item list-group-item-action" href="#list-item-2" id="item1Title"></a>
+                        <a class="list-group-item list-group-item-action" href="#list-item-3" id="item2Title"></a>
+                        <a class="list-group-item list-group-item-action" href="#list-item-4" id="item3Title"></a>
+                        <a class="list-group-item list-group-item-action" href="#list-item-5" id="item4Title"></a>
+                      </div>
                     </div>
-                    <div class="modal-body text-center">
-                        <i class="fa fa-spin fa-3x fa-refresh"></i>
+                    <div class="col-8">
+                      <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                        <h4 id="list-item-1"></h4>
+
+                        <h4 id="list-item-2"></h4>
+
+                        <h4 id="list-item-3"></h4>
+
+                        <h4 id="list-item-4"></h4>
+                        <h4 id="list-item-5"></h4>
+
+                      </div>
                     </div>
-                </div>
-            </div>
+                  </div>
+                
+
+
+
+
         </div>
         <!-- End of Work Area -->
         <nav class="navbar navbar-light bg-light fixed-bottom">
@@ -232,18 +198,18 @@
             </div>
         </nav>
     </div>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
-            integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
-        <script src="arenaDetails.js"></script>
-        <script src="forAllPages.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
+        integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <script src="Top5LastSeasons.js"></script>
+    <script src="forAllPages.js"></script>
+    </div>
 </body>
 
 </html>

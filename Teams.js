@@ -1,19 +1,22 @@
-﻿// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Arenas');
-    self.displayName = 'NBA Arenas List';
+    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Teams');
+    self.displayName = 'NBA Teams List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
+    self.Id = ko.observableArray("");
+    self.Acronym = ko.observableArray("");
+    self.Name = ko.observableArray("");
+    self.Logo = ko.observable("");
+    self.SetFavourites = ko.observable("")
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
-    self.SetFavourites = ko.observable('')
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -45,22 +48,28 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getArenas...');
+        console.log('CALL: getTeams...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
+            self.Id(data.Id);
+            self.Acronym(data.Acronym);
+            self.Name(data.Name);
+            self.Logo(data.Logo);
             self.records(data.Records);
-            var recoords_data = self.records();
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            //criarmapa(recoords_data)
+
+
         });
     };
+
+
 
 
     //--- Internal functions
@@ -98,7 +107,6 @@ var vm = function () {
     }
 
     function getUrlParameter(sParam) {
-
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -106,6 +114,7 @@ var vm = function () {
         console.log("sPageURL=", sPageURL);
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
+
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
             }
@@ -123,75 +132,86 @@ var vm = function () {
     }
     console.log("VM initialized!");
 };
-
 $(document).ready(function () {
-    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
-    
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
+    $('#fav_div').show()
 
-    // adciona arenas aos favouritos
-    if (arenas.length > 0) {
+    //show the favs 
 
-        arenas.forEach(arena => {
-            //console.log(arena)
-            $('#favourites').append(`
-            <div class="col-md-4 mb-4">
-            <div class="card">
-            <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
-            <h5 class="card-title">${arena.Name}</h5>
-            <p class="card-text"><strong>State:</strong> <a href="./statesDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
-            <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
-            <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
-            <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
-            <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-            onclick="Remove_player(${arena.Id})">
-            <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
-            </button>
-            </div>
-            </div>
+    if (Teams.length > 0) {
 
-  `)
-        });
+        Teams.forEach(Team => {
+            var logo = Team.Logo
+            if (Team.Logo == null) {
+                logo = 'images/equipas.png'
+            }
 
-    }
-    else{
+            $('#favourites').append(
+
+                '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;">' +
+                '<div class="imagemDivsTeams"' +
+                'style="background-image: url(' + logo + ')">' +
+
+                '</div>' +
+
+                '<div class="card-body">' +
+                '<h5 class="card-title">' + Team.Name + '</h5>' +
+                '<p class="card-text">' +
+                '<strong>Acronym:</strong><span>' + Team.Acronym + '</span> <br>' +
+                '</p>' +
+                '<a  class="btn btn-primary"' +
+                'href="./TeamsDetails.html?id=' + Team.Id + '&acronym=' + Team.Acronym + '">Show Details</a>' +
+                '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"' +
+                'onclick="Remove_player(' + Team.Id + ')">' +
+                '<i class="fa-solid fa-trash" id="favourite_' + Team.Id + '" title="Remove to favorites" ></i>' +
+                '</button>' +
+                '</div>' +
+                '</div>'
+            );
+            //console.log(Team)
+
+        })
+    } else {
         $('#favourites').append(`
-            <div class="info">Nenhuma arena nos favoritos</div>
+            <div class="info">Nenhuma Team nos favoritos</div>
 
             `)
 
     }
 
+
+
+
+
+
+
+
+
+
+
     console.log("ready!");
     ko.applyBindings(new vm());
-
-
-
-
-
-
-
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-
 })
 
 
 
 
 
-//add palyer to fav
+//add to fav and append is to the start of the page
 function add_player(records) {
 
-    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
 
 
 
     count = 0
-    for (let key in arenas) {
+    for (let key in Teams) {
 
-        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key]) === JSON.stringify(records)) {
+        if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key]) === JSON.stringify(records)) {
             count = 1
 
         }
@@ -199,82 +219,102 @@ function add_player(records) {
     console.log(count)
     if (count === 0) {
 
-        arenas.push(records);
-        console.log(arenas)
-        arenas = localStorage.setItem("arenas", JSON.stringify(arenas))
-        arena = records
+        Teams.push(records);
+        console.log(Teams)
+        Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
+        var Team = records
+        //change the color of the card depending on the darkmode state
+        var darkmode = localStorage.getItem("darkmode_state")
+        var BacColor = 'white'
+        if (darkmode == 1) {
+            BacColor = 'rgb(128, 128, 128)'
+        }
+
         $('#favourites .info').remove()
         $('#fav_div').show()
-        $('#favourites').append(`
-        <div class="col-md-4 mb-4">
-        <div class="card">
-        <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
-        <h5 class="card-title">${arena.Name}</h5>
-        <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
-        <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
-        <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
-        <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
-        <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-        onclick="Remove_player(${arena.Id})">
-        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
-        </button>
-        </div>
-        </div>
-        </div>`);
-        alert("Arenas adicionado aos favoritos")
+        if (Team.Logo == null) {
+            console.log('null')
+            var logo = 'images/equipas.png'
+        }
+        else {
+            var logo = Team.Logo
+        }
+        $('#favourites').append(
+
+            '<div class="card" style="width: 15rem; margin-right: 5px; margin-bottom: 5px;background-color: ' + BacColor + '">' +
+            '<div class="imagemDivsTeams"' +
+            'style="background-image: url(' + logo + ')">' +
+
+            '</div>' +
+
+            '<div class="card-body">' +
+            '<h5 class="card-title">' + Team.Name + '</h5>' +
+            '<p class="card-text">' +
+            '<strong>Acronym:</strong><span>' + Team.Acronym + '</span> <br>' +
+            '</p>' +
+            '<a  class="btn btn-primary"' +
+            'href="./TeamsDetails.html?id=' + Team.Id + '&acronym=' + Team.Acronym + '">Show Details</a>' +
+            '<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"' +
+            'onclick="Remove_player(' + Team.Id + ')">' +
+            '<i class="fa-solid fa-trash" id="favourite_' + Team.Id + '" title="Remove to favorites" ></i>' +
+            '</button>' +
+            '</div>' +
+            '</div>'
+        );
+        //console.log(Team)
+
+
+        alert("Team adicionado aos favoritos")
     }
     else {
-        alert("Arenas já nos favoritos")
+        alert("Team já nos favoritos")
     }
 
 };
-//remove player 
+//remove player
 function Remove_player(records) {
-    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
 
-    for (let key in arenas) {
-        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key].Id) === JSON.stringify(records)) {
-            arenas.splice(key, 1);
-            break;
+    var Teams = JSON.parse(localStorage.getItem("Teams")) || [];
+    for (let key in Teams) {
+        console.log('key' + key)
+        if (Teams.hasOwnProperty(key) && JSON.stringify(Teams[key].Id) === JSON.stringify(records)) {
+            Teams.splice(key, 1);
+            console.log(Teams)
+            break
+
         }
     }
-    if (arenas.length === 0){
-        $('#favourites').append(`
-        <div class="info">Nenhuma Team nos favoritos</div>
-
-        `)
-    }
-    arenas = localStorage.setItem("arenas", JSON.stringify(arenas));
-    alert("Arena removido dos favoritos");
-
-    // Remove the corresponding HTML element from the page
-    $('#favourite_' + records).closest('.col-md-4').remove();
-    
+    Teams = localStorage.setItem("Teams", JSON.stringify(Teams))
+    alert("Team removido dos favoritos")
+    location.reload();
 }
-//search
+//autocomplete 
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
+    //empty until lenght >2 
+
     if (inputValue.length < 2) {
         $("#ui-id-1").empty();
-        localStorage.setItem("Autoconplete", JSON.stringify([]))
+        localStorage.setItem("AutoconpleteTeams", JSON.stringify([]))
 
     }
+    //call api 
     else if (inputValue.length == 2) {
-        url = 'http://192.168.160.58/NBA/api/Arenas/Search?q=' + $("#tags").val();
+        url = 'http://192.168.160.58/NBA/api/Teams/Search?q=' + $("#tags").val();
         console.log('CALL: getAutocomplete...');
         ajaxHelper(url, 'GET').done(function (data) {
             autocomplete = data
-            localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
+            localStorage.setItem("AutoconpleteTeams", JSON.stringify(autocomplete))
         });
     }
 
-    var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
-    console.log(autocomplete.length != 0)
+    var autocomplete = JSON.parse(localStorage.getItem("AutoconpleteTeams")) || [];
     if (autocomplete.length != 0) {
+
         $("#tags").autocomplete({
-            
             source: function (request, response) {
                 var term = request.term.toLowerCase();
+
                 var filteredAutocomplete = autocomplete.filter(function (item) {
                     return item.Name.toLowerCase().includes(term);
                 });
@@ -282,12 +322,12 @@ $("#tags").on("input", function () {
                     filteredAutocomplete =["Error"]
 
                 }
+
                 response(filteredAutocomplete);
             },
             autoFocus: true,
-            minLength: 0,
+            minLength: 1,
             open: function () {
-
                 darkmodestate = localStorage.getItem("darkmode_state")
 
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
@@ -296,7 +336,7 @@ $("#tags").on("input", function () {
                         backgroundColor: "gray",
                     });
                 }
-                else{
+                else {
                     $(".ui-autocomplete:visible").css({
                         backgroundColor: "white",
                     });
@@ -304,28 +344,26 @@ $("#tags").on("input", function () {
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
-
-            if (item.Name != undefined){
-            return $("<li>")
-                .attr("data-value", item.Name)
-                .append('<a href="./arenaDetails.html?id=' + item.Id + '"><span>' + item.Name + '</span> <a>')
-                .appendTo(ul);
-        }
-            else{
+            if (item.Name != undefined) {
                 return $("<li>")
-                .attr("data-value", item.Name)
-                .append('<span>Arena not found</span>')
-                .appendTo(ul);
+                    .attr("data-value", item.Name)
+                    .append('<a href="./TeamsDetails.html?id=' + item.Id + '&acronym=' + item.Acronym + '">' + item.Name + ' <a>')
+                    .appendTo(ul);
             }
-    
-    
-    };
+            else {
+                return $("<li>")
+                    .attr("data-value", item.Name)
+                    .append('<span>Team not found</span>')
+                    .appendTo(ul);
+            }
+
+        };
     }
     else {
 
         $("#tags").autocomplete({
             source: function (request, response) {
-                response([{ label: "Arena not found" }]);
+                response([{ label: "Team not found" }]);
             },
             autoFocus: true,
             open: function () {
@@ -347,9 +385,8 @@ function ajaxHelper(uri, method, data) {
         }
     })
 }
-//desabilita o autocomplete 
-$(window).scroll(function() {
-        if($('.ui-autocomplete').length != 0){
-            $('.ui-autocomplete').hide()
-        }
+$(window).scroll(function () {
+    if ($('.ui-autocomplete').length != 0) {
+        $('.ui-autocomplete').hide()
+    }
 });

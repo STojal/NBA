@@ -1,145 +1,305 @@
 ﻿<!doctype html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW - NBA Test App</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="myCSS.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
-    <style>
-        .carousel-item {
-            z-index: -100;
-            height: 640px;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>ITW - NBA Test App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="myCSS.css" />
+  <link rel="stylesheet" href="Index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css"
+    integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
 
-            .carousel-item:nth-child(1) {
-                background-image: url('https://cdn.nba.com/manage/2023/11/USATSI_21963262-784x441.jpg');
-            }
-
-            .carousel-item:nth-child(2) {
-                background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1797516862.jpg');
-            }
-
-            .carousel-item:nth-child(3) {
-                background-image: url('https://cdn.nba.com/manage/2023/11/banchero-784x441.jpg');
-            }
-
-            .carousel-item:nth-child(4) {
-                background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1730506370-1-scaled-e1700674286240-1568x882.jpg');
-            }
-
-            .carousel-item:nth-child(5) {
-                background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1790167479-1-1568x882.jpg');
-            }
-    </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="../images/NBA_logoH.png" height="24" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+  <div class="background">
+    <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png" height="24" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-caret-down"></i> Arenas</a>
+              <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
+                <li><a class="nav-link " aria-current="page" href="arenas.html"><i
+                      class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                <li><a class="dropdown-item" href="Maps.html"> Map</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="Players.html"><i
+                  class="fa fa-user-o text-primary"></i> Players</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="Teams.html"><i
+                  class="fa fa-flag-o text-danger"></i> Teams</a></li>
+                  <li class="nav-item"><a type="button" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop" onclick="offcanvas()">
+                    Favourites
+                </a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Auxiliary Tables</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
+                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
+                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
+                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
+                <li><a class="dropdown-item" href="States.html">States</a></li>
+                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
+
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav justify-content-end" id="bd-theme" style="margin-right: 20px;">
+
+            <li class="navbar-text">
+              <input type="checkbox" id="darkmode-toggle" />
+              <label for="darkmode-toggle" id="switch_mode">
+                <i class="fa-solid fa-sun"></i>
+                <i class="fa-regular fa-moon"></i>
+              </label>
+            </li>
+            <!--<li class="nav-item" style="margin-left:20px ;margin-top:5px">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-sm" type="text" name="q" placeholder="Insira o nome" id="searchId">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default btn-sm" title="Filtrar" onclick="mudapag()" ><i
+                      class="fa fa-search small"></i></button>
+                  <a href='/NBA/Arenas/Search?q=' + q class="btn btn-default btn-sm" title="Limpar o filtro"><i
+                      class="fa fa-times"></i></a>
+                </div>
+            </li>
+            Não consegui por a funcionar
+          -->
+          </ul>
+          
         </div>
+      </div>
     </nav>
     <!-- Working Area -->
-    <div class="container-xl">
-        <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel" data-bs-interval="10000">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 3"></button>~
+    <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Favourites</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+          onclick="clearoffcanvas()"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Arenas
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <!-- Your content for the "Arenas" section goes here -->
             </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>The Magic (3-1) finished their Group Play games with a dominant East C win over the Celtics.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>LeBron James and Luka Doncic waged an MVP-caliber battle on Wednesday.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>Sacramento’s Paolo Banchero has improved as a shooter and defender in Year 2.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>Jrue Holiday and Jayson Tatum have helped lead Boston to an NBA-best 11-3 record to begin the season.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="carousel-caption d-none d-md-block">
-                        <p>The Warriors have seen a massive dip in creating early offense, ranking last in transition points.</p>
-                    </div>
-                </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                Jogadores
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <!-- Your content for the "Jogadores" section goes here -->
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTree" aria-expanded="false" aria-controls="flush-collapseTree">
+                Teams
+              </button>
+            </h2>
+            <div id="flush-collapseTree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <!-- Your content for the "Teams" section goes here -->
+            </div>
+          </div>
         </div>
-        <p>
-            Cursus natoque mus, maecenas inceptos pulvinar commodo semper quis at consequat. Primis tempus potenti dictum imperdiet egestas sociosqu ridiculus congue. Arcu nostra hendrerit leo mollis duis magna mattis phasellus. Nam maecenas ultricies ligula interdum. Nisl ullamcorper torquent phasellus nascetur lobortis augue sagittis cras. Consectetur scelerisque ultrices porttitor maecenas velit augue vulputate enim. Habitant laoreet purus sed risus feugiat posuere magnis condimentum. Libero parturient tempus, augue torquent est scelerisque! Aliquet senectus adipiscing litora condimentum aliquam felis primis lacinia dictum dui porta posuere. Accumsan inceptos risus rhoncus eu facilisis aenean orci primis felis tortor facilisi iaculis. Orci mollis sagittis et facilisis mattis nulla imperdiet imperdiet luctus. Ac donec sollicitudin adipiscing velit hendrerit dolor, vel rutrum elit lacus. Nascetur orci dis inceptos et lacus aliquet varius cursus. Venenatis elit eget himenaeos egestas blandit risus leo. Elementum; elementum nam bibendum mi hac nisi tortor curae;. Penatibus blandit condimentum non volutpat a. Aenean mus diam rutrum sem magnis.
+      </div>
+    </div>
+
+    <div class="container-xl">
+      <div class="carousel">
+        <div class="progress-bar progress-bar--primary hide-on-desktop">
+          <div class="progress-bar__fill"></div>
+        </div>
+
+        <header class="main-post-wrapper">
+
+          <div class="slides">
+            <article class="main-post main-post--active">
+              <div class="main-post__image"
+                style="background-image: url('https://cdn.nba.com/manage/2023/11/USATSI_21963262-784x441.jpg');background-repeat: no-repeat;background-size:cover">
+
+              </div>
+              <div class="main-post__content">
+                <div class="main-post__tag-wrapper">
+                  <span class="main-post__tag">Estatisticas</span>
+                </div>
+                <h1 class="main-post__title">Melhores Jogadores das últiams 5 Temporadas</h1>
+                <a class="main-post__link" href="Top5LastSeasons.html">
+                  <span class="main-post__link-text">find out more</span>
+                  <svg class="main-post__link-icon main-post__link-icon--arrow" width="37" height="12"
+                    viewBox="0 0 37 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11" stroke="white" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="main-post main-post--not-active">
+              <div class="main-post__image"
+                style="background-image: url('https://cdn.nba.com/manage/2023/11/GettyImages-1797516862.jpg');background-repeat: no-repeat;background-size:cover">
+
+              </div>
+              <div class="main-post__content">
+                <div class="main-post__tag-wrapper">
+                  <span class="main-post__tag">Statistics</span>
+                </div>
+                <h1 class="main-post__title">Numero de jogadores por season</h1>
+                <a class="main-post__link" href="GraphsGoogle.html">
+                  <span class="main-post__link-text">find out more</span>
+                  <svg class="main-post__link-icon main-post__link-icon--arrow" width="37" height="12"
+                    viewBox="0 0 37 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11" stroke="white" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+            <article class="main-post main-post--not-active">
+              <div class="main-post__image"
+                style="background-image: url('https://cdn.nba.com/manage/2023/11/banchero-784x441.jpg');background-repeat: no-repeat;background-size:cover">
+
+              </div>
+              <div class="main-post__content">
+                <div class="main-post__tag-wrapper">
+                  <span class="main-post__tag">Noticias</span>
+                </div>
+                <h1 class="main-post__title">Ultimo hora
+                </h1>
+                <a class="main-post__link" href="https://www.nba.com/news">
+                  <span class="main-post__link-text">find out more</span>
+                  <svg class="main-post__link-icon main-post__link-icon--arrow" width="37" height="12"
+                    viewBox="0 0 37 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 6H36.0001M36.0001 6L31.0001 1M36.0001 6L31.0001 11" stroke="white" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          </div>
+        </header>
+
+        <div class="posts-wrapper hide-on-mobile">
+          <article class="post post--active">
+            <div class="progress-bar">
+              <div class="progress-bar__fill"></div>
+            </div>
+            <header class="post__header">
+              <span class="post__tag">Estatisticas</span>
+              <p class="post__published"></p>
+            </header>
+            <h2 class="post__title">Melhores Jogadores das últiams 5 Temporadas</h2>
+          </article>
+          <article class="post">
+            <div class="progress-bar">
+              <div class="progress-bar__fill"></div>
+            </div>
+            <header class="post__header">
+              <span class="post__tag">Estatisticas</span>
+              <p class="post__published"></p>
+            </header>
+            <h2 class="post__title">Numero de Players por Tipo de seasons</h2>
+          </article>
+          <article class="post">
+            <div class="progress-bar">
+              <div class="progress-bar__fill"></div>
+            </div>
+            <header class="post__header">
+              <span class="post__tag">News</span>
+              <p class="post__published">Ao vivo</p>
+            </header>
+            <h2 class="post__title">Noticias atualizadas ao vivo
+            </h2>
+          </article>
+        </div>
+      </div>
+
+      <p></p>
+
+      <div class="row col-12 text-center">
+        <h2><b>Explore o Mundo Fascinante da NBA</b></h2>
+    
+        <p>Jogadores em Destaque: Descubra detalhes fascinantes sobre os jogadores estrela da NBA. De estatísticas de carreira a momentos inesquecíveis, oferecemos perfis abrangentes que capturam a essência de cada atleta.</p>
+    
+        <p>Equipas em Foco: Conheça as equipas que dão vida à NBA. Desde a história da equipa até as atualizações mais recentes, nosso site é o seu guia para tudo relacionado às franquias da NBA.</p>
+    
+        <p>Estações Inesquecíveis: Reviva as temporadas mais emocionantes da NBA. Com análises de jogos, destaques e estatísticas, garantimos que você não perca nenhum momento emocionante das temporadas passadas.</p>
+    
+        <p>Estatísticas Abrangentes: Mergulhe em números significativos, desde estatísticas individuais de jogadores até dados sobre equipas inteiras. Oferecemos uma visão detalhada que o ajudará a compreender o desempenho de cada jogador e equipa.</p>
+    
+        <p>Arenas e Divisões: Explore as arenas icónicas onde a magia acontece e descubra as complexidades das divisões que dão forma à competição na NBA.</p>
+    
+        <p>Posições e Tipos de Jogadores: Saiba mais sobre as posições no basquetebol e os diferentes tipos de jogadores que fazem a NBA tão diversificada e emocionante.</p>
+    
+        <p>Junte-se a Nós e Explore o Mundo da NBA como Nunca Antes onde a história é feita a cada jogo!</p>
+      </div>
+    
+      <div class="row col-12 text-center">
+        <h2><b>A História Fascinante da NBA</b></h2>
+    
+        <p>A National Basketball Association (NBA) surgiu em 1946, como a Basketball Association of America (BAA), com o objetivo de elevar o basquetebol a novos patamares de excelência e entretenimento. A fusão com a National Basketball League (NBL) em 1949 deu origem à NBA que conhecemos hoje.
         </p>
-        <p>
-            Mollis arcu class neque eros elementum tortor dictum a sociis dolor pharetra. Dignissim magna a ultrices. Purus per nulla luctus non nam fusce. Accumsan felis quisque curae; penatibus taciti praesent eget venenatis proin placerat. Fermentum vulputate aliquam blandit praesent hac nostra aptent? A leo mus sed vestibulum rutrum cubilia? Laoreet a dis tempus. Eleifend hac semper nostra suspendisse tempus suscipit primis urna! Tortor suspendisse nisl orci. Sapien dapibus taciti lobortis quam lectus et conubia. Iaculis ipsum penatibus curabitur euismod ridiculus orci, est velit sem integer cras fringilla. Fusce porta dolor tempor ornare tincidunt nascetur eu quisque nostra non. Fusce amet, cras id gravida senectus aptent ornare porta. Faucibus elit nisl nisi tellus. Neque aenean habitant cursus posuere. Fermentum etiam odio donec rutrum parturient. Massa orci velit nibh mi per facilisis neque viverra. Enim euismod, iaculis ipsum convallis quis integer habitant! Felis aliquam sodales tincidunt viverra vel tincidunt. Tortor, erat ultrices porttitor lobortis tortor venenatis risus ut imperdiet leo magnis. Proin mollis nascetur velit senectus aliquam, vulputate consequat! Posuere nostra nibh ut fermentum metus ad ac mi. Sed platea velit mus. Per elementum convallis taciti inceptos scelerisque etiam odio. Semper.
+    
+        <p>Desde então, a NBA cresceu exponencialmente, tornando-se a principal liga de basquetebol profissional do mundo. Ao longo das décadas, a liga testemunhou a ascensão de lendas como Bill Russell, Magic Johnson, Larry Bird, Michael Jordan e Kobe Bryant, que não apenas deixaram sua marca no jogo, mas também contribuíram para moldar a cultura da NBA.
         </p>
-        <p>
-            Habitant himenaeos taciti, erat dui congue. Senectus conubia leo scelerisque suscipit tempor taciti volutpat bibendum sagittis hac iaculis sem. Nisi aenean curae; lorem conubia pulvinar ante nibh molestie ridiculus faucibus hac? Nullam montes interdum, magnis integer leo nisi vitae phasellus? Viverra ultricies montes vehicula porttitor. Leo gravida magnis magnis curae; orci vivamus pharetra nibh imperdiet. Nullam sollicitudin tincidunt vivamus etiam morbi cum lacinia tellus orci varius. Curabitur in consequat metus praesent ultrices at. Dictumst sapien eu lectus, mi suscipit. Fringilla posuere lectus, cursus egestas eu habitasse. Mus diam scelerisque sem! Fringilla dui dictumst dui, nisi suscipit eros pretium sodales dapibus amet placerat tristique. Parturient id nascetur tortor. At duis lobortis ipsum, justo ullamcorper. Aliquam mus bibendum fusce taciti interdum velit eu tellus venenatis sociosqu aliquet posuere. Sit justo fringilla duis cursus nisl pellentesque curabitur volutpat eu fusce amet. Aliquam congue nullam nulla morbi purus aptent congue pellentesque leo faucibus viverra euismod. Nisl augue morbi lacus suspendisse curae; massa quis dis. Neque nullam dui nec augue litora metus tellus. Porttitor non libero torquent torquent aliquam consequat curae; inceptos sem nam. Sodales nulla nisi class.
+    
+        <p>A rivalidade eletrizante entre os Boston Celtics e o Los Angeles Lakers nas décadas de 1980 e 2000, a era dourada do Chicago Bulls liderada por Michael Jordan, e a ascensão de superastros contemporâneos como LeBron James e Stephen Curry são apenas alguns dos muitos capítulos emocionantes na história da NBA.</p>
+        <p>Hoje, a NBA continua a evoluir, incorporando novas estrelas, tecnologias inovadoras e um espírito competitivo que mantém os fãs em êxtase a cada salto, passe e cesto.Celebramos essa rica história e oferecemos uma janela para o passado, presente e futuro emocionante da NBA.
         </p>
-        <p>
-            Magna blandit blandit auctor arcu mauris lectus mattis porttitor. Quisque cursus inceptos mauris pellentesque. Feugiat curabitur ullamcorper inceptos! Dolor phasellus dictum purus, nostra neque consequat tempor parturient praesent accumsan elementum. Sociis in torquent cras. Auctor penatibus nisi senectus faucibus. Elementum id tincidunt in, sem egestas turpis et. Magnis curae; quis luctus justo aenean vivamus vestibulum litora non turpis varius. Eros class tincidunt malesuada diam nec diam fermentum fermentum vulputate. Habitasse, vulputate arcu euismod lobortis primis tortor pretium.
-        </p>
-        <p>
-            Magna diam fames fermentum molestie arcu egestas molestie vitae conubia rhoncus. Nisl euismod cras parturient lacus litora dictum facilisi cursus. Lorem himenaeos consectetur, varius lectus mi cras laoreet commodo viverra erat? Enim neque ipsum erat curae; lorem arcu. Dapibus risus aenean sapien consectetur varius morbi, sit nulla morbi neque volutpat. Phasellus molestie adipiscing, pulvinar elementum. Consectetur scelerisque dis himenaeos. Feugiat, posuere ornare lacinia. Vulputate id consequat arcu nisl viverra nec vehicula posuere sagittis taciti? Ultrices convallis sollicitudin curabitur luctus fermentum.
-        </p>
+      </div>
+    
+    </div>
     </div>
     <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light fixed-bottom">
-        <div class="container small">
-            <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2023/24</div>
-            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-            <div class="navbar-nav">
-                <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
-            </div>
-        </div>
-    </nav>
-    <
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js" integrity="sha512-YbLeROkNBfkWaL5RmVsg7G1JQp0by0pCmJgBpOfAQOPTKIchg79fVzahpg5YPUMS1+77WCcpd84OTOK0gdf8BA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <div class="container small">
+          <div class="navbar-text">&copy; Introdução as Tecnologias Web - 2023/24</div>
+          <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U  <a
+                  href="mailto:jsp@ua.pt" class="text-decoration-none text-muted"></a>.</div>
+          <div class="navbar-nav">
+              <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de
+                      Aveiro</a>
+              </div>
+          </div>
+      </div>
+  </nav>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
+    integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="forAllPages.js"></script>
+  <script src="Index.js"></script>
 </body>
+
 </html>

@@ -1,11 +1,11 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA Arena Details</title>
+    <title>ITW 2023/24 - NBA SeasonsTypes Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <div class="background" >
+    <div class="background">
         <nav class="navbar navbar-expand-lg navbar-light bg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="images/logo site.png"
@@ -34,11 +34,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                        <li class="nav-item dropdown "><a class="nav-link active" aria-current="page" id="arenasbutton"
+                        <li class="nav-item dropdown "><a class="nav-link " aria-current="page" id="arenasbutton"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
                                     class="fa-solid fa-caret-down"></i> Arenas</a>
                             <ul class="dropdown-menu" aria-labelledby="arenasbutton" id="drop">
-                                <li><a class="nav-link active" aria-current="page" href="arenas.html"><i
+                                <li><a class="nav-link " aria-current="page" href="arenas.html"><i
                                             class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                                 <li><a class="dropdown-item" href="Maps.html"> Map</a></li>
                             </ul>
@@ -54,15 +54,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">Auxiliary Tables</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
-                                <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
-                                <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
-                                <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
-                                <li><a class="dropdown-item" href="States.html">States</a></li>
-                                <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
-
-                            </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Conferences.html">Conferences</a></li>
+                                    <li><a class="dropdown-item" href="Divisions.html">Divisions</a></li>
+                                    <li><a class="dropdown-item" href="Positions.html">Player Positions</a></li>
+                                    <li><a class="dropdown-item" href="SeasonsTypes.html">Seasons Types</a></li>
+                                    <li><a class="dropdown-item" href="States.html">States</a></li>
+                                    <li><a class="dropdown-item" href="Seasons.html">Seasons</a></li>
+    
+                                </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end" id="bd-theme" >
@@ -75,13 +75,12 @@
                             </label>
                         </li>
                     </ul>
-
                     
-
                 </div>
             </div>
         </nav>
         <!-- Work Area-->
+
         <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
 
             <div class="offcanvas-header">
@@ -134,71 +133,29 @@
             </div>
         </div>
 
-        <div class="container">
-
-
-        </div>
-
-
 
         <div class="container">
             <div class="py-2 border-bottom mb-3">
                 <h2 data-bind="text:Name() "></h2>
             </div>
-            <!-- ko if:Name().length > 0 -->
-            <div class="row border-bottom g-2">
-                <div class="col-2">Arena Id</div>
-                <div class="col-10" data-bind="text: Id"></div>
-            </div>
-            <!--/ko-->
-            <div class="row border-bottom g-2">
-                <div class="col-2">Name</div>
-                <div class="col-10" data-bind="text: Name"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">State</div>
 
-                <div class="col-10"><a class="nav-link" data-bind="text:StateName, attr: { href:'./StatesDetails.html?id=' + ko.toJSON(StateId).slice(1,-1) }" title="Show State Details"></a></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Team</div>
-                <div class="col-10"><a class="nav-link"
-                    data-bind="attr: { href:'./TeamsDetails.html?id=' + ko.toJSON(TeamId)+ '&acronym=' + ko.toJSON(TeamAcronym).slice(1,-1) }, text: TeamName"
-                        title="Show Team Details"></a></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Location</div>
-                <div class="col-10" data-bind="text: Location"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Lat</div>
-                <div class="col-10" data-bind="text: Lat"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Lon </div>
-                <div class="col-10" data-bind="text: Lon"></div>
-            </div>
-            <div class="row border-bottom g-2">
-                <div class="col-2">Capacity</div>
-                <div class="col-10" data-bind="text: Capacity"></div>
-            </div>
-            <!--ko ifnot: Opened()=== null -->
-            <div class="row border-bottom g-2">
-                <div class="col-2">Opened</div>
-                <div class="col-10" data-bind="text: Opened"></div>
-            </div>
-            <!-- /ko-->
-            <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
-                <div class="col-2">Photo</div>
-
-                <div class="small col-10">
-                    <a class="link-dark text-decoration-none link-hover"
-                                data-bind="attr: { href: Photo, alt:Name, title:Name }" target="_blank">
-                                <img class="img-thumbnail" data-bind="attr:{src: Photo}" />
+            <div class="list_frame">
+                <div class="row border-bottom g-2">
+                    <span class="span_lista_de_players">Seasons:</span>
+                    <ul class="lista_de_seasons" data-bind="foreach: Seasons">
+                        <li>
+                            <a data-bind="attr: { href:'./SeasonsDetails.html?id=' + Id }">
+                                <span data-bind="text: Season"></span>
                             </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <a href="#" class="estatistics btn btn-default btn-sm small" onclick="goBack()" style="margin-bottom: 40px;">
+
+
+
+
+            <a href="#" class="estatistics btn btn-default btn-sm small" onclick="goBack()" >
                 <i class="fa fa-list"></i> Back to Previus page
               </a>
         </div>
@@ -232,18 +189,17 @@
             </div>
         </nav>
     </div>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
-            integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
-        <script src="arenaDetails.js"></script>
-        <script src="forAllPages.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-is/18.2.0/umd/react-is.production.min.js"
+        integrity="sha512-avzEQw/8oaTD541O8Lx5mlInnomZ6nD2Pd54Whil/TYnUSQwwpeCJOndjWEMSuZ7yItoLOiXVvm885FYoSrspQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js"></script>
+    <script src="SeasonsTypesDetails.js"></script>
+    <script src="forAllPages.js"></script>
 </body>
 
 </html>

@@ -1,19 +1,20 @@
-﻿// ViewModel KnockOut
+// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Arenas');
-    self.displayName = 'NBA Arenas List';
+    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Seasons');
+    self.displayName = 'Seasons List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
+    self.Height = ko.observable('');
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
+    self.Photo = ko.observable('');
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
-    self.SetFavourites = ko.observable('')
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -45,23 +46,26 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getArenas...');
+        console.log('CALL: getPlayers...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
+            var record = data.Records
+            localStorage.setItem('records', JSON.stringify(record))
+            self.Height(data.Height);
             self.records(data.Records);
-            var recoords_data = self.records();
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            //criarmapa(recoords_data)
+            self.Photo(data.Photo);
+            checkfav()
+            //self.SetFavourites();
         });
     };
-
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -98,7 +102,6 @@ var vm = function () {
     }
 
     function getUrlParameter(sParam) {
-
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -106,6 +109,7 @@ var vm = function () {
         console.log("sPageURL=", sPageURL);
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
+
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
             }
@@ -125,169 +129,123 @@ var vm = function () {
 };
 
 $(document).ready(function () {
-    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
-    
-
-    // adciona arenas aos favouritos
-    if (arenas.length > 0) {
-
-        arenas.forEach(arena => {
-            //console.log(arena)
-            $('#favourites').append(`
-            <div class="col-md-4 mb-4">
-            <div class="card">
-            <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
-            <h5 class="card-title">${arena.Name}</h5>
-            <p class="card-text"><strong>State:</strong> <a href="./statesDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
-            <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
-            <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
-            <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
-            <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-            onclick="Remove_player(${arena.Id})">
-            <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
-            </button>
-            </div>
-            </div>
-
-  `)
-        });
-
-    }
-    else{
-        $('#favourites').append(`
-            <div class="info">Nenhuma arena nos favoritos</div>
-
-            `)
-
-    }
-
     console.log("ready!");
     ko.applyBindings(new vm());
-
-
-
-
-
-
-
 });
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-
 })
 
 
+function checkfav() {
+    var Season = localStorage.getItem('records')
+    Season = JSON.parse(Season) || []
+    var fav = localStorage.getItem('Seasonfav')
+    var list = JSON.parse(fav) || [];
+    for (i = 0; i < Season.length; i++) {
+        //console.log("aaa")
 
+        //console.log(Season[i])
+        var check = list.some(item => item.Id === Season[i].Id);
+        //console.log(check)
+        if (check) {
+            mudarbotao(Season[i].Id)
+        }
+    }
+}
+function mudarbotao(id) {
+    var itemRemove = '#favestado_' + id
+    var itemADD = '#favestado_' + id
+    $(itemRemove).empty()
+    $(itemADD).append('<button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;float: right;;margin-left: 10px;"' +
+        'onclick="Remove_player(' + id + ')">' +
+        '<i class="fa-solid fa-trash" id="favourite_" title="Remove to favorites" ></i>' +
+        '</button>')
+}
 
+function Remove_player(records) {
+    //console.log(records)
+    var fav = JSON.parse(localStorage.getItem("Seasonfav")) || [];
+    for (let key in fav) {
+        if (fav.hasOwnProperty(key) && JSON.stringify(fav[key].Id) === JSON.stringify(records)) {
+            fav.splice(key, 1);
+            //console.log(fav);
+            break;
+        }
+    }
 
-//add palyer to fav
+    fav = localStorage.setItem("Seasonfav", JSON.stringify(fav))
+    alert("Season  removido dos favoritos")
+    location.reload()
+}
+//adcionar os fav
 function add_player(records) {
 
-    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
+
+    console.log(records)
+    var fav = JSON.parse(localStorage.getItem("Seasonfav")) || [];
 
 
 
     count = 0
-    for (let key in arenas) {
+    for (let key in fav) {
 
-        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key]) === JSON.stringify(records)) {
+        if (fav.hasOwnProperty(key) && JSON.stringify(fav[key]) === JSON.stringify(records)) {
             count = 1
 
         }
     }
-    console.log(count)
+    //console.log(count)
     if (count === 0) {
 
-        arenas.push(records);
-        console.log(arenas)
-        arenas = localStorage.setItem("arenas", JSON.stringify(arenas))
-        arena = records
-        $('#favourites .info').remove()
-        $('#fav_div').show()
-        $('#favourites').append(`
-        <div class="col-md-4 mb-4">
-        <div class="card">
-        <div class="card" style="background-image: url('${arena.Photo}'); background-size: cover;">
-        <h5 class="card-title">${arena.Name}</h5>
-        <p class="card-text"><strong>State:</strong> <a href="./stateDetails.html?id=${arena.StateId}">${arena.StateName}</a></p>
-        <p class="card-text"><strong>Team:</strong> <a href="./TeamsDetails.html?id=${arena.TeamId}&acronym=${arena.TeamAcronym}">${arena.TeamName}</a></p>
-        <p class="card-text"><strong>Location:</strong> <span>${arena.Location}</span></p>
-        <a href="./arenaDetails.html?id=${arena.Id}" class="btn btn-outline-primary me-2">Show Details</a>
-        <button class="btn btn-default btn-xs" style="background-color: red; border-radius: 30px;"
-        onclick="Remove_player(${arena.Id})">
-        <i class="fa-solid fa-trash" id="favourite_${arena.Id}" title="Remove to favorites" ></i>                           
-        </button>
-        </div>
-        </div>
-        </div>`);
-        alert("Arenas adicionado aos favoritos")
+        fav.push(records);
+        //console.log(fav)
+        fav = localStorage.setItem("Seasonfav", JSON.stringify(fav))
+        alert("Season  adicionado aos favoritos")
+        mudarbotao(records.Id)
+
     }
     else {
-        alert("Arenas já nos favoritos")
+        alert("Season  já nos favoritos")
     }
 
 };
-//remove player 
-function Remove_player(records) {
-    var arenas = JSON.parse(localStorage.getItem("arenas")) || [];
-
-    for (let key in arenas) {
-        if (arenas.hasOwnProperty(key) && JSON.stringify(arenas[key].Id) === JSON.stringify(records)) {
-            arenas.splice(key, 1);
-            break;
-        }
-    }
-    if (arenas.length === 0){
-        $('#favourites').append(`
-        <div class="info">Nenhuma Team nos favoritos</div>
-
-        `)
-    }
-    arenas = localStorage.setItem("arenas", JSON.stringify(arenas));
-    alert("Arena removido dos favoritos");
-
-    // Remove the corresponding HTML element from the page
-    $('#favourite_' + records).closest('.col-md-4').remove();
-    
-}
-//search
+//autocomplete
 $("#tags").on("input", function () {
     var inputValue = $(this).val();
+    //only works if lenght is more than 2
     if (inputValue.length < 2) {
         $("#ui-id-1").empty();
         localStorage.setItem("Autoconplete", JSON.stringify([]))
 
     }
+    //call the api
     else if (inputValue.length == 2) {
-        url = 'http://192.168.160.58/NBA/api/Arenas/Search?q=' + $("#tags").val();
+        url = 'http://192.168.160.58/NBA/api/Seasons/Search?q=' + $("#tags").val();
         console.log('CALL: getAutocomplete...');
         ajaxHelper(url, 'GET').done(function (data) {
             autocomplete = data
             localStorage.setItem("Autoconplete", JSON.stringify(autocomplete))
         });
     }
-
+    //appends the inf
     var autocomplete = JSON.parse(localStorage.getItem("Autoconplete")) || [];
     console.log(autocomplete.length != 0)
+    //if autocomplete has something
     if (autocomplete.length != 0) {
         $("#tags").autocomplete({
-            
+
             source: function (request, response) {
                 var term = request.term.toLowerCase();
                 var filteredAutocomplete = autocomplete.filter(function (item) {
-                    return item.Name.toLowerCase().includes(term);
+                    return item.Season.includes(term);
                 });
-                if (filteredAutocomplete.length == 0){
-                    filteredAutocomplete =["Error"]
-
-                }
                 response(filteredAutocomplete);
             },
             autoFocus: true,
             minLength: 0,
             open: function () {
-
                 darkmodestate = localStorage.getItem("darkmode_state")
 
                 $(".ui-autocomplete:visible").css({ top: "+=20" });
@@ -301,31 +259,33 @@ $("#tags").on("input", function () {
                         backgroundColor: "white",
                     });
                 }
+
             },
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
 
-            if (item.Name != undefined){
-            return $("<li>")
-                .attr("data-value", item.Name)
-                .append('<a href="./arenaDetails.html?id=' + item.Id + '"><span>' + item.Name + '</span> <a>')
-                .appendTo(ul);
-        }
-            else{
+            if (item.Season != undefined) {
                 return $("<li>")
-                .attr("data-value", item.Name)
-                .append('<span>Arena not found</span>')
-                .appendTo(ul);
+                    .attr("data-value", item.Season)
+                    .append('<a href="./SeasonsDetails.html?id=' + item.Id + '"><span>' + item.Season + '</span> <a>')
+                    .appendTo(ul);
             }
-    
-    
-    };
-    }
+            else {
+                return $("<li>")
+                    .attr("data-value", item.Season)
+                    .append('<span>Season not found</span>')
+                    .appendTo(ul);
+            }
+
+
+        };
+    }    //if autocomplete has nothing
+
     else {
 
         $("#tags").autocomplete({
             source: function (request, response) {
-                response([{ label: "Arena not found" }]);
+                response([{ label: "Season not found" }]);
             },
             autoFocus: true,
             open: function () {
@@ -347,9 +307,8 @@ function ajaxHelper(uri, method, data) {
         }
     })
 }
-//desabilita o autocomplete 
-$(window).scroll(function() {
-        if($('.ui-autocomplete').length != 0){
-            $('.ui-autocomplete').hide()
-        }
+$(window).scroll(function () {
+    if ($('.ui-autocomplete').length != 0) {
+        $('.ui-autocomplete').hide()
+    }
 });

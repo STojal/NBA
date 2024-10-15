@@ -1,0 +1,15 @@
+Boa tarde professor,
+Em adição ao que foi apresentado na apresentação adiconei: 
+
+Um modal com as informações da carreira do jogador, acessível pelos detalhes dos jogadores.
+Neste model pode acessar os dados do jogador naquela regular season.Basta ir o Ranking do jogador por regular season e clicar na season que deseja visualizar.
+Um off canvas onde se encontram os favoritos (apenas as arenas jogadores e teams o resto continua a ser acessado apenas na pagina). Dentro do off canvas os favoritos são apresentados num accordion 
+Adicionei graficos usando a googlecharts. O grafico pode ser acesso atravez do carrousel do index ou atravez da pagina das Seasons.
+No carrossel da página inicial, também é possível acessar uma página onde estão listados os 5 melhores jogadores das últimas 5 temporadas.
+Na team details coloquei uma navbar e adicionei a possibilidade de visualizar  os players daquela equipa nas últimas epócas por ordem decrescente
+Como mencionado na apresentação, converti as imagens para background image.
+
+Peço desculpa desde ja pela apresentadação do site que se encontra um pouco básica 
+
+Saudações académicas,
+Luís Tojal (119636)
